@@ -1,6 +1,6 @@
 {
   "module": "Blynk.NCP",
-  "@output_dir": "./lib/BlynkRPC/src/idl",
+  "@output_dir": "./src/idl",
   "interfaces" : {
     "system": {
       "@id": 1,

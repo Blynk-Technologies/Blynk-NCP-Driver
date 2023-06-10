@@ -5,7 +5,7 @@
 #define RPC_SHIM_CLIENT_H
 
 
-static
+static inline
 void rpc_client_blynkVPinChange(uint16_t vpin, buffer_t param) {
   RpcStatus _rpc_res;
   MessageBuffer _rpc_buff;
@@ -29,7 +29,7 @@ void rpc_client_blynkVPinChange(uint16_t vpin, buffer_t param) {
 }
 
 
-static
+static inline
 void rpc_client_blynkStateChange(uint8_t state) {
   RpcStatus _rpc_res;
   MessageBuffer _rpc_buff;
@@ -52,7 +52,7 @@ void rpc_client_blynkStateChange(uint8_t state) {
 }
 
 
-static
+static inline
 void rpc_client_processEvent(uint8_t event) {
   RpcStatus _rpc_res;
   MessageBuffer _rpc_buff;
@@ -75,7 +75,7 @@ void rpc_client_processEvent(uint8_t event) {
 }
 
 
-static
+static inline
 bool rpc_client_otaUpdateAvailable(const char* filename, uint32_t filesize, const char* fw_type, const char* fw_ver, const char* fw_build) {
   RpcStatus _rpc_res;
   /* Prepare return value */
@@ -120,7 +120,7 @@ bool rpc_client_otaUpdateAvailable(const char* filename, uint32_t filesize, cons
 }
 
 
-static
+static inline
 bool rpc_client_otaUpdateWrite(uint32_t offset, buffer_t chunk, uint32_t crc32) {
   RpcStatus _rpc_res;
   /* Prepare return value */
@@ -163,7 +163,7 @@ bool rpc_client_otaUpdateWrite(uint32_t offset, buffer_t chunk, uint32_t crc32) 
 }
 
 
-static
+static inline
 bool rpc_client_otaUpdateFinish() {
   RpcStatus _rpc_res;
   /* Prepare return value */
@@ -201,7 +201,7 @@ bool rpc_client_otaUpdateFinish() {
 }
 
 
-static
+static inline
 void rpc_client_otaUpdateCancel() {
   RpcStatus _rpc_res;
   MessageBuffer _rpc_buff;

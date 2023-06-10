@@ -5,7 +5,7 @@
 #define RPC_SHIM_BLYNK_H
 
 
-static
+static inline
 bool rpc_blynk_getNcpVersion(const char** ver) {
   RpcStatus _rpc_res;
   /* Prepare return value */
@@ -44,7 +44,7 @@ bool rpc_blynk_getNcpVersion(const char** ver) {
 }
 
 
-static
+static inline
 bool rpc_blynk_setVendorPrefix(const char* vendor) {
   RpcStatus _rpc_res;
   /* Prepare return value */
@@ -85,7 +85,7 @@ bool rpc_blynk_setVendorPrefix(const char* vendor) {
 }
 
 
-static
+static inline
 bool rpc_blynk_setVendorServer(const char* host) {
   RpcStatus _rpc_res;
   /* Prepare return value */
@@ -126,7 +126,7 @@ bool rpc_blynk_setVendorServer(const char* host) {
 }
 
 
-static
+static inline
 bool rpc_blynk_setFirmwareInfo(const char* type, const char* version, const char* build, const char* blynk) {
   RpcStatus _rpc_res;
   /* Prepare return value */
@@ -170,7 +170,7 @@ bool rpc_blynk_setFirmwareInfo(const char* type, const char* version, const char
 }
 
 
-static
+static inline
 bool rpc_blynk_initialize(const char* templateID, const char* templateName) {
   RpcStatus _rpc_res;
   /* Prepare return value */
@@ -212,7 +212,7 @@ bool rpc_blynk_initialize(const char* templateID, const char* templateName) {
 }
 
 
-static
+static inline
 bool rpc_blynk_getHotspotName(const char** hotspot) {
   RpcStatus _rpc_res;
   /* Prepare return value */
@@ -251,7 +251,7 @@ bool rpc_blynk_getHotspotName(const char** hotspot) {
 }
 
 
-static
+static inline
 bool rpc_blynk_isConfigured() {
   RpcStatus _rpc_res;
   /* Prepare return value */
@@ -289,7 +289,7 @@ bool rpc_blynk_isConfigured() {
 }
 
 
-static
+static inline
 bool rpc_blynk_configStart() {
   RpcStatus _rpc_res;
   /* Prepare return value */
@@ -327,7 +327,7 @@ bool rpc_blynk_configStart() {
 }
 
 
-static
+static inline
 bool rpc_blynk_configStop() {
   RpcStatus _rpc_res;
   /* Prepare return value */
@@ -365,7 +365,7 @@ bool rpc_blynk_configStop() {
 }
 
 
-static
+static inline
 bool rpc_blynk_configReset() {
   RpcStatus _rpc_res;
   /* Prepare return value */
@@ -403,7 +403,7 @@ bool rpc_blynk_configReset() {
 }
 
 
-static
+static inline
 bool rpc_blynk_setConfigTimeout(uint16_t timeout) {
   RpcStatus _rpc_res;
   /* Prepare return value */
@@ -444,7 +444,7 @@ bool rpc_blynk_setConfigTimeout(uint16_t timeout) {
 }
 
 
-static
+static inline
 bool rpc_blynk_setConfigSkipLimit(uint8_t count) {
   RpcStatus _rpc_res;
   /* Prepare return value */
@@ -485,7 +485,7 @@ bool rpc_blynk_setConfigSkipLimit(uint8_t count) {
 }
 
 
-static
+static inline
 bool rpc_blynk_setTime(int64_t time) {
   RpcStatus _rpc_res;
   /* Prepare return value */
@@ -526,7 +526,7 @@ bool rpc_blynk_setTime(int64_t time) {
 }
 
 
-static
+static inline
 bool rpc_blynk_getTime(const char** iso8601, int64_t* time, int16_t* offset, const char** tz_abbr, uint8_t* dst_status) {
   RpcStatus _rpc_res;
   /* Prepare return value */
@@ -569,7 +569,7 @@ bool rpc_blynk_getTime(const char** iso8601, int64_t* time, int16_t* offset, con
 }
 
 
-static
+static inline
 bool rpc_blynk_getLocationInfo(const char** lat, const char** lon, const char** olson_id, const char** posix_tz) {
   RpcStatus _rpc_res;
   /* Prepare return value */
@@ -611,7 +611,7 @@ bool rpc_blynk_getLocationInfo(const char** lat, const char** lon, const char** 
 }
 
 
-static
+static inline
 bool rpc_blynk_otaUpdateStart(uint16_t chunk) {
   RpcStatus _rpc_res;
   /* Prepare return value */
@@ -652,7 +652,7 @@ bool rpc_blynk_otaUpdateStart(uint16_t chunk) {
 }
 
 
-static
+static inline
 bool rpc_blynk_otaUpdateGetCRC32(uint32_t* crc) {
   RpcStatus _rpc_res;
   /* Prepare return value */
@@ -691,7 +691,7 @@ bool rpc_blynk_otaUpdateGetCRC32(uint32_t* crc) {
 }
 
 
-static
+static inline
 bool rpc_blynk_otaUpdateGetMD5(buffer_t* digest) {
   RpcStatus _rpc_res;
   /* Prepare return value */
@@ -730,7 +730,7 @@ bool rpc_blynk_otaUpdateGetMD5(buffer_t* digest) {
 }
 
 
-static
+static inline
 bool rpc_blynk_otaUpdateGetSHA256(buffer_t* digest) {
   RpcStatus _rpc_res;
   /* Prepare return value */
@@ -769,7 +769,7 @@ bool rpc_blynk_otaUpdateGetSHA256(buffer_t* digest) {
 }
 
 
-static
+static inline
 bool rpc_blynk_factoryReset() {
   RpcStatus _rpc_res;
   /* Prepare return value */
@@ -807,7 +807,7 @@ bool rpc_blynk_factoryReset() {
 }
 
 
-static
+static inline
 uint8_t rpc_blynk_factoryTestWiFiAP(uint16_t channel) {
   RpcStatus _rpc_res;
   /* Prepare return value */
@@ -848,7 +848,7 @@ uint8_t rpc_blynk_factoryTestWiFiAP(uint16_t channel) {
 }
 
 
-static
+static inline
 uint8_t rpc_blynk_factoryTestWiFi(const char* ssid, const char* pass, int16_t* rssi) {
   RpcStatus _rpc_res;
   /* Prepare return value */
@@ -891,7 +891,7 @@ uint8_t rpc_blynk_factoryTestWiFi(const char* ssid, const char* pass, int16_t* r
 }
 
 
-static
+static inline
 uint8_t rpc_blynk_factoryTestConnect() {
   RpcStatus _rpc_res;
   /* Prepare return value */
@@ -929,7 +929,7 @@ uint8_t rpc_blynk_factoryTestConnect() {
 }
 
 
-static
+static inline
 uint8_t rpc_blynk_getState() {
   RpcStatus _rpc_res;
   /* Prepare return value */
@@ -967,7 +967,7 @@ uint8_t rpc_blynk_getState() {
 }
 
 
-static
+static inline
 void rpc_blynk_virtualWrite(uint16_t vpin, buffer_t value) {
   RpcStatus _rpc_res;
   MessageBuffer _rpc_buff;
@@ -991,7 +991,7 @@ void rpc_blynk_virtualWrite(uint16_t vpin, buffer_t value) {
 }
 
 
-static
+static inline
 void rpc_blynk_setProperty(uint16_t vpin, const char* property, buffer_t value) {
   RpcStatus _rpc_res;
   MessageBuffer _rpc_buff;
@@ -1016,7 +1016,7 @@ void rpc_blynk_setProperty(uint16_t vpin, const char* property, buffer_t value) 
 }
 
 
-static
+static inline
 void rpc_blynk_syncAll() {
   RpcStatus _rpc_res;
   MessageBuffer _rpc_buff;
@@ -1036,7 +1036,7 @@ void rpc_blynk_syncAll() {
 }
 
 
-static
+static inline
 void rpc_blynk_syncVirtual(buffer_t vpins) {
   RpcStatus _rpc_res;
   MessageBuffer _rpc_buff;
@@ -1059,7 +1059,7 @@ void rpc_blynk_syncVirtual(buffer_t vpins) {
 }
 
 
-static
+static inline
 void rpc_blynk_logEvent(const char* event_code, const char* description) {
   RpcStatus _rpc_res;
   MessageBuffer _rpc_buff;
@@ -1083,7 +1083,7 @@ void rpc_blynk_logEvent(const char* event_code, const char* description) {
 }
 
 
-static
+static inline
 void rpc_blynk_resolveEvent(const char* event_code) {
   RpcStatus _rpc_res;
   MessageBuffer _rpc_buff;
@@ -1106,7 +1106,7 @@ void rpc_blynk_resolveEvent(const char* event_code) {
 }
 
 
-static
+static inline
 void rpc_blynk_resolveAllEvents(const char* event_code) {
   RpcStatus _rpc_res;
   MessageBuffer _rpc_buff;
@@ -1129,7 +1129,7 @@ void rpc_blynk_resolveAllEvents(const char* event_code) {
 }
 
 
-static
+static inline
 void rpc_blynk_beginGroup(int64_t timestamp) {
   RpcStatus _rpc_res;
   MessageBuffer _rpc_buff;
@@ -1152,7 +1152,7 @@ void rpc_blynk_beginGroup(int64_t timestamp) {
 }
 
 
-static
+static inline
 void rpc_blynk_endGroup() {
   RpcStatus _rpc_res;
   MessageBuffer _rpc_buff;
@@ -1172,7 +1172,7 @@ void rpc_blynk_endGroup() {
 }
 
 
-static
+static inline
 void rpc_blynk_setMetadata(const char* field, const char* value) {
   RpcStatus _rpc_res;
   MessageBuffer _rpc_buff;

@@ -5,7 +5,7 @@
 #define RPC_SHIM_SYSTEM_H
 
 
-static
+static inline
 RpcStatus rpc_system_ping() {
   RpcStatus _rpc_res;
   MessageBuffer _rpc_buff;
@@ -31,7 +31,7 @@ RpcStatus rpc_system_ping() {
 }
 
 
-static
+static inline
 bool rpc_system_reboot() {
   RpcStatus _rpc_res;
   /* Prepare return value */
@@ -69,7 +69,7 @@ bool rpc_system_reboot() {
 }
 
 
-static
+static inline
 bool rpc_system_hasUID(uint16_t uid) {
   RpcStatus _rpc_res;
   /* Prepare return value */

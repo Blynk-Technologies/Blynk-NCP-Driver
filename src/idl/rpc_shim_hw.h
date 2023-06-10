@@ -5,7 +5,7 @@
 #define RPC_SHIM_HW_H
 
 
-static
+static inline
 bool rpc_hw_setUartBaudRate(uint32_t baud) {
   RpcStatus _rpc_res;
   /* Prepare return value */
@@ -46,7 +46,7 @@ bool rpc_hw_setUartBaudRate(uint32_t baud) {
 }
 
 
-static
+static inline
 bool rpc_hw_initUserButton(uint16_t gpio, bool active_low) {
   RpcStatus _rpc_res;
   /* Prepare return value */
@@ -88,7 +88,7 @@ bool rpc_hw_initUserButton(uint16_t gpio, bool active_low) {
 }
 
 
-static
+static inline
 bool rpc_hw_initLED(uint16_t gpio, bool active_low) {
   RpcStatus _rpc_res;
   /* Prepare return value */
@@ -130,7 +130,7 @@ bool rpc_hw_initLED(uint16_t gpio, bool active_low) {
 }
 
 
-static
+static inline
 bool rpc_hw_initRGB(uint16_t gpio_r, uint16_t gpio_g, uint16_t gpio_b, bool common_anode) {
   RpcStatus _rpc_res;
   /* Prepare return value */
@@ -174,7 +174,7 @@ bool rpc_hw_initRGB(uint16_t gpio_r, uint16_t gpio_g, uint16_t gpio_b, bool comm
 }
 
 
-static
+static inline
 bool rpc_hw_initARGB(uint16_t gpio, uint8_t mode, uint8_t count) {
   RpcStatus _rpc_res;
   /* Prepare return value */
@@ -217,7 +217,7 @@ bool rpc_hw_initARGB(uint16_t gpio, uint8_t mode, uint8_t count) {
 }
 
 
-static
+static inline
 bool rpc_hw_setLedBrightness(uint8_t value) {
   RpcStatus _rpc_res;
   /* Prepare return value */
@@ -258,7 +258,7 @@ bool rpc_hw_setLedBrightness(uint8_t value) {
 }
 
 
-static
+static inline
 bool rpc_hw_getWiFiMAC(const char** mac) {
   RpcStatus _rpc_res;
   /* Prepare return value */
@@ -297,7 +297,7 @@ bool rpc_hw_getWiFiMAC(const char** mac) {
 }
 
 
-static
+static inline
 bool rpc_hw_getEthernetMAC(const char** mac) {
   RpcStatus _rpc_res;
   /* Prepare return value */
