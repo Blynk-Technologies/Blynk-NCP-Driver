@@ -3,7 +3,19 @@
   "version": "0.4.6",
   "description": "A shared interface to the services provided by Blynk.NCP",
   "keywords": "Blynk NCP Driver",
-  "license": "MIT",
+  "authors":
+  {
+    "name":  "Volodymyr Shymanskyy",
+    "url":   "https://github.com/vshymanskyy",
+    "maintainer": true
+  },
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/blynkkk/BlynkNcpDriver.git"
+  },
+  "homepage": "https://blynk.io",
+  "license": "Apache-2.0",
   "frameworks": "*",
   "platforms": "*"
 }
