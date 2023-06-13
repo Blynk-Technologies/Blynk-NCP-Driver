@@ -12,85 +12,52 @@
 
 /* =============================== */
 
-#if defined(SerialNCP)
-  // OK, use it
-#elif defined(ARDUINO_NANO_RP2040_CONNECT) && defined(__MBED__)
-  #define SerialNCP   SerialNina
-#else
-  #error "SerialNCP is not defined"
-#endif
-
-#include <BlynkRpcClient.h>
-#include <BlynkRpcInfraArduino.h>
-
-#if !defined(BLYNK_FIRMWARE_TYPE) && defined(BLYNK_TEMPLATE_ID)
-  #define BLYNK_FIRMWARE_TYPE BLYNK_TEMPLATE_ID
-#endif
-
-#if !defined(BLYNK_TEMPLATE_ID) || !defined(BLYNK_TEMPLATE_NAME)
-  #error "Please specify your BLYNK_TEMPLATE_ID and BLYNK_TEMPLATE_NAME"
-#endif
-
-#if defined(ARDUINO_NANO_RP2040_CONNECT) && defined(__MBED__)
-  void ncpInitialize() {
-    pinMode(NINA_RESETN, OUTPUT);
-    digitalWrite(NINA_RESETN, HIGH);
-  }
-
-  void ncpConfigure() {
-    rpc_hw_initRGB(27, 25, 26, true);
-    rpc_hw_setLedBrightness(128);
-  }
-#else
-  void ncpInitialize() {
-    // TODO: Power-up NCP, if needed
-  }
-  void ncpConfigure() {}
-#endif
-
-bool waitNCP() {
-  for (int i = 0; i < 10; i++) {
-    uint32_t tbeg = micros();
-    if (RPC_STATUS_OK == rpc_system_ping()) {
-      uint32_t tend = micros();
-      Serial.println("Blynk.NCP response OK");
-      return true;
-    }
-  }
-  Serial.println("NCP not responding");
-  return false;
-}
+#include "NCP_Helpers.h"
 
 void setup() {
   SerialDbg.begin(115200);
   SerialNCP.begin(115200);
 
+  // Power-up NCP
   ncpInitialize();
 
-  delay(1000);
+  delay(3000);
 
-  if (!waitNCP()) {
+  if (!ncpWaitResponse()) {
     return;
   }
 
   const char* ncpFwVer = "unknown";
   if (rpc_blynk_getNcpVersion(&ncpFwVer)) {
-    Serial.print("NCP firmware: ");
-    Serial.println(ncpFwVer);
+    SerialDbg.print("NCP firmware: ");
+    SerialDbg.println(ncpFwVer);
   }
 
   ncpConfigure();
 
+  // Provide Primary MCU firmware info to the NCP
   rpc_blynk_setFirmwareInfo(BLYNK_FIRMWARE_TYPE,
                             BLYNK_FIRMWARE_VERSION,
                             __DATE__ " " __TIME__,
                             BLYNK_RPC_LIB_VERSION);
 
+  // White labeling
+  //rpc_blynk_setVendorPrefix("MyCompany");
+  //rpc_blynk_setVendorServer("dashboard.mycompany.com");
+
+  // Product setup
   if (!rpc_blynk_initialize(BLYNK_TEMPLATE_ID, BLYNK_TEMPLATE_NAME)) {
-    Serial.println("rpc_blynk_initialize failed");
+    SerialDbg.println("rpc_blynk_initialize failed");
   }
 }
 
 void loop() {
   rpc_run();
 }
+
+// Define the callback for the NCP state change event
+void rpc_client_blynkStateChange_impl(uint8_t state) {
+  SerialDbg.print("NCP state: ");
+  SerialDbg.println(ncpGetStateString(state));
+}
+
