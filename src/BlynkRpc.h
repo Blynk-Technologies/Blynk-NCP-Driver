@@ -158,6 +158,7 @@ typedef enum RpcFactoryTestStatus {
   RPC_FACTORY_TEST_INET_FAIL    = 6,
 } RpcFactoryTestStatus;
 
+#define RPC_ATTR_WEAK           __attribute__((weak))
 #define RPC_ATTR_DEPRECATED     __attribute__ ((deprecated))
 #define RPC_TIMEOUT_DEFAULT     1000
 
