@@ -5,6 +5,8 @@
 #define RPC_HANDLER_BLYNK_H
 
 
+extern "C" bool rpc_blynk_getNcpVersion_impl(const char** ver);
+
 static
 RpcStatus rpc_blynk_getNcpVersion_handler(MessageBuffer* _rpc_buff) {
   /* Deserialize arguments */
@@ -14,8 +16,6 @@ RpcStatus rpc_blynk_getNcpVersion_handler(MessageBuffer* _rpc_buff) {
     return RPC_STATUS_ERROR_ARGS_R;
   }
 
-  /* Forward decl */
-  extern bool rpc_blynk_getNcpVersion_impl(const char** ver);
   /* Call the actual function */
   bool _rpc_ret_val = rpc_blynk_getNcpVersion_impl(&ver);
 
@@ -31,6 +31,8 @@ RpcStatus rpc_blynk_getNcpVersion_handler(MessageBuffer* _rpc_buff) {
 }
 
 
+extern "C" bool rpc_blynk_setVendorPrefix_impl(const char* vendor);
+
 static
 RpcStatus rpc_blynk_setVendorPrefix_handler(MessageBuffer* _rpc_buff) {
   /* Deserialize arguments */
@@ -40,8 +42,6 @@ RpcStatus rpc_blynk_setVendorPrefix_handler(MessageBuffer* _rpc_buff) {
     return RPC_STATUS_ERROR_ARGS_R;
   }
 
-  /* Forward decl */
-  extern bool rpc_blynk_setVendorPrefix_impl(const char* vendor);
   /* Call the actual function */
   bool _rpc_ret_val = rpc_blynk_setVendorPrefix_impl(vendor);
 
@@ -56,6 +56,8 @@ RpcStatus rpc_blynk_setVendorPrefix_handler(MessageBuffer* _rpc_buff) {
 }
 
 
+extern "C" bool rpc_blynk_setVendorServer_impl(const char* host);
+
 static
 RpcStatus rpc_blynk_setVendorServer_handler(MessageBuffer* _rpc_buff) {
   /* Deserialize arguments */
@@ -65,8 +67,6 @@ RpcStatus rpc_blynk_setVendorServer_handler(MessageBuffer* _rpc_buff) {
     return RPC_STATUS_ERROR_ARGS_R;
   }
 
-  /* Forward decl */
-  extern bool rpc_blynk_setVendorServer_impl(const char* host);
   /* Call the actual function */
   bool _rpc_ret_val = rpc_blynk_setVendorServer_impl(host);
 
@@ -81,6 +81,8 @@ RpcStatus rpc_blynk_setVendorServer_handler(MessageBuffer* _rpc_buff) {
 }
 
 
+extern "C" bool rpc_blynk_setFirmwareInfo_impl(const char* type, const char* version, const char* build, const char* blynk);
+
 static
 RpcStatus rpc_blynk_setFirmwareInfo_handler(MessageBuffer* _rpc_buff) {
   /* Deserialize arguments */
@@ -93,8 +95,6 @@ RpcStatus rpc_blynk_setFirmwareInfo_handler(MessageBuffer* _rpc_buff) {
     return RPC_STATUS_ERROR_ARGS_R;
   }
 
-  /* Forward decl */
-  extern bool rpc_blynk_setFirmwareInfo_impl(const char* type, const char* version, const char* build, const char* blynk);
   /* Call the actual function */
   bool _rpc_ret_val = rpc_blynk_setFirmwareInfo_impl(type, version, build, blynk);
 
@@ -109,6 +109,8 @@ RpcStatus rpc_blynk_setFirmwareInfo_handler(MessageBuffer* _rpc_buff) {
 }
 
 
+extern "C" bool rpc_blynk_initialize_impl(const char* templateID, const char* templateName);
+
 static
 RpcStatus rpc_blynk_initialize_handler(MessageBuffer* _rpc_buff) {
   /* Deserialize arguments */
@@ -119,8 +121,6 @@ RpcStatus rpc_blynk_initialize_handler(MessageBuffer* _rpc_buff) {
     return RPC_STATUS_ERROR_ARGS_R;
   }
 
-  /* Forward decl */
-  extern bool rpc_blynk_initialize_impl(const char* templateID, const char* templateName);
   /* Call the actual function */
   bool _rpc_ret_val = rpc_blynk_initialize_impl(templateID, templateName);
 
@@ -135,6 +135,8 @@ RpcStatus rpc_blynk_initialize_handler(MessageBuffer* _rpc_buff) {
 }
 
 
+extern "C" bool rpc_blynk_getHotspotName_impl(const char** hotspot);
+
 static
 RpcStatus rpc_blynk_getHotspotName_handler(MessageBuffer* _rpc_buff) {
   /* Deserialize arguments */
@@ -144,8 +146,6 @@ RpcStatus rpc_blynk_getHotspotName_handler(MessageBuffer* _rpc_buff) {
     return RPC_STATUS_ERROR_ARGS_R;
   }
 
-  /* Forward decl */
-  extern bool rpc_blynk_getHotspotName_impl(const char** hotspot);
   /* Call the actual function */
   bool _rpc_ret_val = rpc_blynk_getHotspotName_impl(&hotspot);
 
@@ -161,11 +161,11 @@ RpcStatus rpc_blynk_getHotspotName_handler(MessageBuffer* _rpc_buff) {
 }
 
 
+extern "C" bool rpc_blynk_isConfigured_impl();
+
 static
 RpcStatus rpc_blynk_isConfigured_handler(MessageBuffer* _rpc_buff) {
 
-  /* Forward decl */
-  extern bool rpc_blynk_isConfigured_impl();
   /* Call the actual function */
   bool _rpc_ret_val = rpc_blynk_isConfigured_impl();
 
@@ -180,11 +180,11 @@ RpcStatus rpc_blynk_isConfigured_handler(MessageBuffer* _rpc_buff) {
 }
 
 
+extern "C" bool rpc_blynk_configStart_impl();
+
 static
 RpcStatus rpc_blynk_configStart_handler(MessageBuffer* _rpc_buff) {
 
-  /* Forward decl */
-  extern bool rpc_blynk_configStart_impl();
   /* Call the actual function */
   bool _rpc_ret_val = rpc_blynk_configStart_impl();
 
@@ -199,11 +199,11 @@ RpcStatus rpc_blynk_configStart_handler(MessageBuffer* _rpc_buff) {
 }
 
 
+extern "C" bool rpc_blynk_configStop_impl();
+
 static
 RpcStatus rpc_blynk_configStop_handler(MessageBuffer* _rpc_buff) {
 
-  /* Forward decl */
-  extern bool rpc_blynk_configStop_impl();
   /* Call the actual function */
   bool _rpc_ret_val = rpc_blynk_configStop_impl();
 
@@ -218,11 +218,11 @@ RpcStatus rpc_blynk_configStop_handler(MessageBuffer* _rpc_buff) {
 }
 
 
+extern "C" bool rpc_blynk_configReset_impl();
+
 static
 RpcStatus rpc_blynk_configReset_handler(MessageBuffer* _rpc_buff) {
 
-  /* Forward decl */
-  extern bool rpc_blynk_configReset_impl();
   /* Call the actual function */
   bool _rpc_ret_val = rpc_blynk_configReset_impl();
 
@@ -237,6 +237,8 @@ RpcStatus rpc_blynk_configReset_handler(MessageBuffer* _rpc_buff) {
 }
 
 
+extern "C" bool rpc_blynk_setConfigTimeout_impl(uint16_t timeout);
+
 static
 RpcStatus rpc_blynk_setConfigTimeout_handler(MessageBuffer* _rpc_buff) {
   /* Deserialize arguments */
@@ -246,8 +248,6 @@ RpcStatus rpc_blynk_setConfigTimeout_handler(MessageBuffer* _rpc_buff) {
     return RPC_STATUS_ERROR_ARGS_R;
   }
 
-  /* Forward decl */
-  extern bool rpc_blynk_setConfigTimeout_impl(uint16_t timeout);
   /* Call the actual function */
   bool _rpc_ret_val = rpc_blynk_setConfigTimeout_impl(timeout);
 
@@ -262,6 +262,8 @@ RpcStatus rpc_blynk_setConfigTimeout_handler(MessageBuffer* _rpc_buff) {
 }
 
 
+extern "C" bool rpc_blynk_setConfigSkipLimit_impl(uint8_t count);
+
 static
 RpcStatus rpc_blynk_setConfigSkipLimit_handler(MessageBuffer* _rpc_buff) {
   /* Deserialize arguments */
@@ -271,8 +273,6 @@ RpcStatus rpc_blynk_setConfigSkipLimit_handler(MessageBuffer* _rpc_buff) {
     return RPC_STATUS_ERROR_ARGS_R;
   }
 
-  /* Forward decl */
-  extern bool rpc_blynk_setConfigSkipLimit_impl(uint8_t count);
   /* Call the actual function */
   bool _rpc_ret_val = rpc_blynk_setConfigSkipLimit_impl(count);
 
@@ -287,6 +287,8 @@ RpcStatus rpc_blynk_setConfigSkipLimit_handler(MessageBuffer* _rpc_buff) {
 }
 
 
+extern "C" bool rpc_blynk_setTime_impl(int64_t time);
+
 static
 RpcStatus rpc_blynk_setTime_handler(MessageBuffer* _rpc_buff) {
   /* Deserialize arguments */
@@ -296,8 +298,6 @@ RpcStatus rpc_blynk_setTime_handler(MessageBuffer* _rpc_buff) {
     return RPC_STATUS_ERROR_ARGS_R;
   }
 
-  /* Forward decl */
-  extern bool rpc_blynk_setTime_impl(int64_t time);
   /* Call the actual function */
   bool _rpc_ret_val = rpc_blynk_setTime_impl(time);
 
@@ -312,6 +312,8 @@ RpcStatus rpc_blynk_setTime_handler(MessageBuffer* _rpc_buff) {
 }
 
 
+extern "C" bool rpc_blynk_getTime_impl(const char** iso8601, int64_t* time, int16_t* offset, const char** tz_abbr, uint8_t* dst_status);
+
 static
 RpcStatus rpc_blynk_getTime_handler(MessageBuffer* _rpc_buff) {
   /* Deserialize arguments */
@@ -325,8 +327,6 @@ RpcStatus rpc_blynk_getTime_handler(MessageBuffer* _rpc_buff) {
     return RPC_STATUS_ERROR_ARGS_R;
   }
 
-  /* Forward decl */
-  extern bool rpc_blynk_getTime_impl(const char** iso8601, int64_t* time, int16_t* offset, const char** tz_abbr, uint8_t* dst_status);
   /* Call the actual function */
   bool _rpc_ret_val = rpc_blynk_getTime_impl(&iso8601, &time, &offset, &tz_abbr, &dst_status);
 
@@ -346,6 +346,8 @@ RpcStatus rpc_blynk_getTime_handler(MessageBuffer* _rpc_buff) {
 }
 
 
+extern "C" bool rpc_blynk_getLocationInfo_impl(const char** lat, const char** lon, const char** olson_id, const char** posix_tz);
+
 static
 RpcStatus rpc_blynk_getLocationInfo_handler(MessageBuffer* _rpc_buff) {
   /* Deserialize arguments */
@@ -358,8 +360,6 @@ RpcStatus rpc_blynk_getLocationInfo_handler(MessageBuffer* _rpc_buff) {
     return RPC_STATUS_ERROR_ARGS_R;
   }
 
-  /* Forward decl */
-  extern bool rpc_blynk_getLocationInfo_impl(const char** lat, const char** lon, const char** olson_id, const char** posix_tz);
   /* Call the actual function */
   bool _rpc_ret_val = rpc_blynk_getLocationInfo_impl(&lat, &lon, &olson_id, &posix_tz);
 
@@ -378,6 +378,8 @@ RpcStatus rpc_blynk_getLocationInfo_handler(MessageBuffer* _rpc_buff) {
 }
 
 
+extern "C" bool rpc_blynk_otaUpdateStart_impl(uint16_t chunk);
+
 static
 RpcStatus rpc_blynk_otaUpdateStart_handler(MessageBuffer* _rpc_buff) {
   /* Deserialize arguments */
@@ -387,8 +389,6 @@ RpcStatus rpc_blynk_otaUpdateStart_handler(MessageBuffer* _rpc_buff) {
     return RPC_STATUS_ERROR_ARGS_R;
   }
 
-  /* Forward decl */
-  extern bool rpc_blynk_otaUpdateStart_impl(uint16_t chunk);
   /* Call the actual function */
   bool _rpc_ret_val = rpc_blynk_otaUpdateStart_impl(chunk);
 
@@ -403,6 +403,8 @@ RpcStatus rpc_blynk_otaUpdateStart_handler(MessageBuffer* _rpc_buff) {
 }
 
 
+extern "C" bool rpc_blynk_otaUpdateGetCRC32_impl(uint32_t* crc);
+
 static
 RpcStatus rpc_blynk_otaUpdateGetCRC32_handler(MessageBuffer* _rpc_buff) {
   /* Deserialize arguments */
@@ -412,8 +414,6 @@ RpcStatus rpc_blynk_otaUpdateGetCRC32_handler(MessageBuffer* _rpc_buff) {
     return RPC_STATUS_ERROR_ARGS_R;
   }
 
-  /* Forward decl */
-  extern bool rpc_blynk_otaUpdateGetCRC32_impl(uint32_t* crc);
   /* Call the actual function */
   bool _rpc_ret_val = rpc_blynk_otaUpdateGetCRC32_impl(&crc);
 
@@ -429,6 +429,8 @@ RpcStatus rpc_blynk_otaUpdateGetCRC32_handler(MessageBuffer* _rpc_buff) {
 }
 
 
+extern "C" bool rpc_blynk_otaUpdateGetMD5_impl(buffer_t* digest);
+
 static
 RpcStatus rpc_blynk_otaUpdateGetMD5_handler(MessageBuffer* _rpc_buff) {
   /* Deserialize arguments */
@@ -438,8 +440,6 @@ RpcStatus rpc_blynk_otaUpdateGetMD5_handler(MessageBuffer* _rpc_buff) {
     return RPC_STATUS_ERROR_ARGS_R;
   }
 
-  /* Forward decl */
-  extern bool rpc_blynk_otaUpdateGetMD5_impl(buffer_t* digest);
   /* Call the actual function */
   bool _rpc_ret_val = rpc_blynk_otaUpdateGetMD5_impl(&digest);
 
@@ -455,6 +455,8 @@ RpcStatus rpc_blynk_otaUpdateGetMD5_handler(MessageBuffer* _rpc_buff) {
 }
 
 
+extern "C" bool rpc_blynk_otaUpdateGetSHA256_impl(buffer_t* digest);
+
 static
 RpcStatus rpc_blynk_otaUpdateGetSHA256_handler(MessageBuffer* _rpc_buff) {
   /* Deserialize arguments */
@@ -464,8 +466,6 @@ RpcStatus rpc_blynk_otaUpdateGetSHA256_handler(MessageBuffer* _rpc_buff) {
     return RPC_STATUS_ERROR_ARGS_R;
   }
 
-  /* Forward decl */
-  extern bool rpc_blynk_otaUpdateGetSHA256_impl(buffer_t* digest);
   /* Call the actual function */
   bool _rpc_ret_val = rpc_blynk_otaUpdateGetSHA256_impl(&digest);
 
@@ -481,11 +481,11 @@ RpcStatus rpc_blynk_otaUpdateGetSHA256_handler(MessageBuffer* _rpc_buff) {
 }
 
 
+extern "C" bool rpc_blynk_factoryReset_impl();
+
 static
 RpcStatus rpc_blynk_factoryReset_handler(MessageBuffer* _rpc_buff) {
 
-  /* Forward decl */
-  extern bool rpc_blynk_factoryReset_impl();
   /* Call the actual function */
   bool _rpc_ret_val = rpc_blynk_factoryReset_impl();
 
@@ -500,6 +500,8 @@ RpcStatus rpc_blynk_factoryReset_handler(MessageBuffer* _rpc_buff) {
 }
 
 
+extern "C" uint8_t rpc_blynk_factoryTestWiFiAP_impl(uint16_t channel);
+
 static
 RpcStatus rpc_blynk_factoryTestWiFiAP_handler(MessageBuffer* _rpc_buff) {
   /* Deserialize arguments */
@@ -509,8 +511,6 @@ RpcStatus rpc_blynk_factoryTestWiFiAP_handler(MessageBuffer* _rpc_buff) {
     return RPC_STATUS_ERROR_ARGS_R;
   }
 
-  /* Forward decl */
-  extern uint8_t rpc_blynk_factoryTestWiFiAP_impl(uint16_t channel);
   /* Call the actual function */
   uint8_t _rpc_ret_val = rpc_blynk_factoryTestWiFiAP_impl(channel);
 
@@ -525,6 +525,8 @@ RpcStatus rpc_blynk_factoryTestWiFiAP_handler(MessageBuffer* _rpc_buff) {
 }
 
 
+extern "C" uint8_t rpc_blynk_factoryTestWiFi_impl(const char* ssid, const char* pass, int16_t* rssi);
+
 static
 RpcStatus rpc_blynk_factoryTestWiFi_handler(MessageBuffer* _rpc_buff) {
   /* Deserialize arguments */
@@ -536,8 +538,6 @@ RpcStatus rpc_blynk_factoryTestWiFi_handler(MessageBuffer* _rpc_buff) {
     return RPC_STATUS_ERROR_ARGS_R;
   }
 
-  /* Forward decl */
-  extern uint8_t rpc_blynk_factoryTestWiFi_impl(const char* ssid, const char* pass, int16_t* rssi);
   /* Call the actual function */
   uint8_t _rpc_ret_val = rpc_blynk_factoryTestWiFi_impl(ssid, pass, &rssi);
 
@@ -553,11 +553,11 @@ RpcStatus rpc_blynk_factoryTestWiFi_handler(MessageBuffer* _rpc_buff) {
 }
 
 
+extern "C" uint8_t rpc_blynk_factoryTestConnect_impl();
+
 static
 RpcStatus rpc_blynk_factoryTestConnect_handler(MessageBuffer* _rpc_buff) {
 
-  /* Forward decl */
-  extern uint8_t rpc_blynk_factoryTestConnect_impl();
   /* Call the actual function */
   uint8_t _rpc_ret_val = rpc_blynk_factoryTestConnect_impl();
 
@@ -572,11 +572,11 @@ RpcStatus rpc_blynk_factoryTestConnect_handler(MessageBuffer* _rpc_buff) {
 }
 
 
+extern "C" uint8_t rpc_blynk_getState_impl();
+
 static
 RpcStatus rpc_blynk_getState_handler(MessageBuffer* _rpc_buff) {
 
-  /* Forward decl */
-  extern uint8_t rpc_blynk_getState_impl();
   /* Call the actual function */
   uint8_t _rpc_ret_val = rpc_blynk_getState_impl();
 
@@ -591,6 +591,8 @@ RpcStatus rpc_blynk_getState_handler(MessageBuffer* _rpc_buff) {
 }
 
 
+extern "C" void rpc_blynk_virtualWrite_impl(uint16_t vpin, buffer_t value);
+
 static
 RpcStatus rpc_blynk_virtualWrite_handler(MessageBuffer* _rpc_buff) {
   /* Deserialize arguments */
@@ -601,8 +603,6 @@ RpcStatus rpc_blynk_virtualWrite_handler(MessageBuffer* _rpc_buff) {
     return RPC_STATUS_ERROR_ARGS_R;
   }
 
-  /* Forward decl */
-  extern void rpc_blynk_virtualWrite_impl(uint16_t vpin, buffer_t value);
   /* Call the actual function */
   rpc_blynk_virtualWrite_impl(vpin, value);
 
@@ -610,6 +610,8 @@ RpcStatus rpc_blynk_virtualWrite_handler(MessageBuffer* _rpc_buff) {
   return RPC_STATUS_OK;
 }
 
+
+extern "C" void rpc_blynk_setProperty_impl(uint16_t vpin, const char* property, buffer_t value);
 
 static
 RpcStatus rpc_blynk_setProperty_handler(MessageBuffer* _rpc_buff) {
@@ -622,8 +624,6 @@ RpcStatus rpc_blynk_setProperty_handler(MessageBuffer* _rpc_buff) {
     return RPC_STATUS_ERROR_ARGS_R;
   }
 
-  /* Forward decl */
-  extern void rpc_blynk_setProperty_impl(uint16_t vpin, const char* property, buffer_t value);
   /* Call the actual function */
   rpc_blynk_setProperty_impl(vpin, property, value);
 
@@ -632,11 +632,11 @@ RpcStatus rpc_blynk_setProperty_handler(MessageBuffer* _rpc_buff) {
 }
 
 
+extern "C" void rpc_blynk_syncAll_impl();
+
 static
 RpcStatus rpc_blynk_syncAll_handler(MessageBuffer* _rpc_buff) {
 
-  /* Forward decl */
-  extern void rpc_blynk_syncAll_impl();
   /* Call the actual function */
   rpc_blynk_syncAll_impl();
 
@@ -644,6 +644,8 @@ RpcStatus rpc_blynk_syncAll_handler(MessageBuffer* _rpc_buff) {
   return RPC_STATUS_OK;
 }
 
+
+extern "C" void rpc_blynk_syncVirtual_impl(buffer_t vpins);
 
 static
 RpcStatus rpc_blynk_syncVirtual_handler(MessageBuffer* _rpc_buff) {
@@ -654,8 +656,6 @@ RpcStatus rpc_blynk_syncVirtual_handler(MessageBuffer* _rpc_buff) {
     return RPC_STATUS_ERROR_ARGS_R;
   }
 
-  /* Forward decl */
-  extern void rpc_blynk_syncVirtual_impl(buffer_t vpins);
   /* Call the actual function */
   rpc_blynk_syncVirtual_impl(vpins);
 
@@ -663,6 +663,8 @@ RpcStatus rpc_blynk_syncVirtual_handler(MessageBuffer* _rpc_buff) {
   return RPC_STATUS_OK;
 }
 
+
+extern "C" void rpc_blynk_logEvent_impl(const char* event_code, const char* description);
 
 static
 RpcStatus rpc_blynk_logEvent_handler(MessageBuffer* _rpc_buff) {
@@ -674,8 +676,6 @@ RpcStatus rpc_blynk_logEvent_handler(MessageBuffer* _rpc_buff) {
     return RPC_STATUS_ERROR_ARGS_R;
   }
 
-  /* Forward decl */
-  extern void rpc_blynk_logEvent_impl(const char* event_code, const char* description);
   /* Call the actual function */
   rpc_blynk_logEvent_impl(event_code, description);
 
@@ -683,6 +683,8 @@ RpcStatus rpc_blynk_logEvent_handler(MessageBuffer* _rpc_buff) {
   return RPC_STATUS_OK;
 }
 
+
+extern "C" void rpc_blynk_resolveEvent_impl(const char* event_code);
 
 static
 RpcStatus rpc_blynk_resolveEvent_handler(MessageBuffer* _rpc_buff) {
@@ -693,8 +695,6 @@ RpcStatus rpc_blynk_resolveEvent_handler(MessageBuffer* _rpc_buff) {
     return RPC_STATUS_ERROR_ARGS_R;
   }
 
-  /* Forward decl */
-  extern void rpc_blynk_resolveEvent_impl(const char* event_code);
   /* Call the actual function */
   rpc_blynk_resolveEvent_impl(event_code);
 
@@ -702,6 +702,8 @@ RpcStatus rpc_blynk_resolveEvent_handler(MessageBuffer* _rpc_buff) {
   return RPC_STATUS_OK;
 }
 
+
+extern "C" void rpc_blynk_resolveAllEvents_impl(const char* event_code);
 
 static
 RpcStatus rpc_blynk_resolveAllEvents_handler(MessageBuffer* _rpc_buff) {
@@ -712,8 +714,6 @@ RpcStatus rpc_blynk_resolveAllEvents_handler(MessageBuffer* _rpc_buff) {
     return RPC_STATUS_ERROR_ARGS_R;
   }
 
-  /* Forward decl */
-  extern void rpc_blynk_resolveAllEvents_impl(const char* event_code);
   /* Call the actual function */
   rpc_blynk_resolveAllEvents_impl(event_code);
 
@@ -721,6 +721,8 @@ RpcStatus rpc_blynk_resolveAllEvents_handler(MessageBuffer* _rpc_buff) {
   return RPC_STATUS_OK;
 }
 
+
+extern "C" void rpc_blynk_beginGroup_impl(int64_t timestamp);
 
 static
 RpcStatus rpc_blynk_beginGroup_handler(MessageBuffer* _rpc_buff) {
@@ -731,8 +733,6 @@ RpcStatus rpc_blynk_beginGroup_handler(MessageBuffer* _rpc_buff) {
     return RPC_STATUS_ERROR_ARGS_R;
   }
 
-  /* Forward decl */
-  extern void rpc_blynk_beginGroup_impl(int64_t timestamp);
   /* Call the actual function */
   rpc_blynk_beginGroup_impl(timestamp);
 
@@ -741,11 +741,11 @@ RpcStatus rpc_blynk_beginGroup_handler(MessageBuffer* _rpc_buff) {
 }
 
 
+extern "C" void rpc_blynk_endGroup_impl();
+
 static
 RpcStatus rpc_blynk_endGroup_handler(MessageBuffer* _rpc_buff) {
 
-  /* Forward decl */
-  extern void rpc_blynk_endGroup_impl();
   /* Call the actual function */
   rpc_blynk_endGroup_impl();
 
@@ -753,6 +753,8 @@ RpcStatus rpc_blynk_endGroup_handler(MessageBuffer* _rpc_buff) {
   return RPC_STATUS_OK;
 }
 
+
+extern "C" void rpc_blynk_setMetadata_impl(const char* field, const char* value);
 
 static
 RpcStatus rpc_blynk_setMetadata_handler(MessageBuffer* _rpc_buff) {
@@ -764,8 +766,6 @@ RpcStatus rpc_blynk_setMetadata_handler(MessageBuffer* _rpc_buff) {
     return RPC_STATUS_ERROR_ARGS_R;
   }
 
-  /* Forward decl */
-  extern void rpc_blynk_setMetadata_impl(const char* field, const char* value);
   /* Call the actual function */
   rpc_blynk_setMetadata_impl(field, value);
 

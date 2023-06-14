@@ -5,6 +5,8 @@
 #define RPC_HANDLER_CLIENT_H
 
 
+extern "C" void rpc_client_blynkVPinChange_impl(uint16_t vpin, buffer_t param);
+
 static
 RpcStatus rpc_client_blynkVPinChange_handler(MessageBuffer* _rpc_buff) {
   /* Deserialize arguments */
@@ -15,8 +17,6 @@ RpcStatus rpc_client_blynkVPinChange_handler(MessageBuffer* _rpc_buff) {
     return RPC_STATUS_ERROR_ARGS_R;
   }
 
-  /* Forward decl */
-  extern void rpc_client_blynkVPinChange_impl(uint16_t vpin, buffer_t param);
   /* Call the actual function */
   rpc_client_blynkVPinChange_impl(vpin, param);
 
@@ -24,6 +24,8 @@ RpcStatus rpc_client_blynkVPinChange_handler(MessageBuffer* _rpc_buff) {
   return RPC_STATUS_OK;
 }
 
+
+extern "C" void rpc_client_blynkStateChange_impl(uint8_t state);
 
 static
 RpcStatus rpc_client_blynkStateChange_handler(MessageBuffer* _rpc_buff) {
@@ -34,8 +36,6 @@ RpcStatus rpc_client_blynkStateChange_handler(MessageBuffer* _rpc_buff) {
     return RPC_STATUS_ERROR_ARGS_R;
   }
 
-  /* Forward decl */
-  extern void rpc_client_blynkStateChange_impl(uint8_t state);
   /* Call the actual function */
   rpc_client_blynkStateChange_impl(state);
 
@@ -43,6 +43,8 @@ RpcStatus rpc_client_blynkStateChange_handler(MessageBuffer* _rpc_buff) {
   return RPC_STATUS_OK;
 }
 
+
+extern "C" void rpc_client_processEvent_impl(uint8_t event);
 
 static
 RpcStatus rpc_client_processEvent_handler(MessageBuffer* _rpc_buff) {
@@ -53,8 +55,6 @@ RpcStatus rpc_client_processEvent_handler(MessageBuffer* _rpc_buff) {
     return RPC_STATUS_ERROR_ARGS_R;
   }
 
-  /* Forward decl */
-  extern void rpc_client_processEvent_impl(uint8_t event);
   /* Call the actual function */
   rpc_client_processEvent_impl(event);
 
@@ -62,6 +62,8 @@ RpcStatus rpc_client_processEvent_handler(MessageBuffer* _rpc_buff) {
   return RPC_STATUS_OK;
 }
 
+
+extern "C" bool rpc_client_otaUpdateAvailable_impl(const char* filename, uint32_t filesize, const char* fw_type, const char* fw_ver, const char* fw_build);
 
 static
 RpcStatus rpc_client_otaUpdateAvailable_handler(MessageBuffer* _rpc_buff) {
@@ -76,8 +78,6 @@ RpcStatus rpc_client_otaUpdateAvailable_handler(MessageBuffer* _rpc_buff) {
     return RPC_STATUS_ERROR_ARGS_R;
   }
 
-  /* Forward decl */
-  extern bool rpc_client_otaUpdateAvailable_impl(const char* filename, uint32_t filesize, const char* fw_type, const char* fw_ver, const char* fw_build);
   /* Call the actual function */
   bool _rpc_ret_val = rpc_client_otaUpdateAvailable_impl(filename, filesize, fw_type, fw_ver, fw_build);
 
@@ -92,6 +92,8 @@ RpcStatus rpc_client_otaUpdateAvailable_handler(MessageBuffer* _rpc_buff) {
 }
 
 
+extern "C" bool rpc_client_otaUpdateWrite_impl(uint32_t offset, buffer_t chunk, uint32_t crc32);
+
 static
 RpcStatus rpc_client_otaUpdateWrite_handler(MessageBuffer* _rpc_buff) {
   /* Deserialize arguments */
@@ -103,8 +105,6 @@ RpcStatus rpc_client_otaUpdateWrite_handler(MessageBuffer* _rpc_buff) {
     return RPC_STATUS_ERROR_ARGS_R;
   }
 
-  /* Forward decl */
-  extern bool rpc_client_otaUpdateWrite_impl(uint32_t offset, buffer_t chunk, uint32_t crc32);
   /* Call the actual function */
   bool _rpc_ret_val = rpc_client_otaUpdateWrite_impl(offset, chunk, crc32);
 
@@ -119,11 +119,11 @@ RpcStatus rpc_client_otaUpdateWrite_handler(MessageBuffer* _rpc_buff) {
 }
 
 
+extern "C" bool rpc_client_otaUpdateFinish_impl();
+
 static
 RpcStatus rpc_client_otaUpdateFinish_handler(MessageBuffer* _rpc_buff) {
 
-  /* Forward decl */
-  extern bool rpc_client_otaUpdateFinish_impl();
   /* Call the actual function */
   bool _rpc_ret_val = rpc_client_otaUpdateFinish_impl();
 
@@ -138,11 +138,11 @@ RpcStatus rpc_client_otaUpdateFinish_handler(MessageBuffer* _rpc_buff) {
 }
 
 
+extern "C" void rpc_client_otaUpdateCancel_impl();
+
 static
 RpcStatus rpc_client_otaUpdateCancel_handler(MessageBuffer* _rpc_buff) {
 
-  /* Forward decl */
-  extern void rpc_client_otaUpdateCancel_impl();
   /* Call the actual function */
   rpc_client_otaUpdateCancel_impl();
 

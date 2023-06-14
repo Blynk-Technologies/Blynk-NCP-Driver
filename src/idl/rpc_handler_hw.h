@@ -5,6 +5,8 @@
 #define RPC_HANDLER_HW_H
 
 
+extern "C" bool rpc_hw_setUartBaudRate_impl(uint32_t baud);
+
 static
 RpcStatus rpc_hw_setUartBaudRate_handler(MessageBuffer* _rpc_buff) {
   /* Deserialize arguments */
@@ -14,8 +16,6 @@ RpcStatus rpc_hw_setUartBaudRate_handler(MessageBuffer* _rpc_buff) {
     return RPC_STATUS_ERROR_ARGS_R;
   }
 
-  /* Forward decl */
-  extern bool rpc_hw_setUartBaudRate_impl(uint32_t baud);
   /* Call the actual function */
   bool _rpc_ret_val = rpc_hw_setUartBaudRate_impl(baud);
 
@@ -30,6 +30,8 @@ RpcStatus rpc_hw_setUartBaudRate_handler(MessageBuffer* _rpc_buff) {
 }
 
 
+extern "C" bool rpc_hw_initUserButton_impl(uint16_t gpio, bool active_low);
+
 static
 RpcStatus rpc_hw_initUserButton_handler(MessageBuffer* _rpc_buff) {
   /* Deserialize arguments */
@@ -40,8 +42,6 @@ RpcStatus rpc_hw_initUserButton_handler(MessageBuffer* _rpc_buff) {
     return RPC_STATUS_ERROR_ARGS_R;
   }
 
-  /* Forward decl */
-  extern bool rpc_hw_initUserButton_impl(uint16_t gpio, bool active_low);
   /* Call the actual function */
   bool _rpc_ret_val = rpc_hw_initUserButton_impl(gpio, active_low);
 
@@ -56,6 +56,8 @@ RpcStatus rpc_hw_initUserButton_handler(MessageBuffer* _rpc_buff) {
 }
 
 
+extern "C" bool rpc_hw_initLED_impl(uint16_t gpio, bool active_low);
+
 static
 RpcStatus rpc_hw_initLED_handler(MessageBuffer* _rpc_buff) {
   /* Deserialize arguments */
@@ -66,8 +68,6 @@ RpcStatus rpc_hw_initLED_handler(MessageBuffer* _rpc_buff) {
     return RPC_STATUS_ERROR_ARGS_R;
   }
 
-  /* Forward decl */
-  extern bool rpc_hw_initLED_impl(uint16_t gpio, bool active_low);
   /* Call the actual function */
   bool _rpc_ret_val = rpc_hw_initLED_impl(gpio, active_low);
 
@@ -82,6 +82,8 @@ RpcStatus rpc_hw_initLED_handler(MessageBuffer* _rpc_buff) {
 }
 
 
+extern "C" bool rpc_hw_initRGB_impl(uint16_t gpio_r, uint16_t gpio_g, uint16_t gpio_b, bool common_anode);
+
 static
 RpcStatus rpc_hw_initRGB_handler(MessageBuffer* _rpc_buff) {
   /* Deserialize arguments */
@@ -94,8 +96,6 @@ RpcStatus rpc_hw_initRGB_handler(MessageBuffer* _rpc_buff) {
     return RPC_STATUS_ERROR_ARGS_R;
   }
 
-  /* Forward decl */
-  extern bool rpc_hw_initRGB_impl(uint16_t gpio_r, uint16_t gpio_g, uint16_t gpio_b, bool common_anode);
   /* Call the actual function */
   bool _rpc_ret_val = rpc_hw_initRGB_impl(gpio_r, gpio_g, gpio_b, common_anode);
 
@@ -110,6 +110,8 @@ RpcStatus rpc_hw_initRGB_handler(MessageBuffer* _rpc_buff) {
 }
 
 
+extern "C" bool rpc_hw_initARGB_impl(uint16_t gpio, uint8_t mode, uint8_t count);
+
 static
 RpcStatus rpc_hw_initARGB_handler(MessageBuffer* _rpc_buff) {
   /* Deserialize arguments */
@@ -121,8 +123,6 @@ RpcStatus rpc_hw_initARGB_handler(MessageBuffer* _rpc_buff) {
     return RPC_STATUS_ERROR_ARGS_R;
   }
 
-  /* Forward decl */
-  extern bool rpc_hw_initARGB_impl(uint16_t gpio, uint8_t mode, uint8_t count);
   /* Call the actual function */
   bool _rpc_ret_val = rpc_hw_initARGB_impl(gpio, mode, count);
 
@@ -137,6 +137,8 @@ RpcStatus rpc_hw_initARGB_handler(MessageBuffer* _rpc_buff) {
 }
 
 
+extern "C" bool rpc_hw_setLedBrightness_impl(uint8_t value);
+
 static
 RpcStatus rpc_hw_setLedBrightness_handler(MessageBuffer* _rpc_buff) {
   /* Deserialize arguments */
@@ -146,8 +148,6 @@ RpcStatus rpc_hw_setLedBrightness_handler(MessageBuffer* _rpc_buff) {
     return RPC_STATUS_ERROR_ARGS_R;
   }
 
-  /* Forward decl */
-  extern bool rpc_hw_setLedBrightness_impl(uint8_t value);
   /* Call the actual function */
   bool _rpc_ret_val = rpc_hw_setLedBrightness_impl(value);
 
@@ -162,6 +162,8 @@ RpcStatus rpc_hw_setLedBrightness_handler(MessageBuffer* _rpc_buff) {
 }
 
 
+extern "C" bool rpc_hw_getWiFiMAC_impl(const char** mac);
+
 static
 RpcStatus rpc_hw_getWiFiMAC_handler(MessageBuffer* _rpc_buff) {
   /* Deserialize arguments */
@@ -171,8 +173,6 @@ RpcStatus rpc_hw_getWiFiMAC_handler(MessageBuffer* _rpc_buff) {
     return RPC_STATUS_ERROR_ARGS_R;
   }
 
-  /* Forward decl */
-  extern bool rpc_hw_getWiFiMAC_impl(const char** mac);
   /* Call the actual function */
   bool _rpc_ret_val = rpc_hw_getWiFiMAC_impl(&mac);
 
@@ -188,6 +188,8 @@ RpcStatus rpc_hw_getWiFiMAC_handler(MessageBuffer* _rpc_buff) {
 }
 
 
+extern "C" bool rpc_hw_getEthernetMAC_impl(const char** mac);
+
 static
 RpcStatus rpc_hw_getEthernetMAC_handler(MessageBuffer* _rpc_buff) {
   /* Deserialize arguments */
@@ -197,8 +199,6 @@ RpcStatus rpc_hw_getEthernetMAC_handler(MessageBuffer* _rpc_buff) {
     return RPC_STATUS_ERROR_ARGS_R;
   }
 
-  /* Forward decl */
-  extern bool rpc_hw_getEthernetMAC_impl(const char** mac);
   /* Call the actual function */
   bool _rpc_ret_val = rpc_hw_getEthernetMAC_impl(&mac);
 

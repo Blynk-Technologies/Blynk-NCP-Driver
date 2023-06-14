@@ -5,6 +5,8 @@
 #define RPC_HANDLER_SYSTEM_H
 
 
+extern "C" void rpc_system_ping_impl();
+
 static
 RpcStatus rpc_system_ping_handler(MessageBuffer* _rpc_buff) {
 
@@ -14,11 +16,11 @@ RpcStatus rpc_system_ping_handler(MessageBuffer* _rpc_buff) {
 }
 
 
+extern "C" bool rpc_system_reboot_impl();
+
 static
 RpcStatus rpc_system_reboot_handler(MessageBuffer* _rpc_buff) {
 
-  /* Forward decl */
-  extern bool rpc_system_reboot_impl();
   /* Call the actual function */
   bool _rpc_ret_val = rpc_system_reboot_impl();
 
@@ -33,6 +35,8 @@ RpcStatus rpc_system_reboot_handler(MessageBuffer* _rpc_buff) {
 }
 
 
+extern "C" bool rpc_system_hasUID_impl(uint16_t uid);
+
 static
 RpcStatus rpc_system_hasUID_handler(MessageBuffer* _rpc_buff) {
   /* Deserialize arguments */
@@ -42,8 +46,6 @@ RpcStatus rpc_system_hasUID_handler(MessageBuffer* _rpc_buff) {
     return RPC_STATUS_ERROR_ARGS_R;
   }
 
-  /* Forward decl */
-  extern bool rpc_system_hasUID_impl(uint16_t uid);
   /* Call the actual function */
   bool _rpc_ret_val = rpc_system_hasUID_impl(uid);
 
