@@ -1,4 +1,4 @@
-# Supported Modules
+# Supported Connectivity Modules
 
 Connectivity module              | Firmware file               | Chipset         | Connectivity | Provisioning | Interaction
 :--                              | :---                        | :---            | ---          | ---          | ---
