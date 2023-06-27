@@ -1,7 +1,7 @@
 # Supported Connectivity Modules
 
 Connectivity module              | Firmware file               | Chipset         | 🌐           | ⚙️            | 📟
-:--                              | :---                        | :---            | :---         | :---         | ---
+:--                              | :---                        | :---            | :---         | :---         | :---
 [ESP32-MINI-1][10]               | [link][generic_esp32_4M]    | `ESP32`         | WiFi 2.4     | BLE          |
 [ESP32-C3-MINI-1][10]            | [link][generic_esp32c3_4M]  | `ESP32-C3`      | WiFi 2.4     | BLE          |
 [ESP32-S3-MINI-1-N8][10]         | [link][generic_esp32s3_8M]  | `ESP32-S3`      | WiFi 2.4     | BLE          |
