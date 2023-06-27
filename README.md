@@ -7,8 +7,9 @@ A shared interface to the services provided by Blynk.NCP
 
 - [Supported Connectivity Modules](docs/Supported%20Modules.md)
 - [Blynk.NCP Protocol Specification](docs/NCP%20Protocol%20Specification.md)
-- [Advanved Time and Location API](docs/Time%20and%20Location.md)
+- [Advanced Time and Location API](docs/Time%20and%20Location.md)
 - [Primary MCU OTA upgrades](docs/Firmware%20Upgrade.md)
+- [Factory Testing](docs/Factory%20Testing.md)
 
 ## Disclaimer
 
