@@ -1,7 +1,7 @@
 # Supported Connectivity Modules
 
-Connectivity module              | Firmware file               | Chipset         | Connectivity | Provisioning | Interaction
-:--                              | :---                        | :---            | ---          | ---          | ---
+Connectivity module              | Firmware file               | Chipset         | 🌐           | ⚙️            | 📟
+:--                              | :---                        | :---            | :---         | :---         | ---
 [ESP32-MINI-1][10]               | [link][generic_esp32_4M]    | `ESP32`         | WiFi 2.4     | BLE          |
 [ESP32-C3-MINI-1][10]            | [link][generic_esp32c3_4M]  | `ESP32-C3`      | WiFi 2.4     | BLE          |
 [ESP32-S3-MINI-1-N8][10]         | [link][generic_esp32s3_8M]  | `ESP32-S3`      | WiFi 2.4     | BLE          |
@@ -15,6 +15,9 @@ Connectivity module              | Firmware file               | Chipset        
 [DFRobot WiFi Bee][25]           | [link][generic_esp8266_4M]  | `ESP8266`       | WiFi 2.4     | WiFiAP       | User Button
 ESP-07S, ESP-12F                 | [link][generic_esp8266_4M]  | `ESP8266`       | WiFi 2.4     | WiFiAP       |
 
+> 🌐 Connectivity, ⚙️ Provisioning, 📟 Interaction
+
+🔄 OTA updates are supported for all modules in the list
 
 [10]: https://www.espressif.com/en/products/modules
 
