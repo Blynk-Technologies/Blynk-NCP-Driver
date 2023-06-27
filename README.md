@@ -1,7 +1,8 @@
 # Blynk.NCP low-level driver
 A shared interface to the services provided by Blynk.NCP
 
-![downloads](https://img.shields.io/github/downloads/blynkkk/BlynkNcpDriver/total) ![license](https://img.shields.io/github/license/blynkkk/BlynkNcpDriver)
+[![downloads](https://img.shields.io/github/downloads/blynkkk/BlynkNcpDriver/total)](https://github.com/blynkkk/BlynkNcpDriver/releases/latest)
+[![license](https://img.shields.io/github/license/blynkkk/BlynkNcpDriver)](LICENSE)
 
 ## Documentation
 
