@@ -4,7 +4,7 @@
 #include <stdint.h>
 #include "MessageBuffer.h"
 
-#define BLYNK_RPC_LIB_VERSION "0.4.6"
+#define BLYNK_RPC_LIB_VERSION "0.4.7"
 
 #ifdef __cplusplus
 extern "C" {
