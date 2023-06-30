@@ -6,7 +6,7 @@ A shared interface to the services provided by Blynk.NCP
 
 ## Documentation
 
-- [Supported Connectivity Modules](docs/Supported%20Modules.md)
+- [Supported Connectivity Modules](https://docs.blynk.io/en/getting-started/supported-boards#connectivity-modules-supported-by-blynk.ncp)
 - [Blynk.NCP Protocol Specification](docs/NCP%20Protocol%20Specification.md)
 - [Advanced Time and Location API](docs/Time%20and%20Location.md)
 - [Primary MCU OTA upgrades](docs/Firmware%20Upgrade.md)
