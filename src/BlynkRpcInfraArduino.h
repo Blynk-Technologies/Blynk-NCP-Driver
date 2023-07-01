@@ -28,6 +28,8 @@ bool rpc_recv_msg(MessageBuffer* buff, uint32_t timeout)
       } else {
         //LOG("NCP message CRC error");
       }
+    } else if (timeout > 0) {
+      delay(1);
     }
   } while (millis() - tstart < timeout);
   return false;
