@@ -1,3 +1,4 @@
+#if !defined(RPC_DISABLE_WEAK_IMPL)
 
 #include "BlynkRpc.h"
 
@@ -40,3 +41,5 @@ RPC_ATTR_WEAK
 void rpc_client_otaUpdateCancel_impl() {
 
 }
+
+#endif /* !defined(RPC_DISABLE_WEAK_IMPL) */
