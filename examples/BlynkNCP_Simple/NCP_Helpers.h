@@ -31,11 +31,10 @@
 
 #include <BlynkRpcInfraArduino.h>
 
-bool ncpWaitResponse() {
-  for (int i = 0; i < 10; i++) {
-    uint32_t tbeg = micros();
-    if (RPC_STATUS_OK == rpc_system_ping()) {
-      uint32_t tend = micros();
+bool ncpWaitResponse(uint32_t timeout = 10000) {
+  const uint32_t tbeg = millis();
+  while (millis() - tbeg < timeout) {
+    if (RPC_STATUS_OK == rpc_ncp_ping()) {
       SerialDbg.println("Blynk.NCP response OK");
       return true;
     }
