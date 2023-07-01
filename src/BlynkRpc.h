@@ -4,7 +4,7 @@
 #include <stdint.h>
 #include "MessageBuffer.h"
 
-#define BLYNK_RPC_LIB_VERSION "0.4.7"
+#define BLYNK_RPC_LIB_VERSION "0.5.0"
 
 #ifdef __cplusplus
 extern "C" {
@@ -43,9 +43,13 @@ typedef enum RpcStatus {
 
 typedef enum RpcUID {
   /* System */
-  RPC_UID_SYSTEM_PING               = 0x0101,
-  RPC_UID_SYSTEM_REBOOT             = 0x0102,
-  RPC_UID_SYSTEM_HASUID             = 0x0103,
+  RPC_UID_NCP_PING                  = 0x0101,
+  RPC_UID_NCP_REBOOT                = 0x0102,
+  RPC_UID_NCP_HASUID                = 0x0103,
+
+  RPC_UID_MCU_PING                  = 0x0181,
+  RPC_UID_MCU_REBOOT                = 0x0182,
+  RPC_UID_MCU_HASUID                = 0x0183,
 
   /* Hardware */
   RPC_UID_HW_SETUARTBAUDRATE        = 0x0201,

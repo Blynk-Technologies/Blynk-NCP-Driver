@@ -1,11 +1,24 @@
 {
   "module":      "Blynk.NCP",
-  "@version":    "0.4.7",
+  "@version":    "0.5.0",
   "@author":     "Volodymyr Shymanskyy",
   "@license":    "Apache-2.0",
   "@output_dir": "./src/idl",
   "interfaces" : {
-    "system": {
+    "ncp": {
+      "@id": 1,
+      "ping": {
+        "@attrs": [ "no_impl", "c:ret_status" ],
+        "@timeout": 100
+      },
+      "reboot": { "returns": "Bool" },
+      "hasUID": {
+        "@doc" : "Checks if UID is implemented",
+        "args": [ { "uid": "UInt16" } ],
+        "returns": "Bool"
+      }
+    },
+    "mcu": {
       "@id": 1,
       "ping": {
         "@attrs": [ "no_impl", "c:ret_status" ],

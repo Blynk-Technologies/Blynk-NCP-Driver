@@ -14,18 +14,18 @@ static uint16_t _rpc_seq;
  * Shims
  */
 
-#include "idl/rpc_shim_system.h"
-#include "idl/rpc_handler_system.h"
-
+#include "idl/rpc_shim_ncp.h"
 #include "idl/rpc_shim_hw.h"
 #include "idl/rpc_shim_blynk.h"
+
+#include "idl/rpc_handler_mcu.h"
 #include "idl/rpc_handler_client.h"
 
 rpc_handler_t rpc_find_uid_handler(uint16_t uid) {
   switch (uid) {
-  case RPC_UID_SYSTEM_PING:               return rpc_system_ping_handler;
-  case RPC_UID_SYSTEM_REBOOT:             return rpc_system_reboot_handler;
-  case RPC_UID_SYSTEM_HASUID:             return rpc_system_hasUID_handler;
+  case RPC_UID_MCU_PING:                  return rpc_mcu_ping_handler;
+  case RPC_UID_MCU_REBOOT:                return rpc_mcu_reboot_handler;
+  case RPC_UID_MCU_HASUID:                return rpc_mcu_hasUID_handler;
 
   case RPC_UID_CLIENT_BLYNKSTATECHANGE:   return rpc_client_blynkStateChange_handler;
   case RPC_UID_CLIENT_BLYNKVPINCHANGE:    return rpc_client_blynkVPinChange_handler;
@@ -49,7 +49,7 @@ RpcStatus rpc_invoke_handler(uint16_t uid, MessageBuffer* buff) {
   }
 }
 
-bool rpc_system_hasUID_impl(uint16_t uid) {
+bool rpc_mcu_hasUID_impl(uint16_t uid) {
   return rpc_find_uid_handler(uid) != NULL;
 }
 

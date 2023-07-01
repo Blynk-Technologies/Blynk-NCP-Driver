@@ -2,7 +2,7 @@
 #include "BlynkRpc.h"
 
 RPC_ATTR_WEAK
-bool rpc_system_reboot_impl() {
+bool rpc_mcu_reboot_impl() {
   return false;
 }
 

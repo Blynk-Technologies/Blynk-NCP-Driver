@@ -1,17 +1,17 @@
 
 /* This file is auto-generated. DO NOT EDIT. */
 
-#ifndef RPC_SHIM_SYSTEM_H
-#define RPC_SHIM_SYSTEM_H
+#ifndef RPC_SHIM_MCU_H
+#define RPC_SHIM_MCU_H
 
 
 static inline
-RpcStatus rpc_system_ping() {
+RpcStatus rpc_mcu_ping() {
   RpcStatus _rpc_res;
   MessageBuffer _rpc_buff;
   MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
   MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_INVOKE);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_SYSTEM_PING);
+  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_MCU_PING);
   MessageBuffer_writeUInt16(&_rpc_buff, ++_rpc_seq);
 
   if (MessageBuffer_getError(&_rpc_buff)) {
@@ -32,7 +32,7 @@ RpcStatus rpc_system_ping() {
 
 
 static inline
-bool rpc_system_reboot() {
+bool rpc_mcu_reboot() {
   RpcStatus _rpc_res;
   /* Prepare return value */
   bool _rpc_ret_val;
@@ -41,7 +41,7 @@ bool rpc_system_reboot() {
   MessageBuffer _rpc_buff;
   MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
   MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_INVOKE);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_SYSTEM_REBOOT);
+  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_MCU_REBOOT);
   MessageBuffer_writeUInt16(&_rpc_buff, ++_rpc_seq);
 
   if (MessageBuffer_getError(&_rpc_buff)) {
@@ -70,7 +70,7 @@ bool rpc_system_reboot() {
 
 
 static inline
-bool rpc_system_hasUID(uint16_t uid) {
+bool rpc_mcu_hasUID(uint16_t uid) {
   RpcStatus _rpc_res;
   /* Prepare return value */
   bool _rpc_ret_val;
@@ -79,7 +79,7 @@ bool rpc_system_hasUID(uint16_t uid) {
   MessageBuffer _rpc_buff;
   MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
   MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_INVOKE);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_SYSTEM_HASUID);
+  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_MCU_HASUID);
   MessageBuffer_writeUInt16(&_rpc_buff, ++_rpc_seq);
 
   /* Serialize inputs */
@@ -109,4 +109,4 @@ bool rpc_system_hasUID(uint16_t uid) {
   return _rpc_ret_val;
 }
 
-#endif /* RPC_SHIM_SYSTEM_H */
+#endif /* RPC_SHIM_MCU_H */
