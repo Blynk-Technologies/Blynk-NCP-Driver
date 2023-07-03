@@ -60,7 +60,7 @@ In this method, the flash memory of the MCU is divided into two separate section
 
 ## NCP-assisted fail-safe OTA Updates
 
-In this method, a Blynk.NCP is used to assist the primary MCU during the update process. The NCP handles network communication tasks and is responsible for downloading the new firmware. The primary MCU's bootloader then fetches the firmware update from the NCP, verifies it, and applies it. If the update fails the bootloader can retry the update, mitigating the risk of bricking the device.
+In this method, `Blynk.NCP` is used to assist the primary MCU during the update process. The primary MCU's bootloader fetches the firmware update from the NCP, verifies it, and applies it. If the update fails the bootloader can retry the update, mitigating the risk of bricking the device.
 
 The internal filesystem of the NCP can typically store the complete MCU firmware binary. Before invoking `rpc_blynk_otaUpdateStart`, the MCU should call the `rpc_blynk_otaUpdatePrefetch` function. Firmware pre-fetching is recommended to eliminate the dependence on a stable network connection while the device is in bootloader mode.
 
