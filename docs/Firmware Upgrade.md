@@ -42,7 +42,14 @@ Here's the [reference implementation of this process](https://github.com/blynkkk
 
 # Resilent OTA upgrade
 
-OTA updates must be reliable, secure, and efficient to prevent the risk of bricking the device or leaving it open to security breaches. It is recommended to emloy one of these OTA update strategies:
+The OTA update mechanism must be reliable, secure, and efficient to prevent the risk of bricking the device or leaving it open to security breaches. Below are some conditions that should be considered:
+
+- **Insufficient Power**: If the device is running on a battery, the MCU should check the battery level before calling `rpc_blynk_otaUpdateStart`. If there's not enough power to complete the update, it should delay the process until there's sufficient power.
+- **Insufficient Storage**: MCU should also check if there's enough storage space to download and apply the update.
+- **Corrupted Firmware**: MCU should validate the downloaded firmware, typically through checksums or cryptographic signatures, to ensure it hasn't been corrupted during the download. If corruption is detected, the MCU should discard the corrupted firmware and start a new download.
+- **Update Failure**: If the update process fails due to any reason (Device Reset, Power Loss, Unstable Network, etc.), the MCU should be able to recover and either continue the update or roll back to the previous version on the next boot. Bricking of the device must be avoided.
+
+It is recommended to emloy one of these OTA update strategies:
 
 ## Dual-Bank (A/B) OTA Updates
 
