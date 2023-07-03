@@ -44,23 +44,24 @@ Here's the [reference implementation of this process](https://github.com/blynkkk
 
 The OTA update mechanism must be reliable, secure, and efficient to prevent the risk of bricking the device or leaving it open to security breaches. Below are some conditions that should be considered:
 
-- **Insufficient Power**: If the device is running on a battery, the MCU should check the battery level before calling `rpc_blynk_otaUpdateStart`. If there's not enough power to complete the update, it should delay the process until there's sufficient power.
-- **Insufficient Storage**: MCU should also check if there's enough storage space to download and apply the update.
-- **Corrupted Firmware**: MCU should validate the downloaded firmware, typically through checksums or cryptographic signatures, to ensure it hasn't been corrupted during the download. If corruption is detected, the MCU should discard the corrupted firmware and start a new download.
-- **Update Failure**: If the update process fails due to any reason (Device Reset, Power Loss, Unstable Network, etc.), the MCU should be able to recover and either continue the update or roll back to the previous version on the next boot. Bricking of the device must be avoided.
+- **Insufficient Power**: if the device is running on a battery, the MCU should check the battery level before calling `rpc_blynk_otaUpdateStart`. If there's not enough power to complete the update, it should delay the process until there's sufficient power.
+- **Insufficient Flash Storage**: MCU should also check if there's enough storage space to download and apply the update.
+- **Corrupted Firmware File**: MCU should validate the downloaded firmware, typically through checksums or cryptographic signatures, to ensure it hasn't been corrupted during the download. If corruption is detected, the MCU should discard the corrupted firmware and start a new download.
+- **New Firmware Malfunction**: the firmware update may be successful from an installation perspective, but the new firmware version may malfunction/crash due to various reasons such as programming errors, unhandled exceptions, or device-specific issues. To handle this, the MCU should include a post-update self-diagnostics phase. If this diagnostic test fails, the MCU should ideally rollback to the previous firmware version.
+- **Generic Update Failure** (Device Reset, Power Loss, Unstable Network, etc.): the MCU should be able to recover and either continue the update or roll back to the previous version on the next boot. Bricking of the device must be avoided.
 
 It is recommended to emloy one of these OTA update strategies:
 
 ## Dual-Bank (A/B) OTA Updates
 
-In this method, the flash memory of the MCU is divided into two separate sections (partitions, banks). One bank is used to run the existing firmware (Active), while the other is used to download and store the new firmware (Standby). After a successful update, the system reboots and switches to using the updated firmware. This method provides a fallback mechanism: if the update fails or the new firmware is faulty, the system can boot using the old, reliable firmware.
+In this (**recommended**) method, the flash memory of the MCU is divided into two separate sections (partitions, banks). One bank is used to run the existing firmware (Active), while the other is used to download and store the new firmware (Standby). After a successful update, the system reboots and switches to using the updated firmware. This method provides a fallback mechanism: if the update fails or the new firmware is faulty, the system can boot using the old, reliable firmware.
 
 - **Pros:** Provides high reliability, allows for immediate rollback if the update fails or new firmware is faulty.
 - **Cons:** Requires twice the memory to store two copies of the main firmware.
 
 ## NCP-assisted fail-safe OTA Updates
 
-In this method, `Blynk.NCP` is used to assist the primary MCU during the update process. The primary MCU's bootloader fetches the firmware update from the NCP, verifies it, and applies it. If the update fails the bootloader can retry the update, mitigating the risk of bricking the device.
+In this alternative method, `Blynk.NCP` is used to assist the primary MCU during the update process. The primary MCU's bootloader fetches the firmware update from the NCP, verifies it, and applies it. If the update fails the bootloader can retry the update, mitigating the risk of bricking the device.
 
 The internal filesystem of the NCP can typically store the complete MCU firmware binary. Before invoking `rpc_blynk_otaUpdateStart`, the MCU should call the `rpc_blynk_otaUpdatePrefetch` function. Firmware pre-fetching is recommended to eliminate the dependence on a stable network connection while the device is in bootloader mode.
 
