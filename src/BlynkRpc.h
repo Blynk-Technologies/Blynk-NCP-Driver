@@ -4,7 +4,7 @@
 #include <stdint.h>
 #include "MessageBuffer.h"
 
-#define BLYNK_RPC_LIB_VERSION "0.5.0"
+#define BLYNK_RPC_LIB_VERSION "0.5.1"
 
 #ifdef __cplusplus
 extern "C" {
@@ -102,6 +102,7 @@ typedef enum RpcUID {
   RPC_UID_BLYNK_OTAUPDATEGETCRC32   = 0x0342,
   RPC_UID_BLYNK_OTAUPDATEGETMD5     = 0x0343,
   RPC_UID_BLYNK_OTAUPDATEGETSHA256  = 0x0344,
+  RPC_UID_BLYNK_OTAUPDATEPREFETCH   = 0x0345,
 
   RPC_UID_BLYNK_SETTIME             = 0x0351,
   RPC_UID_BLYNK_GETTIME             = 0x0352,
@@ -152,6 +153,17 @@ typedef enum RpcEvent {
   /* Happens when time or location is changed */
   RPC_EVENT_BLYNK_TIME_CHANGED  = 22,
 } RpcEvent;
+
+typedef enum RpcOtaPrefetchStatus {
+  RPC_OTA_PREFETCH_OK               = 1,
+  RPC_OTA_PREFETCH_GENERIC_ERROR    = 2,
+  RPC_OTA_PREFETCH_CONNECT_FAILED   = 3,
+  RPC_OTA_PREFETCH_REQUEST_FAILED   = 4,
+  RPC_OTA_PREFETCH_DOWNLOAD_TIMEOUT = 5,
+  RPC_OTA_PREFETCH_FS_NO_SPACE      = 6,
+  RPC_OTA_PREFETCH_FS_WRITE_FAILED  = 7,
+  RPC_OTA_PREFETCH_FINALIZE_FAILED  = 8,
+} RpcOtaPrefetchStatus;
 
 typedef enum RpcFactoryTestStatus {
   RPC_FACTORY_TEST_OK           = 1,

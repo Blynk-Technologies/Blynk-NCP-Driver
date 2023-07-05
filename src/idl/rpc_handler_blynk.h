@@ -481,6 +481,25 @@ RpcStatus rpc_blynk_otaUpdateGetSHA256_handler(MessageBuffer* _rpc_buff) {
 }
 
 
+extern "C" uint8_t rpc_blynk_otaUpdatePrefetch_impl();
+
+static
+RpcStatus rpc_blynk_otaUpdatePrefetch_handler(MessageBuffer* _rpc_buff) {
+
+  /* Call the actual function */
+  uint8_t _rpc_ret_val = rpc_blynk_otaUpdatePrefetch_impl();
+
+  MessageBuffer_reset(_rpc_buff);
+  /* Serialize outputs */
+  MessageBuffer_writeUInt8(_rpc_buff, _rpc_ret_val);
+
+  if (MessageBuffer_getError(_rpc_buff)) {
+    return RPC_STATUS_ERROR_RETS_W;
+  }
+  return RPC_STATUS_OK;
+}
+
+
 extern "C" bool rpc_blynk_factoryReset_impl();
 
 static

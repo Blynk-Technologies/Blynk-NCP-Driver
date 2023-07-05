@@ -1,6 +1,6 @@
 {
   "module":      "Blynk.NCP",
-  "@version":    "0.5.0",
+  "@version":    "0.5.1",
   "@author":     "Volodymyr Shymanskyy",
   "@license":    "Apache-2.0",
   "@output_dir": "./src/idl",
@@ -192,6 +192,10 @@
       "otaUpdateGetSHA256": {
         "args": [ { "digest": "Binary", "@dir": "out" } ],
         "returns": "Bool"
+      },
+      "otaUpdatePrefetch": {
+        "returns": "UInt8",
+        "@timeout": 30000
       },
 
       "factoryReset": {

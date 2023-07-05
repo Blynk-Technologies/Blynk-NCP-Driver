@@ -11,7 +11,7 @@
 #if defined(SerialNCP)
   // OK, use it
   void ncpInitialize() {
-    // TODO: Power-up NCP, if needed
+    // Power-up NCP, if needed
   }
   void ncpConfigure() {}
 #elif defined(ARDUINO_NANO_RP2040_CONNECT) && defined(__MBED__)
