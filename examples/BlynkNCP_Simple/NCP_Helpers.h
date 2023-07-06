@@ -6,6 +6,8 @@
   #error "Please specify your BLYNK_TEMPLATE_ID and BLYNK_TEMPLATE_NAME"
 #endif
 
+#define BLYNK_PARAM_KV(k, v) k "\0" v "\0"
+
 #include <BlynkRpcClient.h>
 
 #if defined(SerialNCP)
@@ -30,6 +32,15 @@
 #endif
 
 #include <BlynkRpcInfraArduino.h>
+
+// Embed the info tag into the MCU firmware binary
+// This structure is used to identify the firmware type and version during the OTA upgrade
+volatile const char firmwareTag[] BLYNK_PROGMEM = "blnkinf\0"
+    BLYNK_PARAM_KV("mcu"    , BLYNK_FIRMWARE_VERSION)
+    BLYNK_PARAM_KV("fw-type", BLYNK_FIRMWARE_TYPE)
+    BLYNK_PARAM_KV("build"  , BLYNK_FIRMWARE_BUILD_TIME)
+    BLYNK_PARAM_KV("blynk"  , BLYNK_RPC_LIB_VERSION)
+    "\0";
 
 bool ncpWaitResponse(uint32_t timeout = 10000) {
   const uint32_t tbeg = millis();
