@@ -56,6 +56,17 @@ void loop() {
   rpc_run();
 }
 
+void virtualWrite(int virtualPin, const char* value) {
+  buffer_t val = { (uint8_t*)value, strlen(value) };
+  rpc_blynk_virtualWrite(virtualPin, val);
+}
+
+void virtualWrite(int virtualPin, int32_t value) {
+  char buff[16];
+  snprintf(buff, sizeof(buff), "%d", value);
+  virtualWrite(virtualPin, buff);
+}
+
 // Handle Blynk Virtual Pin value updates
 void rpc_client_blynkVPinChange_impl(uint16_t vpin, buffer_t param)
 {
@@ -73,6 +84,10 @@ void rpc_client_blynkStateChange_impl(uint8_t state)
 {
   SerialDbg.print("NCP state: ");
   SerialDbg.println(ncpGetStateString(state));
+  if ((RpcBlynkState)state == BLYNK_STATE_CONNECTED) {
+    // Send a value to Virtual Pin 1
+    virtualWrite(1, "hello world!");
+  }
 }
 
 // Handle various NCP events
