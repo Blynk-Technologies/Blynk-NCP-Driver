@@ -36,13 +36,13 @@ void setup() {
 
   ncpConfigure();
 
-  // Provide Primary MCU firmware info to the NCP
+  // Provide MCU firmware info. This info is mainly used for the Primary MCU OTA updates
   rpc_blynk_setFirmwareInfo(BLYNK_FIRMWARE_TYPE,
                             BLYNK_FIRMWARE_VERSION,
                             BLYNK_FIRMWARE_BUILD_TIME,
                             BLYNK_RPC_LIB_VERSION);
 
-  // White labeling
+  // White labeling (use this ONLY if you have a branded Blynk App)
   //rpc_blynk_setVendorPrefix("MyCompany");
   //rpc_blynk_setVendorServer("dashboard.mycompany.com");
 
