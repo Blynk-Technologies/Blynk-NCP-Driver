@@ -35,7 +35,7 @@
 
 // Embed the info tag into the MCU firmware binary
 // This structure is used to identify the firmware type and version during the OTA upgrade
-volatile const char firmwareTag[] BLYNK_PROGMEM = "blnkinf\0"
+volatile const char firmwareTag[] = "blnkinf\0"
     BLYNK_PARAM_KV("mcu"    , BLYNK_FIRMWARE_VERSION)
     BLYNK_PARAM_KV("fw-type", BLYNK_FIRMWARE_TYPE)
     BLYNK_PARAM_KV("build"  , BLYNK_FIRMWARE_BUILD_TIME)
