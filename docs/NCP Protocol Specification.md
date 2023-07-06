@@ -113,19 +113,6 @@ NCP -> MCU
    BEG  result  msgId  status CRC  END
 ```
 
-#### Set vendor name to `EVIQO`
-```log
-<< aa bc 67 02 03 03 00 45 56 49 51 4f 00 2a bb
->> aa 12 a5 03 00 00 01 ef bb
-```
-
-#### Set vendor server to `eviqo.blynk.cc`
-```log
-<< aa bc 67 03 03 04 00 65 76 69 71 6f 2e 62 6c 79 6e 6b 2e 63 63 00 b1 bb
->> aa 12 a5 04 00 00 01 8d bb
-```
-**Note:** this is the default server, the actual server will be configured dynamically during the provisioning process.
-
 #### Configure the product
 
 Set `TemplateID = TMPL0vFkFmJM7` and `TemplateName = QPower`
