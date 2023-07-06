@@ -6,6 +6,7 @@
 //#define BLYNK_TEMPLATE_NAME         "Device"
 
 #define BLYNK_FIRMWARE_VERSION        "0.1.0"
+#define BLYNK_FIRMWARE_BUILD_TIME     __DATE__ " " __TIME__
 
 #define SerialDbg     Serial
 //#define SerialNCP   Serial1
@@ -38,7 +39,7 @@ void setup() {
   // Provide Primary MCU firmware info to the NCP
   rpc_blynk_setFirmwareInfo(BLYNK_FIRMWARE_TYPE,
                             BLYNK_FIRMWARE_VERSION,
-                            __DATE__ " " __TIME__,
+                            BLYNK_FIRMWARE_BUILD_TIME,
                             BLYNK_RPC_LIB_VERSION);
 
   // White labeling
@@ -55,9 +56,39 @@ void loop() {
   rpc_run();
 }
 
+// Handle Blynk Virtual Pin value updates
+void rpc_client_blynkVPinChange_impl(uint16_t vpin, buffer_t param)
+{
+    // NOTE: we could copy the buffer, but we use 0-copy instead
+    // But we need to 0-terminate it, overwriting the CRC8
+    param.data[param.length] = '\0';
+
+    // Param format. Most values will be plain strings: "Hello world", "1234", "123.456", etc.
+    // However, sometimes the value contains multiple items (an array). In this case, the values are separated using a 0x00 byte, i.e:
+    // "First\0Second\0Third"
+}
+
 // Define the callback for the NCP state change event
-void rpc_client_blynkStateChange_impl(uint8_t state) {
+void rpc_client_blynkStateChange_impl(uint8_t state)
+{
   SerialDbg.print("NCP state: ");
   SerialDbg.println(ncpGetStateString(state));
 }
 
+// Handle various NCP events
+void rpc_client_processEvent_impl(uint8_t event)
+{
+    switch ((RpcEvent)event) {
+    case RPC_EVENT_NCP_REBOOTING:
+      SerialDbg.println("NCP is rebooting. TODO: reinitialize NCP");
+      break;
+    case RPC_EVENT_HW_USER_CLICK:      break;
+    case RPC_EVENT_HW_USER_DBLCLICK:   break;
+    case RPC_EVENT_HW_USER_LONGPRESS:  break;
+    case RPC_EVENT_HW_USER_CONFIGRESET: break;
+    case RPC_EVENT_BLYNK_PROVISIONED:  break;
+    case RPC_EVENT_BLYNK_TIME_SYNC:    break;
+    case RPC_EVENT_BLYNK_TIME_CHANGED: break;
+    default: break;
+    }
+}
