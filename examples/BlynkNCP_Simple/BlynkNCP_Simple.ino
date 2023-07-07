@@ -19,10 +19,14 @@ void setup() {
   SerialDbg.begin(115200);
   SerialNCP.begin(115200);
 
-  // Power-up NCP
-  ncpInitialize();
-
+  // Give SerialDbg some time to connect
   delay(3000);
+
+  // Power-up NCP (if needed)
+#if defined(ARDUINO_NANO_RP2040_CONNECT)
+  pinMode(NINA_RESETN, OUTPUT);
+  digitalWrite(NINA_RESETN, HIGH);
+#endif
 
   if (!ncpWaitResponse()) {
     return;
@@ -34,9 +38,16 @@ void setup() {
     SerialDbg.println(ncpFwVer);
   }
 
-  ncpConfigure();
+  // Setup the indicator LED, user button (if needed)
+  //rpc_hw_initUserButton(0, true);
+  //rpc_hw_initLED(19, false);      // or rpc_hw_initRGB
+  //rpc_hw_setLedBrightness(160);
 
-  // Provide MCU firmware info. This info is mainly used for the Primary MCU OTA updates
+  // Set config mode timeout to 30 minutes, for testing purposes
+  rpc_blynk_setConfigTimeout(30*60);
+
+  // Provide MCU firmware info.
+  // This info is mainly used for the Primary MCU OTA updates
   rpc_blynk_setFirmwareInfo(BLYNK_FIRMWARE_TYPE,
                             BLYNK_FIRMWARE_VERSION,
                             BLYNK_FIRMWARE_BUILD_TIME,
@@ -52,19 +63,20 @@ void setup() {
   }
 }
 
+void sendPeriodicMessage() {
+  static uint32_t last_change = millis();
+  if (millis() - last_change > 10000) {
+    last_change += 10000;
+
+    // Send a value to Blynk Virtual Pin 1
+    virtualWrite(1, millis());
+  }
+}
+
 void loop() {
   rpc_run();
-}
 
-void virtualWrite(int virtualPin, const char* value) {
-  buffer_t val = { (uint8_t*)value, strlen(value) };
-  rpc_blynk_virtualWrite(virtualPin, val);
-}
-
-void virtualWrite(int virtualPin, int32_t value) {
-  char buff[16];
-  snprintf(buff, sizeof(buff), "%d", value);
-  virtualWrite(virtualPin, buff);
+  sendPeriodicMessage();
 }
 
 // Handle Blynk Virtual Pin value updates

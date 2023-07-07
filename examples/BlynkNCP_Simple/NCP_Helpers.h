@@ -6,27 +6,14 @@
   #error "Please specify your BLYNK_TEMPLATE_ID and BLYNK_TEMPLATE_NAME"
 #endif
 
-#define BLYNK_PARAM_KV(k, v) k "\0" v "\0"
+#define BLYNK_PARAM_KV(k, v)    k "\0" v "\0"
 
 #include <BlynkRpcClient.h>
 
 #if defined(SerialNCP)
-  // OK, use it
-  void ncpInitialize() {
-    // Power-up NCP, if needed
-  }
-  void ncpConfigure() {}
-#elif defined(ARDUINO_NANO_RP2040_CONNECT) && defined(__MBED__)
+  // Use the defined SerialNCP
+#elif defined(ARDUINO_NANO_RP2040_CONNECT)
   #define SerialNCP   SerialNina
-  void ncpInitialize() {
-    pinMode(NINA_RESETN, OUTPUT);
-    digitalWrite(NINA_RESETN, HIGH);
-  }
-
-  void ncpConfigure() {
-    rpc_hw_initRGB(27, 25, 26, true);
-    rpc_hw_setLedBrightness(128);
-  }
 #else
   #error "SerialNCP is not defined"
 #endif
@@ -69,3 +56,15 @@ const char* ncpGetStateString(uint8_t state) {
   default                           : return "Unknown";
   }
 }
+
+void virtualWrite(int virtualPin, const char* value) {
+  buffer_t val = { (uint8_t*)value, strlen(value) };
+  rpc_blynk_virtualWrite(virtualPin, val);
+}
+
+void virtualWrite(int virtualPin, int32_t value) {
+  char buff[16];
+  snprintf(buff, sizeof(buff), "%d", value);
+  virtualWrite(virtualPin, buff);
+}
+
