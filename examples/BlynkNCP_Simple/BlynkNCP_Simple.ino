@@ -15,12 +15,12 @@
 
 #include "NCP_Helpers.h"
 
-void setup() {
+void setup()
+{
   SerialDbg.begin(115200);
   SerialNCP.begin(115200);
 
-  // Give SerialDbg some time to connect
-  delay(3000);
+  waitSerialConsole(SerialDbg);
 
   // Power-up NCP (if needed)
 #if defined(ARDUINO_NANO_RP2040_CONNECT)
@@ -39,9 +39,14 @@ void setup() {
   }
 
   // Setup the indicator LED, user button (if needed)
+#if defined(ARDUINO_NANO_RP2040_CONNECT)
+  rpc_hw_initRGB(27, 25, 26, true);
+  rpc_hw_setLedBrightness(128);
+#else
   //rpc_hw_initUserButton(0, true);
   //rpc_hw_initLED(19, false);      // or rpc_hw_initRGB
   //rpc_hw_setLedBrightness(160);
+#endif
 
   // Set config mode timeout to 30 minutes, for testing purposes
   rpc_blynk_setConfigTimeout(30*60);
@@ -63,7 +68,8 @@ void setup() {
   }
 }
 
-void sendPeriodicMessage() {
+void sendPeriodicMessage()
+{
   static uint32_t last_change = millis();
   if (millis() - last_change > 10000) {
     last_change += 10000;
@@ -73,7 +79,8 @@ void sendPeriodicMessage() {
   }
 }
 
-void loop() {
+void loop()
+{
   rpc_run();
 
   sendPeriodicMessage();
@@ -85,6 +92,9 @@ void rpc_client_blynkVPinChange_impl(uint16_t vpin, buffer_t param)
     // NOTE: we could copy the buffer, but we use 0-copy instead
     // But we need to 0-terminate it, overwriting the CRC8
     param.data[param.length] = '\0';
+
+    SerialDbg.print("Got data on Virtual Pin ");
+    SerialDbg.println(vpin);
 
     // Param format. Most values will be plain strings: "Hello world", "1234", "123.456", etc.
     // However, sometimes the value contains multiple items (an array). In this case, the values are separated using a 0x00 byte, i.e:
@@ -119,3 +129,4 @@ void rpc_client_processEvent_impl(uint8_t event)
     default: break;
     }
 }
+

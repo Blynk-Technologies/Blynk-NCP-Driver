@@ -190,6 +190,12 @@ bool          rpc_recv_msg(MessageBuffer* buff, uint32_t timeout);
 RpcStatus     rpc_wait_result(uint16_t expected_seq, MessageBuffer* buff, uint32_t timeout);
 void          rpc_run();
 
+uint32_t      rpc_system_millis();
+int           rpc_uart_available();
+int           rpc_uart_read();
+size_t        rpc_uart_write(uint8_t data);
+void          rpc_uart_flush();
+
 #ifdef __cplusplus
 }
 #endif
