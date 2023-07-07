@@ -7,8 +7,6 @@
 extern "C" {
 #endif
 
-extern const uint8_t RPC_CRC8_TABLE[256];
-
 static inline
 void crcReset(uint8_t* crc) {
   *crc = 0;
@@ -16,7 +14,16 @@ void crcReset(uint8_t* crc) {
 
 static inline
 void crcUpdate(uint8_t* crc, uint8_t data) {
+#if defined(RPC_ENABLE_SMALL_CRC8)
+  uint8_t b = *crc ^ data;
+  for (int i = 0; i < 8; i++) {
+    b = (b << 1) ^ ((b & 0x80) ? 0x07 : 0);
+  }
+  *crc = b;
+#else
+  extern const uint8_t RPC_CRC8_TABLE[256];
   *crc = RPC_CRC8_TABLE[*crc ^ data];
+#endif
 }
 
 #ifdef __cplusplus
