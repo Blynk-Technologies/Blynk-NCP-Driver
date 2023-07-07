@@ -37,7 +37,6 @@ typedef struct {
 
 static RpcUartFraming _self;
 
-__attribute__((constructor))
 void RpcUartFraming_init() {
   memset(&_self, 0, sizeof(_self));
   _self.state = STATE_BEG;

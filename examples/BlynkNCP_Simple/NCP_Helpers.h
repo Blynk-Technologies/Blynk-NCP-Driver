@@ -71,6 +71,7 @@ volatile const char firmwareTag[] = "blnkinf\0"
  */
 
 bool ncpWaitResponse(uint32_t timeout = 10000) {
+  RpcUartFraming_init();
   const uint32_t tbeg = millis();
   while (millis() - tbeg < timeout) {
     if (RPC_STATUS_OK == rpc_ncp_ping()) {
