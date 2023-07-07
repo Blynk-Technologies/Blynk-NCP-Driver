@@ -15,7 +15,8 @@
 
 #include "NCP_Helpers.h"
 
-void setup() {
+void setup()
+{
   SerialDbg.begin(115200);
   SerialNCP.begin(115200);
 
@@ -67,7 +68,8 @@ void setup() {
   }
 }
 
-void sendPeriodicMessage() {
+void sendPeriodicMessage()
+{
   static uint32_t last_change = millis();
   if (millis() - last_change > 10000) {
     last_change += 10000;
@@ -77,7 +79,8 @@ void sendPeriodicMessage() {
   }
 }
 
-void loop() {
+void loop()
+{
   rpc_run();
 
   sendPeriodicMessage();
@@ -126,3 +129,4 @@ void rpc_client_processEvent_impl(uint8_t event)
     default: break;
     }
 }
+
