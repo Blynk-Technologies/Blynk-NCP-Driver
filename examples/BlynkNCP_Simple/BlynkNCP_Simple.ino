@@ -38,9 +38,14 @@ void setup() {
   }
 
   // Setup the indicator LED, user button (if needed)
+#if defined(ARDUINO_NANO_RP2040_CONNECT)
+  rpc_hw_initRGB(27, 25, 26, true);
+  rpc_hw_setLedBrightness(128);
+#else
   //rpc_hw_initUserButton(0, true);
   //rpc_hw_initLED(19, false);      // or rpc_hw_initRGB
   //rpc_hw_setLedBrightness(160);
+#endif
 
   // Set config mode timeout to 30 minutes, for testing purposes
   rpc_blynk_setConfigTimeout(30*60);
