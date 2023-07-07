@@ -19,8 +19,7 @@ void setup() {
   SerialDbg.begin(115200);
   SerialNCP.begin(115200);
 
-  // Give SerialDbg some time to connect
-  delay(3000);
+  waitSerialConsole(SerialDbg);
 
   // Power-up NCP (if needed)
 #if defined(ARDUINO_NANO_RP2040_CONNECT)
@@ -85,6 +84,9 @@ void rpc_client_blynkVPinChange_impl(uint16_t vpin, buffer_t param)
     // NOTE: we could copy the buffer, but we use 0-copy instead
     // But we need to 0-terminate it, overwriting the CRC8
     param.data[param.length] = '\0';
+
+    SerialDbg.print("Got data on Virtual Pin ");
+    SerialDbg.println(vpin);
 
     // Param format. Most values will be plain strings: "Hello world", "1234", "123.456", etc.
     // However, sometimes the value contains multiple items (an array). In this case, the values are separated using a 0x00 byte, i.e:
