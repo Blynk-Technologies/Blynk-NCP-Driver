@@ -90,7 +90,7 @@ void RpcUartFraming_processInput() {
 
 static
 size_t RpcUartFraming_writeByte(uint8_t data) {
-  crcUpdate(&_self.wcrc, data);
+  rpc_crc8_update(&_self.wcrc, data);
   if (data == BEG || data == END || data == ESC ||
       (_self.escapeXonXoff && (data == XON || data == XOFF))
   ) {
@@ -102,7 +102,7 @@ size_t RpcUartFraming_writeByte(uint8_t data) {
 
 
 void RpcUartFraming_beginPacket() {
-  crcReset(&_self.wcrc);
+  rpc_crc8_reset(&_self.wcrc);
   rpc_uart_write(BEG);
 }
 
@@ -122,7 +122,7 @@ bool RpcUartFraming_checkPacketCRC() {
   const uint8_t actual = _self.buffer.data[_self.buffer.read++];
   _self.buffer.read %= sizeof(_self.buffer.data);
   _self.buffer.count--;
-  crcReset(&_self.rcrc);
+  rpc_crc8_reset(&_self.rcrc);
   _self.state = STATE_BEG;
   return actual == expected;
 }
@@ -150,6 +150,6 @@ int RpcUartFraming_read() {
   _self.buffer.read %= sizeof(_self.buffer.data);
   _self.buffer.count--;
 
-  crcUpdate(&_self.rcrc, data);
+  rpc_crc8_update(&_self.rcrc, data);
   return data;
 }
