@@ -2,8 +2,20 @@
 #include "BlynkRpc.h"
 #include "BlynkRpcUartFraming.h"
 
-uint8_t  inputData[2048];
-unsigned inputDataLen;
+#if defined(RPC_INPUT_BUFFER)
+  // Use the specified value
+#elif defined (__AVR_ATmega328P__)
+  #define RPC_INPUT_BUFFER 256
+#elif defined (__AVR_ATmega32U4__)
+  #define RPC_INPUT_BUFFER 512
+#elif defined(LINUX) || defined(ESP32)
+  #define RPC_INPUT_BUFFER 4096
+#else
+  #define RPC_INPUT_BUFFER 2048
+#endif
+
+static uint8_t  inputData[RPC_INPUT_BUFFER];
+static unsigned inputDataLen;
 
 bool rpc_recv_msg(MessageBuffer* buff, uint32_t timeout)
 {
