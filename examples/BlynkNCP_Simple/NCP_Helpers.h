@@ -59,7 +59,7 @@ uint32_t rpc_system_millis() {
 
 #define BLYNK_PARAM_KV(k, v)    k "\0" v "\0"
 
-volatile const char firmwareTag[] = "blnkinf\0"
+volatile const char firmwareTag[] PROGMEM = "blnkinf\0"
     BLYNK_PARAM_KV("mcu"    , BLYNK_FIRMWARE_VERSION)
     BLYNK_PARAM_KV("fw-type", BLYNK_FIRMWARE_TYPE)
     BLYNK_PARAM_KV("build"  , BLYNK_FIRMWARE_BUILD_TIME)
@@ -75,11 +75,11 @@ bool ncpWaitResponse(uint32_t timeout = 10000) {
   const uint32_t tbeg = millis();
   while (millis() - tbeg < timeout) {
     if (RPC_STATUS_OK == rpc_ncp_ping()) {
-      SerialDbg.println("Blynk.NCP response OK");
+      SerialDbg.println(F("Blynk.NCP response OK"));
       return true;
     }
   }
-  SerialDbg.println("NCP not responding");
+  SerialDbg.println(F("NCP not responding"));
   return false;
 }
 
@@ -106,7 +106,7 @@ void virtualWrite(int virtualPin, const char* value) {
 
 void virtualWrite(int virtualPin, int32_t value) {
   char buff[16];
-  snprintf(buff, sizeof(buff), "%d", value);
+  itoa(value, buff, 10);
   virtualWrite(virtualPin, buff);
 }
 

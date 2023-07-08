@@ -34,7 +34,7 @@ void setup()
 
   const char* ncpFwVer = "unknown";
   if (rpc_blynk_getNcpVersion(&ncpFwVer)) {
-    SerialDbg.print("NCP firmware: ");
+    SerialDbg.print(F("NCP firmware: "));
     SerialDbg.println(ncpFwVer);
   }
 
@@ -64,7 +64,7 @@ void setup()
 
   // Product setup
   if (!rpc_blynk_initialize(BLYNK_TEMPLATE_ID, BLYNK_TEMPLATE_NAME)) {
-    SerialDbg.println("rpc_blynk_initialize failed");
+    SerialDbg.println(F("rpc_blynk_initialize failed"));
   }
 }
 
@@ -93,7 +93,7 @@ void rpc_client_blynkVPinChange_impl(uint16_t vpin, buffer_t param)
     // But we need to 0-terminate it, overwriting the CRC8
     param.data[param.length] = '\0';
 
-    SerialDbg.print("Got data on Virtual Pin ");
+    SerialDbg.print(F("Got data on Virtual Pin "));
     SerialDbg.println(vpin);
 
     // Param format. Most values will be plain strings: "Hello world", "1234", "123.456", etc.
@@ -104,7 +104,7 @@ void rpc_client_blynkVPinChange_impl(uint16_t vpin, buffer_t param)
 // Define the callback for the NCP state change event
 void rpc_client_blynkStateChange_impl(uint8_t state)
 {
-  SerialDbg.print("NCP state: ");
+  SerialDbg.print(F("NCP state: "));
   SerialDbg.println(ncpGetStateString(state));
   if ((RpcBlynkState)state == BLYNK_STATE_CONNECTED) {
     // Send a value to Virtual Pin 1
@@ -117,7 +117,7 @@ void rpc_client_processEvent_impl(uint8_t event)
 {
     switch ((RpcEvent)event) {
     case RPC_EVENT_NCP_REBOOTING:
-      SerialDbg.println("NCP is rebooting. TODO: reinitialize NCP");
+      SerialDbg.println(F("NCP is rebooting. TODO: reinitialize NCP"));
       break;
     case RPC_EVENT_HW_USER_CLICK:      break;
     case RPC_EVENT_HW_USER_DBLCLICK:   break;
