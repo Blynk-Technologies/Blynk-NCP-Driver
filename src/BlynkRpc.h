@@ -2,6 +2,7 @@
 #define BLYNK_RPC_H
 
 #include <stdint.h>
+#include "BlynkRpcConfig.h"
 #include "MessageBuffer.h"
 
 #define BLYNK_RPC_LIB_VERSION "0.5.1"
@@ -176,7 +177,6 @@ typedef enum RpcFactoryTestStatus {
 
 #define RPC_ATTR_WEAK           __attribute__ ((weak))
 #define RPC_ATTR_DEPRECATED     __attribute__ ((deprecated))
-#define RPC_TIMEOUT_DEFAULT     1000
 
 typedef RpcStatus (*rpc_handler_t)(MessageBuffer*);
 

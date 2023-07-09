@@ -2,6 +2,7 @@
 #define BLYNK_RPC_CRC8_H
 
 #include <stdint.h>
+#include "BlynkRpcConfig.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -14,7 +15,7 @@ void rpc_crc8_reset(uint8_t* crc) {
 
 static inline
 void rpc_crc8_update(uint8_t* crc, uint8_t data) {
-#if defined(RPC_ENABLE_SMALL_CRC8)
+#if RPC_ENABLE_SMALL_CRC8
   uint8_t b = *crc ^ data;
   for (int i = 0; i < 8; i++) {
     b = (b << 1) ^ ((b & 0x80) ? 0x07 : 0);

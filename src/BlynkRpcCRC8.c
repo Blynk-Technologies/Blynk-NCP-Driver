@@ -1,6 +1,6 @@
 #include "BlynkRpcCRC8.h"
 
-#if !defined(RPC_ENABLE_SMALL_CRC8)
+#if !RPC_ENABLE_SMALL_CRC8
 
 const uint8_t RPC_CRC8_TABLE[256] = {
     0x00, 0x07, 0x0E, 0x09, 0x1C, 0x1B, 0x12, 0x15,
