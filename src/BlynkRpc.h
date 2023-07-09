@@ -4,8 +4,9 @@
 #include <stdint.h>
 #include "BlynkRpcConfig.h"
 #include "MessageBuffer.h"
+#include "MessageWriter.h"
 
-#define BLYNK_RPC_LIB_VERSION "0.5.1"
+#define BLYNK_RPC_LIB_VERSION "0.6.0"
 
 #ifdef __cplusplus
 extern "C" {
@@ -178,14 +179,13 @@ typedef enum RpcFactoryTestStatus {
 #define RPC_ATTR_WEAK           __attribute__ ((weak))
 #define RPC_ATTR_DEPRECATED     __attribute__ ((deprecated))
 
-typedef RpcStatus (*rpc_handler_t)(MessageBuffer*);
+typedef void (*rpc_handler_t)(MessageBuffer*);
 
 void          rpc_set_status(RpcStatus status);
 RpcStatus     rpc_get_status();
 const char*   rpc_get_status_str(RpcStatus status);
 void          rpc_set_timeout(uint32_t ms);
 RpcStatus     rpc_invoke_handler(uint16_t id, MessageBuffer* buff);
-void          rpc_send_msg(MessageBuffer* buff);
 bool          rpc_recv_msg(MessageBuffer* buff, uint32_t timeout);
 RpcStatus     rpc_wait_result(uint16_t expected_seq, MessageBuffer* buff, uint32_t timeout);
 void          rpc_run();

@@ -12,22 +12,14 @@ bool rpc_hw_setUartBaudRate(uint32_t baud) {
   bool _rpc_ret_val;
   memset(&_rpc_ret_val, 0, sizeof(_rpc_ret_val));
 
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_INVOKE);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_HW_SETUARTBAUDRATE);
-  MessageBuffer_writeUInt16(&_rpc_buff, ++_rpc_seq);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_INVOKE);
+  MessageWriter_writeUInt16(RPC_UID_HW_SETUARTBAUDRATE);
+  MessageWriter_writeUInt16(++_rpc_seq);
 
   /* Serialize inputs */
-  MessageBuffer_writeUInt32(&_rpc_buff, baud);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return _rpc_ret_val;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_writeUInt32(baud);
+  MessageWriter_end();
 
   MessageBuffer _rsp_buff;
   MessageBuffer_init(&_rsp_buff, NULL, 0);
@@ -53,23 +45,15 @@ bool rpc_hw_initUserButton(uint16_t gpio, bool active_low) {
   bool _rpc_ret_val;
   memset(&_rpc_ret_val, 0, sizeof(_rpc_ret_val));
 
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_INVOKE);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_HW_INITUSERBUTTON);
-  MessageBuffer_writeUInt16(&_rpc_buff, ++_rpc_seq);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_INVOKE);
+  MessageWriter_writeUInt16(RPC_UID_HW_INITUSERBUTTON);
+  MessageWriter_writeUInt16(++_rpc_seq);
 
   /* Serialize inputs */
-  MessageBuffer_writeUInt16(&_rpc_buff, gpio);
-  MessageBuffer_writeBool(&_rpc_buff, active_low);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return _rpc_ret_val;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_writeUInt16(gpio);
+  MessageWriter_writeBool(active_low);
+  MessageWriter_end();
 
   MessageBuffer _rsp_buff;
   MessageBuffer_init(&_rsp_buff, NULL, 0);
@@ -95,23 +79,15 @@ bool rpc_hw_initLED(uint16_t gpio, bool active_low) {
   bool _rpc_ret_val;
   memset(&_rpc_ret_val, 0, sizeof(_rpc_ret_val));
 
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_INVOKE);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_HW_INITLED);
-  MessageBuffer_writeUInt16(&_rpc_buff, ++_rpc_seq);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_INVOKE);
+  MessageWriter_writeUInt16(RPC_UID_HW_INITLED);
+  MessageWriter_writeUInt16(++_rpc_seq);
 
   /* Serialize inputs */
-  MessageBuffer_writeUInt16(&_rpc_buff, gpio);
-  MessageBuffer_writeBool(&_rpc_buff, active_low);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return _rpc_ret_val;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_writeUInt16(gpio);
+  MessageWriter_writeBool(active_low);
+  MessageWriter_end();
 
   MessageBuffer _rsp_buff;
   MessageBuffer_init(&_rsp_buff, NULL, 0);
@@ -137,25 +113,17 @@ bool rpc_hw_initRGB(uint16_t gpio_r, uint16_t gpio_g, uint16_t gpio_b, bool comm
   bool _rpc_ret_val;
   memset(&_rpc_ret_val, 0, sizeof(_rpc_ret_val));
 
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_INVOKE);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_HW_INITRGB);
-  MessageBuffer_writeUInt16(&_rpc_buff, ++_rpc_seq);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_INVOKE);
+  MessageWriter_writeUInt16(RPC_UID_HW_INITRGB);
+  MessageWriter_writeUInt16(++_rpc_seq);
 
   /* Serialize inputs */
-  MessageBuffer_writeUInt16(&_rpc_buff, gpio_r);
-  MessageBuffer_writeUInt16(&_rpc_buff, gpio_g);
-  MessageBuffer_writeUInt16(&_rpc_buff, gpio_b);
-  MessageBuffer_writeBool(&_rpc_buff, common_anode);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return _rpc_ret_val;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_writeUInt16(gpio_r);
+  MessageWriter_writeUInt16(gpio_g);
+  MessageWriter_writeUInt16(gpio_b);
+  MessageWriter_writeBool(common_anode);
+  MessageWriter_end();
 
   MessageBuffer _rsp_buff;
   MessageBuffer_init(&_rsp_buff, NULL, 0);
@@ -181,24 +149,16 @@ bool rpc_hw_initARGB(uint16_t gpio, uint8_t mode, uint8_t count) {
   bool _rpc_ret_val;
   memset(&_rpc_ret_val, 0, sizeof(_rpc_ret_val));
 
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_INVOKE);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_HW_INITARGB);
-  MessageBuffer_writeUInt16(&_rpc_buff, ++_rpc_seq);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_INVOKE);
+  MessageWriter_writeUInt16(RPC_UID_HW_INITARGB);
+  MessageWriter_writeUInt16(++_rpc_seq);
 
   /* Serialize inputs */
-  MessageBuffer_writeUInt16(&_rpc_buff, gpio);
-  MessageBuffer_writeUInt8(&_rpc_buff, mode);
-  MessageBuffer_writeUInt8(&_rpc_buff, count);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return _rpc_ret_val;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_writeUInt16(gpio);
+  MessageWriter_writeUInt8(mode);
+  MessageWriter_writeUInt8(count);
+  MessageWriter_end();
 
   MessageBuffer _rsp_buff;
   MessageBuffer_init(&_rsp_buff, NULL, 0);
@@ -224,22 +184,14 @@ bool rpc_hw_setLedBrightness(uint8_t value) {
   bool _rpc_ret_val;
   memset(&_rpc_ret_val, 0, sizeof(_rpc_ret_val));
 
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_INVOKE);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_HW_SETLEDBRIGHTNESS);
-  MessageBuffer_writeUInt16(&_rpc_buff, ++_rpc_seq);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_INVOKE);
+  MessageWriter_writeUInt16(RPC_UID_HW_SETLEDBRIGHTNESS);
+  MessageWriter_writeUInt16(++_rpc_seq);
 
   /* Serialize inputs */
-  MessageBuffer_writeUInt8(&_rpc_buff, value);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return _rpc_ret_val;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_writeUInt8(value);
+  MessageWriter_end();
 
   MessageBuffer _rsp_buff;
   MessageBuffer_init(&_rsp_buff, NULL, 0);
@@ -265,19 +217,11 @@ bool rpc_hw_getWiFiMAC(const char** mac) {
   bool _rpc_ret_val;
   memset(&_rpc_ret_val, 0, sizeof(_rpc_ret_val));
 
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_INVOKE);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_HW_GETWIFIMAC);
-  MessageBuffer_writeUInt16(&_rpc_buff, ++_rpc_seq);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return _rpc_ret_val;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_INVOKE);
+  MessageWriter_writeUInt16(RPC_UID_HW_GETWIFIMAC);
+  MessageWriter_writeUInt16(++_rpc_seq);
+  MessageWriter_end();
 
   MessageBuffer _rsp_buff;
   MessageBuffer_init(&_rsp_buff, NULL, 0);
@@ -304,19 +248,11 @@ bool rpc_hw_getEthernetMAC(const char** mac) {
   bool _rpc_ret_val;
   memset(&_rpc_ret_val, 0, sizeof(_rpc_ret_val));
 
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_INVOKE);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_HW_GETETHERNETMAC);
-  MessageBuffer_writeUInt16(&_rpc_buff, ++_rpc_seq);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return _rpc_ret_val;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_INVOKE);
+  MessageWriter_writeUInt16(RPC_UID_HW_GETETHERNETMAC);
+  MessageWriter_writeUInt16(++_rpc_seq);
+  MessageWriter_end();
 
   MessageBuffer _rsp_buff;
   MessageBuffer_init(&_rsp_buff, NULL, 0);

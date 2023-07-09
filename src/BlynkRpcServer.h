@@ -7,7 +7,6 @@
  * Infra
  */
 
-static uint8_t rpc_output_buff[2048];
 static uint16_t _rpc_seq;
 
 /*
@@ -86,7 +85,8 @@ rpc_handler_t rpc_find_uid_handler(uint16_t uid) {
 RpcStatus rpc_invoke_handler(uint16_t uid, MessageBuffer* buff) {
   rpc_handler_t handler = rpc_find_uid_handler(uid);
   if (handler) {
-    return handler(buff);
+    handler(buff);
+    return RPC_STATUS_OK;
   } else {
     return RPC_STATUS_ERROR_UID;
   }

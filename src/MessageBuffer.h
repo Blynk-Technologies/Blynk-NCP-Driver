@@ -50,21 +50,7 @@ size_t MessageBuffer_readUInt32(MessageBuffer* self, uint32_t* value);
 size_t MessageBuffer_readUInt64(MessageBuffer* self, uint64_t* value);
 size_t MessageBuffer_readFloat(MessageBuffer* self, float* value);
 
-/* Write */
-size_t MessageBuffer_writeString(MessageBuffer* self, const char* value);
-size_t MessageBuffer_writeBinary(MessageBuffer* self, buffer_t value);
-size_t MessageBuffer_writeBool(MessageBuffer* self, bool value);
-size_t MessageBuffer_writeInt8(MessageBuffer* self, const int8_t value);
-size_t MessageBuffer_writeInt16(MessageBuffer* self, const int16_t value);
-size_t MessageBuffer_writeInt32(MessageBuffer* self, const int32_t value);
-size_t MessageBuffer_writeInt64(MessageBuffer* self, const int64_t value);
-size_t MessageBuffer_writeUInt8(MessageBuffer* self, const uint8_t value);
-size_t MessageBuffer_writeUInt16(MessageBuffer* self, const uint16_t value);
-size_t MessageBuffer_writeUInt32(MessageBuffer* self, const uint32_t value);
-size_t MessageBuffer_writeUInt64(MessageBuffer* self, const uint64_t value);
-size_t MessageBuffer_writeFloat(MessageBuffer* self, const float value);
 size_t MessageBuffer_read(MessageBuffer* self, void* data, size_t size);
-size_t MessageBuffer_write(MessageBuffer* self, const void* data, size_t size);
 
 #ifdef __cplusplus
 }

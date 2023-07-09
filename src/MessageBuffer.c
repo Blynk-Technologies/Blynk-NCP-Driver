@@ -142,65 +142,6 @@ size_t MessageBuffer_readFloat(MessageBuffer* self, float* value) {
     return MessageBuffer_read(self, value, sizeof(float));
 }
 
-size_t MessageBuffer_writeString(MessageBuffer* self, const char* value) {
-    if (!value) {
-        return MessageBuffer_write(self, "", 1);
-    }
-    size_t length = strlen(value) + 1;
-    return MessageBuffer_write(self, value, length);
-}
-
-size_t MessageBuffer_writeBinary(MessageBuffer* self, buffer_t value) {
-    size_t len = sizeof(uint16_t) + value.length;
-    if (MessageBuffer_availableToWrite(self) < len) {
-        self->_error = true;
-        return 0;
-    }
-    MessageBuffer_writeUInt16(self, value.length);
-    MessageBuffer_write(self, value.data, value.length);
-    return len;
-}
-
-size_t MessageBuffer_writeBool(MessageBuffer* self, bool value) {
-    return MessageBuffer_writeUInt8(self, value ? 1 : 0);
-}
-
-size_t MessageBuffer_writeInt8(MessageBuffer* self, const int8_t value) {
-    return MessageBuffer_write(self, &value, sizeof(int8_t));
-}
-
-size_t MessageBuffer_writeInt16(MessageBuffer* self, const int16_t value) {
-    return MessageBuffer_write(self, &value, sizeof(int16_t));
-}
-
-size_t MessageBuffer_writeInt32(MessageBuffer* self, const int32_t value) {
-    return MessageBuffer_write(self, &value, sizeof(int32_t));
-}
-
-size_t MessageBuffer_writeInt64(MessageBuffer* self, const int64_t value) {
-    return MessageBuffer_write(self, &value, sizeof(int64_t));
-}
-
-size_t MessageBuffer_writeUInt8(MessageBuffer* self, const uint8_t value) {
-    return MessageBuffer_write(self, &value, sizeof(uint8_t));
-}
-
-size_t MessageBuffer_writeUInt16(MessageBuffer* self, const uint16_t value) {
-    return MessageBuffer_write(self, &value, sizeof(uint16_t));
-}
-
-size_t MessageBuffer_writeUInt32(MessageBuffer* self, const uint32_t value) {
-    return MessageBuffer_write(self, &value, sizeof(uint32_t));
-}
-
-size_t MessageBuffer_writeUInt64(MessageBuffer* self, const uint64_t value) {
-    return MessageBuffer_write(self, &value, sizeof(uint64_t));
-}
-
-size_t MessageBuffer_writeFloat(MessageBuffer* self, const float value) {
-    return MessageBuffer_write(self, &value, sizeof(float));
-}
-
 size_t MessageBuffer_read(MessageBuffer* self, void* data, size_t size) {
     if (MessageBuffer_availableToRead(self) < size) {
         memset(data, 0, size);
@@ -211,15 +152,5 @@ size_t MessageBuffer_read(MessageBuffer* self, void* data, size_t size) {
         memcpy(data, self->_buffer + self->_rpos, size);
     }
     self->_rpos += size;
-    return size;
-}
-
-size_t MessageBuffer_write(MessageBuffer* self, const void* data, size_t size) {
-    if (!data || MessageBuffer_availableToWrite(self) < size) {
-        self->_error = true;
-        return 0;
-    }
-    memcpy(self->_buffer + self->_wpos, data, size);
-    self->_wpos += size;
     return size;
 }

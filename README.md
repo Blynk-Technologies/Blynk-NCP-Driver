@@ -6,6 +6,10 @@ A shared interface to the services provided by Blynk.NCP
 [![issues](https://img.shields.io/github/issues/blynkkk/BlynkNcpExample.svg)](https://github.com/blynkkk/BlynkNcpExample/issues)
 [![license](https://img.shields.io/github/license/blynkkk/BlynkNcpDriver)](LICENSE)
 
+## Minimum System Requirements
+
+`C99` compiler | `1KB` RAM | `16KB` Flash | `115200 8N1` UART
+
 ## Documentation
 
 - [Supported Connectivity Modules](https://docs.blynk.io/en/getting-started/supported-boards#connectivity-modules-supported-by-blynk.ncp)

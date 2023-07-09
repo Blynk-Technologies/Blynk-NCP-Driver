@@ -8,19 +8,11 @@
 static inline
 RpcStatus rpc_mcu_ping() {
   RpcStatus _rpc_res;
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_INVOKE);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_MCU_PING);
-  MessageBuffer_writeUInt16(&_rpc_buff, ++_rpc_seq);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return _rpc_res;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_INVOKE);
+  MessageWriter_writeUInt16(RPC_UID_MCU_PING);
+  MessageWriter_writeUInt16(++_rpc_seq);
+  MessageWriter_end();
 
   MessageBuffer _rsp_buff;
   MessageBuffer_init(&_rsp_buff, NULL, 0);
@@ -38,19 +30,11 @@ bool rpc_mcu_reboot() {
   bool _rpc_ret_val;
   memset(&_rpc_ret_val, 0, sizeof(_rpc_ret_val));
 
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_INVOKE);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_MCU_REBOOT);
-  MessageBuffer_writeUInt16(&_rpc_buff, ++_rpc_seq);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return _rpc_ret_val;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_INVOKE);
+  MessageWriter_writeUInt16(RPC_UID_MCU_REBOOT);
+  MessageWriter_writeUInt16(++_rpc_seq);
+  MessageWriter_end();
 
   MessageBuffer _rsp_buff;
   MessageBuffer_init(&_rsp_buff, NULL, 0);
@@ -76,22 +60,14 @@ bool rpc_mcu_hasUID(uint16_t uid) {
   bool _rpc_ret_val;
   memset(&_rpc_ret_val, 0, sizeof(_rpc_ret_val));
 
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_INVOKE);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_MCU_HASUID);
-  MessageBuffer_writeUInt16(&_rpc_buff, ++_rpc_seq);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_INVOKE);
+  MessageWriter_writeUInt16(RPC_UID_MCU_HASUID);
+  MessageWriter_writeUInt16(++_rpc_seq);
 
   /* Serialize inputs */
-  MessageBuffer_writeUInt16(&_rpc_buff, uid);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return _rpc_ret_val;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_writeUInt16(uid);
+  MessageWriter_end();
 
   MessageBuffer _rsp_buff;
   MessageBuffer_init(&_rsp_buff, NULL, 0);

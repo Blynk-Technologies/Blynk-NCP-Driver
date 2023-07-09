@@ -42,24 +42,14 @@ bool rpc_handle_msg(MessageBuffer* buff)
       MessageBuffer_readUInt16(buff, &id);
       if (op == RPC_OP_INVOKE) {
         MessageBuffer_readUInt16(buff, &seq);
-      }
 
-      RpcStatus status = rpc_invoke_handler(id, buff);
-
-      if (op == RPC_OP_INVOKE) {
-        // TODO: Eliminate this
-        size_t len = MessageBuffer_getSize(buff)/2;
-        MessageBuffer _rpc_reply;
-        MessageBuffer_init(&_rpc_reply, MessageBuffer_getBuffer(buff)+len, len);
-
-        MessageBuffer_writeUInt16(&_rpc_reply, RPC_OP_RESULT);
-        MessageBuffer_writeUInt16(&_rpc_reply, seq);
-        MessageBuffer_writeUInt8(&_rpc_reply, status);
-        if (status == RPC_STATUS_OK) {
-          MessageBuffer_write(&_rpc_reply, MessageBuffer_getBuffer(buff), MessageBuffer_getWritten(buff));
-        }
-
-        rpc_send_msg(&_rpc_reply);
+        MessageWriter_begin();
+        MessageWriter_writeUInt16(RPC_OP_RESULT);
+        MessageWriter_writeUInt16(seq);
+        rpc_invoke_handler(id, buff);
+        MessageWriter_end();
+      } else {
+        rpc_invoke_handler(id, buff);
       }
   } else {
       return false;

@@ -31,14 +31,3 @@ bool rpc_recv_msg(MessageBuffer* buff, uint32_t timeout)
   } while (rpc_system_millis() - tstart < timeout);
   return false;
 }
-
-void rpc_send_msg(MessageBuffer* buff)
-{
-  uint8_t* data = MessageBuffer_getBuffer(buff);
-  uint32_t len = MessageBuffer_getWritten(buff);
-  //TRACE_HEX("<<", data, len);
-
-  RpcUartFraming_beginPacket();
-  RpcUartFraming_write(data, len);
-  RpcUartFraming_endPacket();
-}

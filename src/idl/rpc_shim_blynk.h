@@ -12,19 +12,11 @@ bool rpc_blynk_getNcpVersion(const char** ver) {
   bool _rpc_ret_val;
   memset(&_rpc_ret_val, 0, sizeof(_rpc_ret_val));
 
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_INVOKE);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_BLYNK_GETNCPVERSION);
-  MessageBuffer_writeUInt16(&_rpc_buff, ++_rpc_seq);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return _rpc_ret_val;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_INVOKE);
+  MessageWriter_writeUInt16(RPC_UID_BLYNK_GETNCPVERSION);
+  MessageWriter_writeUInt16(++_rpc_seq);
+  MessageWriter_end();
 
   MessageBuffer _rsp_buff;
   MessageBuffer_init(&_rsp_buff, NULL, 0);
@@ -51,22 +43,14 @@ bool rpc_blynk_setVendorPrefix(const char* vendor) {
   bool _rpc_ret_val;
   memset(&_rpc_ret_val, 0, sizeof(_rpc_ret_val));
 
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_INVOKE);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_BLYNK_SETVENDORPREFIX);
-  MessageBuffer_writeUInt16(&_rpc_buff, ++_rpc_seq);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_INVOKE);
+  MessageWriter_writeUInt16(RPC_UID_BLYNK_SETVENDORPREFIX);
+  MessageWriter_writeUInt16(++_rpc_seq);
 
   /* Serialize inputs */
-  MessageBuffer_writeString(&_rpc_buff, vendor);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return _rpc_ret_val;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_writeString(vendor);
+  MessageWriter_end();
 
   MessageBuffer _rsp_buff;
   MessageBuffer_init(&_rsp_buff, NULL, 0);
@@ -92,22 +76,14 @@ bool rpc_blynk_setVendorServer(const char* host) {
   bool _rpc_ret_val;
   memset(&_rpc_ret_val, 0, sizeof(_rpc_ret_val));
 
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_INVOKE);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_BLYNK_SETVENDORSERVER);
-  MessageBuffer_writeUInt16(&_rpc_buff, ++_rpc_seq);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_INVOKE);
+  MessageWriter_writeUInt16(RPC_UID_BLYNK_SETVENDORSERVER);
+  MessageWriter_writeUInt16(++_rpc_seq);
 
   /* Serialize inputs */
-  MessageBuffer_writeString(&_rpc_buff, host);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return _rpc_ret_val;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_writeString(host);
+  MessageWriter_end();
 
   MessageBuffer _rsp_buff;
   MessageBuffer_init(&_rsp_buff, NULL, 0);
@@ -133,25 +109,17 @@ bool rpc_blynk_setFirmwareInfo(const char* type, const char* version, const char
   bool _rpc_ret_val;
   memset(&_rpc_ret_val, 0, sizeof(_rpc_ret_val));
 
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_INVOKE);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_BLYNK_SETFIRMWAREINFO);
-  MessageBuffer_writeUInt16(&_rpc_buff, ++_rpc_seq);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_INVOKE);
+  MessageWriter_writeUInt16(RPC_UID_BLYNK_SETFIRMWAREINFO);
+  MessageWriter_writeUInt16(++_rpc_seq);
 
   /* Serialize inputs */
-  MessageBuffer_writeString(&_rpc_buff, type);
-  MessageBuffer_writeString(&_rpc_buff, version);
-  MessageBuffer_writeString(&_rpc_buff, build);
-  MessageBuffer_writeString(&_rpc_buff, blynk);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return _rpc_ret_val;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_writeString(type);
+  MessageWriter_writeString(version);
+  MessageWriter_writeString(build);
+  MessageWriter_writeString(blynk);
+  MessageWriter_end();
 
   MessageBuffer _rsp_buff;
   MessageBuffer_init(&_rsp_buff, NULL, 0);
@@ -177,23 +145,15 @@ bool rpc_blynk_initialize(const char* templateID, const char* templateName) {
   bool _rpc_ret_val;
   memset(&_rpc_ret_val, 0, sizeof(_rpc_ret_val));
 
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_INVOKE);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_BLYNK_INITIALIZE);
-  MessageBuffer_writeUInt16(&_rpc_buff, ++_rpc_seq);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_INVOKE);
+  MessageWriter_writeUInt16(RPC_UID_BLYNK_INITIALIZE);
+  MessageWriter_writeUInt16(++_rpc_seq);
 
   /* Serialize inputs */
-  MessageBuffer_writeString(&_rpc_buff, templateID);
-  MessageBuffer_writeString(&_rpc_buff, templateName);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return _rpc_ret_val;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_writeString(templateID);
+  MessageWriter_writeString(templateName);
+  MessageWriter_end();
 
   MessageBuffer _rsp_buff;
   MessageBuffer_init(&_rsp_buff, NULL, 0);
@@ -219,19 +179,11 @@ bool rpc_blynk_getHotspotName(const char** hotspot) {
   bool _rpc_ret_val;
   memset(&_rpc_ret_val, 0, sizeof(_rpc_ret_val));
 
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_INVOKE);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_BLYNK_GETHOTSPOTNAME);
-  MessageBuffer_writeUInt16(&_rpc_buff, ++_rpc_seq);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return _rpc_ret_val;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_INVOKE);
+  MessageWriter_writeUInt16(RPC_UID_BLYNK_GETHOTSPOTNAME);
+  MessageWriter_writeUInt16(++_rpc_seq);
+  MessageWriter_end();
 
   MessageBuffer _rsp_buff;
   MessageBuffer_init(&_rsp_buff, NULL, 0);
@@ -258,19 +210,11 @@ bool rpc_blynk_isConfigured() {
   bool _rpc_ret_val;
   memset(&_rpc_ret_val, 0, sizeof(_rpc_ret_val));
 
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_INVOKE);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_BLYNK_ISCONFIGURED);
-  MessageBuffer_writeUInt16(&_rpc_buff, ++_rpc_seq);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return _rpc_ret_val;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_INVOKE);
+  MessageWriter_writeUInt16(RPC_UID_BLYNK_ISCONFIGURED);
+  MessageWriter_writeUInt16(++_rpc_seq);
+  MessageWriter_end();
 
   MessageBuffer _rsp_buff;
   MessageBuffer_init(&_rsp_buff, NULL, 0);
@@ -296,19 +240,11 @@ bool rpc_blynk_configStart() {
   bool _rpc_ret_val;
   memset(&_rpc_ret_val, 0, sizeof(_rpc_ret_val));
 
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_INVOKE);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_BLYNK_CONFIGSTART);
-  MessageBuffer_writeUInt16(&_rpc_buff, ++_rpc_seq);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return _rpc_ret_val;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_INVOKE);
+  MessageWriter_writeUInt16(RPC_UID_BLYNK_CONFIGSTART);
+  MessageWriter_writeUInt16(++_rpc_seq);
+  MessageWriter_end();
 
   MessageBuffer _rsp_buff;
   MessageBuffer_init(&_rsp_buff, NULL, 0);
@@ -334,19 +270,11 @@ bool rpc_blynk_configStop() {
   bool _rpc_ret_val;
   memset(&_rpc_ret_val, 0, sizeof(_rpc_ret_val));
 
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_INVOKE);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_BLYNK_CONFIGSTOP);
-  MessageBuffer_writeUInt16(&_rpc_buff, ++_rpc_seq);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return _rpc_ret_val;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_INVOKE);
+  MessageWriter_writeUInt16(RPC_UID_BLYNK_CONFIGSTOP);
+  MessageWriter_writeUInt16(++_rpc_seq);
+  MessageWriter_end();
 
   MessageBuffer _rsp_buff;
   MessageBuffer_init(&_rsp_buff, NULL, 0);
@@ -372,19 +300,11 @@ bool rpc_blynk_configReset() {
   bool _rpc_ret_val;
   memset(&_rpc_ret_val, 0, sizeof(_rpc_ret_val));
 
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_INVOKE);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_BLYNK_CONFIGRESET);
-  MessageBuffer_writeUInt16(&_rpc_buff, ++_rpc_seq);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return _rpc_ret_val;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_INVOKE);
+  MessageWriter_writeUInt16(RPC_UID_BLYNK_CONFIGRESET);
+  MessageWriter_writeUInt16(++_rpc_seq);
+  MessageWriter_end();
 
   MessageBuffer _rsp_buff;
   MessageBuffer_init(&_rsp_buff, NULL, 0);
@@ -410,22 +330,14 @@ bool rpc_blynk_setConfigTimeout(uint16_t timeout) {
   bool _rpc_ret_val;
   memset(&_rpc_ret_val, 0, sizeof(_rpc_ret_val));
 
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_INVOKE);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_BLYNK_SETCONFIGTIMEOUT);
-  MessageBuffer_writeUInt16(&_rpc_buff, ++_rpc_seq);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_INVOKE);
+  MessageWriter_writeUInt16(RPC_UID_BLYNK_SETCONFIGTIMEOUT);
+  MessageWriter_writeUInt16(++_rpc_seq);
 
   /* Serialize inputs */
-  MessageBuffer_writeUInt16(&_rpc_buff, timeout);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return _rpc_ret_val;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_writeUInt16(timeout);
+  MessageWriter_end();
 
   MessageBuffer _rsp_buff;
   MessageBuffer_init(&_rsp_buff, NULL, 0);
@@ -451,22 +363,14 @@ bool rpc_blynk_setConfigSkipLimit(uint8_t count) {
   bool _rpc_ret_val;
   memset(&_rpc_ret_val, 0, sizeof(_rpc_ret_val));
 
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_INVOKE);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_BLYNK_SETCONFIGSKIPLIMIT);
-  MessageBuffer_writeUInt16(&_rpc_buff, ++_rpc_seq);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_INVOKE);
+  MessageWriter_writeUInt16(RPC_UID_BLYNK_SETCONFIGSKIPLIMIT);
+  MessageWriter_writeUInt16(++_rpc_seq);
 
   /* Serialize inputs */
-  MessageBuffer_writeUInt8(&_rpc_buff, count);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return _rpc_ret_val;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_writeUInt8(count);
+  MessageWriter_end();
 
   MessageBuffer _rsp_buff;
   MessageBuffer_init(&_rsp_buff, NULL, 0);
@@ -492,22 +396,14 @@ bool rpc_blynk_setTime(int64_t time) {
   bool _rpc_ret_val;
   memset(&_rpc_ret_val, 0, sizeof(_rpc_ret_val));
 
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_INVOKE);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_BLYNK_SETTIME);
-  MessageBuffer_writeUInt16(&_rpc_buff, ++_rpc_seq);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_INVOKE);
+  MessageWriter_writeUInt16(RPC_UID_BLYNK_SETTIME);
+  MessageWriter_writeUInt16(++_rpc_seq);
 
   /* Serialize inputs */
-  MessageBuffer_writeInt64(&_rpc_buff, time);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return _rpc_ret_val;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_writeInt64(time);
+  MessageWriter_end();
 
   MessageBuffer _rsp_buff;
   MessageBuffer_init(&_rsp_buff, NULL, 0);
@@ -533,19 +429,11 @@ bool rpc_blynk_getTime(const char** iso8601, int64_t* time, int16_t* offset, con
   bool _rpc_ret_val;
   memset(&_rpc_ret_val, 0, sizeof(_rpc_ret_val));
 
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_INVOKE);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_BLYNK_GETTIME);
-  MessageBuffer_writeUInt16(&_rpc_buff, ++_rpc_seq);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return _rpc_ret_val;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_INVOKE);
+  MessageWriter_writeUInt16(RPC_UID_BLYNK_GETTIME);
+  MessageWriter_writeUInt16(++_rpc_seq);
+  MessageWriter_end();
 
   MessageBuffer _rsp_buff;
   MessageBuffer_init(&_rsp_buff, NULL, 0);
@@ -576,19 +464,11 @@ bool rpc_blynk_getLocationInfo(const char** lat, const char** lon, const char** 
   bool _rpc_ret_val;
   memset(&_rpc_ret_val, 0, sizeof(_rpc_ret_val));
 
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_INVOKE);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_BLYNK_GETLOCATIONINFO);
-  MessageBuffer_writeUInt16(&_rpc_buff, ++_rpc_seq);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return _rpc_ret_val;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_INVOKE);
+  MessageWriter_writeUInt16(RPC_UID_BLYNK_GETLOCATIONINFO);
+  MessageWriter_writeUInt16(++_rpc_seq);
+  MessageWriter_end();
 
   MessageBuffer _rsp_buff;
   MessageBuffer_init(&_rsp_buff, NULL, 0);
@@ -618,22 +498,14 @@ bool rpc_blynk_otaUpdateStart(uint16_t chunk) {
   bool _rpc_ret_val;
   memset(&_rpc_ret_val, 0, sizeof(_rpc_ret_val));
 
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_INVOKE);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_BLYNK_OTAUPDATESTART);
-  MessageBuffer_writeUInt16(&_rpc_buff, ++_rpc_seq);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_INVOKE);
+  MessageWriter_writeUInt16(RPC_UID_BLYNK_OTAUPDATESTART);
+  MessageWriter_writeUInt16(++_rpc_seq);
 
   /* Serialize inputs */
-  MessageBuffer_writeUInt16(&_rpc_buff, chunk);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return _rpc_ret_val;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_writeUInt16(chunk);
+  MessageWriter_end();
 
   MessageBuffer _rsp_buff;
   MessageBuffer_init(&_rsp_buff, NULL, 0);
@@ -659,19 +531,11 @@ bool rpc_blynk_otaUpdateGetCRC32(uint32_t* crc) {
   bool _rpc_ret_val;
   memset(&_rpc_ret_val, 0, sizeof(_rpc_ret_val));
 
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_INVOKE);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_BLYNK_OTAUPDATEGETCRC32);
-  MessageBuffer_writeUInt16(&_rpc_buff, ++_rpc_seq);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return _rpc_ret_val;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_INVOKE);
+  MessageWriter_writeUInt16(RPC_UID_BLYNK_OTAUPDATEGETCRC32);
+  MessageWriter_writeUInt16(++_rpc_seq);
+  MessageWriter_end();
 
   MessageBuffer _rsp_buff;
   MessageBuffer_init(&_rsp_buff, NULL, 0);
@@ -698,19 +562,11 @@ bool rpc_blynk_otaUpdateGetMD5(buffer_t* digest) {
   bool _rpc_ret_val;
   memset(&_rpc_ret_val, 0, sizeof(_rpc_ret_val));
 
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_INVOKE);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_BLYNK_OTAUPDATEGETMD5);
-  MessageBuffer_writeUInt16(&_rpc_buff, ++_rpc_seq);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return _rpc_ret_val;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_INVOKE);
+  MessageWriter_writeUInt16(RPC_UID_BLYNK_OTAUPDATEGETMD5);
+  MessageWriter_writeUInt16(++_rpc_seq);
+  MessageWriter_end();
 
   MessageBuffer _rsp_buff;
   MessageBuffer_init(&_rsp_buff, NULL, 0);
@@ -737,19 +593,11 @@ bool rpc_blynk_otaUpdateGetSHA256(buffer_t* digest) {
   bool _rpc_ret_val;
   memset(&_rpc_ret_val, 0, sizeof(_rpc_ret_val));
 
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_INVOKE);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_BLYNK_OTAUPDATEGETSHA256);
-  MessageBuffer_writeUInt16(&_rpc_buff, ++_rpc_seq);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return _rpc_ret_val;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_INVOKE);
+  MessageWriter_writeUInt16(RPC_UID_BLYNK_OTAUPDATEGETSHA256);
+  MessageWriter_writeUInt16(++_rpc_seq);
+  MessageWriter_end();
 
   MessageBuffer _rsp_buff;
   MessageBuffer_init(&_rsp_buff, NULL, 0);
@@ -776,19 +624,11 @@ uint8_t rpc_blynk_otaUpdatePrefetch() {
   uint8_t _rpc_ret_val;
   memset(&_rpc_ret_val, 0, sizeof(_rpc_ret_val));
 
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_INVOKE);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_BLYNK_OTAUPDATEPREFETCH);
-  MessageBuffer_writeUInt16(&_rpc_buff, ++_rpc_seq);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return _rpc_ret_val;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_INVOKE);
+  MessageWriter_writeUInt16(RPC_UID_BLYNK_OTAUPDATEPREFETCH);
+  MessageWriter_writeUInt16(++_rpc_seq);
+  MessageWriter_end();
 
   MessageBuffer _rsp_buff;
   MessageBuffer_init(&_rsp_buff, NULL, 0);
@@ -814,19 +654,11 @@ bool rpc_blynk_factoryReset() {
   bool _rpc_ret_val;
   memset(&_rpc_ret_val, 0, sizeof(_rpc_ret_val));
 
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_INVOKE);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_BLYNK_FACTORYRESET);
-  MessageBuffer_writeUInt16(&_rpc_buff, ++_rpc_seq);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return _rpc_ret_val;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_INVOKE);
+  MessageWriter_writeUInt16(RPC_UID_BLYNK_FACTORYRESET);
+  MessageWriter_writeUInt16(++_rpc_seq);
+  MessageWriter_end();
 
   MessageBuffer _rsp_buff;
   MessageBuffer_init(&_rsp_buff, NULL, 0);
@@ -852,22 +684,14 @@ uint8_t rpc_blynk_factoryTestWiFiAP(uint16_t channel) {
   uint8_t _rpc_ret_val;
   memset(&_rpc_ret_val, 0, sizeof(_rpc_ret_val));
 
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_INVOKE);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_BLYNK_FACTORYTESTWIFIAP);
-  MessageBuffer_writeUInt16(&_rpc_buff, ++_rpc_seq);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_INVOKE);
+  MessageWriter_writeUInt16(RPC_UID_BLYNK_FACTORYTESTWIFIAP);
+  MessageWriter_writeUInt16(++_rpc_seq);
 
   /* Serialize inputs */
-  MessageBuffer_writeUInt16(&_rpc_buff, channel);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return _rpc_ret_val;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_writeUInt16(channel);
+  MessageWriter_end();
 
   MessageBuffer _rsp_buff;
   MessageBuffer_init(&_rsp_buff, NULL, 0);
@@ -893,23 +717,15 @@ uint8_t rpc_blynk_factoryTestWiFi(const char* ssid, const char* pass, int16_t* r
   uint8_t _rpc_ret_val;
   memset(&_rpc_ret_val, 0, sizeof(_rpc_ret_val));
 
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_INVOKE);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_BLYNK_FACTORYTESTWIFI);
-  MessageBuffer_writeUInt16(&_rpc_buff, ++_rpc_seq);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_INVOKE);
+  MessageWriter_writeUInt16(RPC_UID_BLYNK_FACTORYTESTWIFI);
+  MessageWriter_writeUInt16(++_rpc_seq);
 
   /* Serialize inputs */
-  MessageBuffer_writeString(&_rpc_buff, ssid);
-  MessageBuffer_writeString(&_rpc_buff, pass);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return _rpc_ret_val;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_writeString(ssid);
+  MessageWriter_writeString(pass);
+  MessageWriter_end();
 
   MessageBuffer _rsp_buff;
   MessageBuffer_init(&_rsp_buff, NULL, 0);
@@ -936,19 +752,11 @@ uint8_t rpc_blynk_factoryTestConnect() {
   uint8_t _rpc_ret_val;
   memset(&_rpc_ret_val, 0, sizeof(_rpc_ret_val));
 
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_INVOKE);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_BLYNK_FACTORYTESTCONNECT);
-  MessageBuffer_writeUInt16(&_rpc_buff, ++_rpc_seq);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return _rpc_ret_val;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_INVOKE);
+  MessageWriter_writeUInt16(RPC_UID_BLYNK_FACTORYTESTCONNECT);
+  MessageWriter_writeUInt16(++_rpc_seq);
+  MessageWriter_end();
 
   MessageBuffer _rsp_buff;
   MessageBuffer_init(&_rsp_buff, NULL, 0);
@@ -974,19 +782,11 @@ uint8_t rpc_blynk_getState() {
   uint8_t _rpc_ret_val;
   memset(&_rpc_ret_val, 0, sizeof(_rpc_ret_val));
 
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_INVOKE);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_BLYNK_GETSTATE);
-  MessageBuffer_writeUInt16(&_rpc_buff, ++_rpc_seq);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return _rpc_ret_val;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_INVOKE);
+  MessageWriter_writeUInt16(RPC_UID_BLYNK_GETSTATE);
+  MessageWriter_writeUInt16(++_rpc_seq);
+  MessageWriter_end();
 
   MessageBuffer _rsp_buff;
   MessageBuffer_init(&_rsp_buff, NULL, 0);
@@ -1007,23 +807,14 @@ uint8_t rpc_blynk_getState() {
 
 static inline
 void rpc_blynk_virtualWrite(uint16_t vpin, buffer_t value) {
-  RpcStatus _rpc_res;
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_ONEWAY);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_BLYNK_VIRTUALWRITE);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_ONEWAY);
+  MessageWriter_writeUInt16(RPC_UID_BLYNK_VIRTUALWRITE);
 
   /* Serialize inputs */
-  MessageBuffer_writeUInt16(&_rpc_buff, vpin);
-  MessageBuffer_writeBinary(&_rpc_buff, value);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_writeUInt16(vpin);
+  MessageWriter_writeBinary(value);
+  MessageWriter_end();
 
   /* Oneway => skip response */
 }
@@ -1031,24 +822,15 @@ void rpc_blynk_virtualWrite(uint16_t vpin, buffer_t value) {
 
 static inline
 void rpc_blynk_setProperty(uint16_t vpin, const char* property, buffer_t value) {
-  RpcStatus _rpc_res;
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_ONEWAY);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_BLYNK_SETPROPERTY);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_ONEWAY);
+  MessageWriter_writeUInt16(RPC_UID_BLYNK_SETPROPERTY);
 
   /* Serialize inputs */
-  MessageBuffer_writeUInt16(&_rpc_buff, vpin);
-  MessageBuffer_writeString(&_rpc_buff, property);
-  MessageBuffer_writeBinary(&_rpc_buff, value);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_writeUInt16(vpin);
+  MessageWriter_writeString(property);
+  MessageWriter_writeBinary(value);
+  MessageWriter_end();
 
   /* Oneway => skip response */
 }
@@ -1056,19 +838,10 @@ void rpc_blynk_setProperty(uint16_t vpin, const char* property, buffer_t value) 
 
 static inline
 void rpc_blynk_syncAll() {
-  RpcStatus _rpc_res;
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_ONEWAY);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_BLYNK_SYNCALL);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_ONEWAY);
+  MessageWriter_writeUInt16(RPC_UID_BLYNK_SYNCALL);
+  MessageWriter_end();
 
   /* Oneway => skip response */
 }
@@ -1076,22 +849,13 @@ void rpc_blynk_syncAll() {
 
 static inline
 void rpc_blynk_syncVirtual(buffer_t vpins) {
-  RpcStatus _rpc_res;
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_ONEWAY);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_BLYNK_SYNCVIRTUAL);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_ONEWAY);
+  MessageWriter_writeUInt16(RPC_UID_BLYNK_SYNCVIRTUAL);
 
   /* Serialize inputs */
-  MessageBuffer_writeBinary(&_rpc_buff, vpins);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_writeBinary(vpins);
+  MessageWriter_end();
 
   /* Oneway => skip response */
 }
@@ -1099,23 +863,14 @@ void rpc_blynk_syncVirtual(buffer_t vpins) {
 
 static inline
 void rpc_blynk_logEvent(const char* event_code, const char* description) {
-  RpcStatus _rpc_res;
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_ONEWAY);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_BLYNK_LOGEVENT);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_ONEWAY);
+  MessageWriter_writeUInt16(RPC_UID_BLYNK_LOGEVENT);
 
   /* Serialize inputs */
-  MessageBuffer_writeString(&_rpc_buff, event_code);
-  MessageBuffer_writeString(&_rpc_buff, description);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_writeString(event_code);
+  MessageWriter_writeString(description);
+  MessageWriter_end();
 
   /* Oneway => skip response */
 }
@@ -1123,22 +878,13 @@ void rpc_blynk_logEvent(const char* event_code, const char* description) {
 
 static inline
 void rpc_blynk_resolveEvent(const char* event_code) {
-  RpcStatus _rpc_res;
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_ONEWAY);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_BLYNK_RESOLVEEVENT);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_ONEWAY);
+  MessageWriter_writeUInt16(RPC_UID_BLYNK_RESOLVEEVENT);
 
   /* Serialize inputs */
-  MessageBuffer_writeString(&_rpc_buff, event_code);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_writeString(event_code);
+  MessageWriter_end();
 
   /* Oneway => skip response */
 }
@@ -1146,22 +892,13 @@ void rpc_blynk_resolveEvent(const char* event_code) {
 
 static inline
 void rpc_blynk_resolveAllEvents(const char* event_code) {
-  RpcStatus _rpc_res;
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_ONEWAY);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_BLYNK_RESOLVEALLEVENTS);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_ONEWAY);
+  MessageWriter_writeUInt16(RPC_UID_BLYNK_RESOLVEALLEVENTS);
 
   /* Serialize inputs */
-  MessageBuffer_writeString(&_rpc_buff, event_code);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_writeString(event_code);
+  MessageWriter_end();
 
   /* Oneway => skip response */
 }
@@ -1169,22 +906,13 @@ void rpc_blynk_resolveAllEvents(const char* event_code) {
 
 static inline
 void rpc_blynk_beginGroup(int64_t timestamp) {
-  RpcStatus _rpc_res;
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_ONEWAY);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_BLYNK_BEGINGROUP);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_ONEWAY);
+  MessageWriter_writeUInt16(RPC_UID_BLYNK_BEGINGROUP);
 
   /* Serialize inputs */
-  MessageBuffer_writeInt64(&_rpc_buff, timestamp);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_writeInt64(timestamp);
+  MessageWriter_end();
 
   /* Oneway => skip response */
 }
@@ -1192,19 +920,10 @@ void rpc_blynk_beginGroup(int64_t timestamp) {
 
 static inline
 void rpc_blynk_endGroup() {
-  RpcStatus _rpc_res;
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_ONEWAY);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_BLYNK_ENDGROUP);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_ONEWAY);
+  MessageWriter_writeUInt16(RPC_UID_BLYNK_ENDGROUP);
+  MessageWriter_end();
 
   /* Oneway => skip response */
 }
@@ -1212,23 +931,14 @@ void rpc_blynk_endGroup() {
 
 static inline
 void rpc_blynk_setMetadata(const char* field, const char* value) {
-  RpcStatus _rpc_res;
-  MessageBuffer _rpc_buff;
-  MessageBuffer_init(&_rpc_buff, rpc_output_buff, sizeof(rpc_output_buff));
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_OP_ONEWAY);
-  MessageBuffer_writeUInt16(&_rpc_buff, RPC_UID_BLYNK_SETMETADATA);
+  MessageWriter_begin();
+  MessageWriter_writeUInt16(RPC_OP_ONEWAY);
+  MessageWriter_writeUInt16(RPC_UID_BLYNK_SETMETADATA);
 
   /* Serialize inputs */
-  MessageBuffer_writeString(&_rpc_buff, field);
-  MessageBuffer_writeString(&_rpc_buff, value);
-
-  if (MessageBuffer_getError(&_rpc_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_ARGS_W);
-    return;
-  }
-
-  /* RPC call */
-  rpc_send_msg(&_rpc_buff);
+  MessageWriter_writeString(field);
+  MessageWriter_writeString(value);
+  MessageWriter_end();
 
   /* Oneway => skip response */
 }
