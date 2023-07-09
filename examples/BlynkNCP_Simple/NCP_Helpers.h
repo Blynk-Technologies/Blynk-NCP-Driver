@@ -1,3 +1,7 @@
+
+#include <Arduino.h>
+#include <BlynkRpcClient.h>
+
 #if !defined(BLYNK_FIRMWARE_TYPE) && defined(BLYNK_TEMPLATE_ID)
   #define BLYNK_FIRMWARE_TYPE BLYNK_TEMPLATE_ID
 #endif
@@ -5,10 +9,6 @@
 #if !defined(BLYNK_TEMPLATE_ID) || !defined(BLYNK_TEMPLATE_NAME)
   #error "Please specify your BLYNK_TEMPLATE_ID and BLYNK_TEMPLATE_NAME"
 #endif
-
-#include <Arduino.h>
-#include <BlynkRpcClient.h>
-#include <BlynkRpcUartFraming.h>
 
 /*
  * Implement the UART interface
@@ -18,6 +18,10 @@
   #define SerialNCP   BLYNK_NCP_SERIAL
 #elif defined(ARDUINO_NANO_RP2040_CONNECT)
   #define SerialNCP   SerialNina
+#elif defined(__AVR_ATmega328P__)
+  #include <SoftwareSerial.h>
+  SoftwareSerial Serial1(2, 3); // RX, TX
+  #define SerialNCP   Serial1
 #elif defined(LINUX)
   #include <compat/LibSerialPort.h>
   #if !defined(BLYNK_NCP_PORT)
@@ -110,16 +114,20 @@ void virtualWrite(int virtualPin, int32_t value) {
   virtualWrite(virtualPin, buff);
 }
 
+// Wait for serial console, up to 3 seconds
 template <typename T>
 void waitSerialConsole(T& ser) {
-#if !defined(LINUX)
-  // Wait for serial console, up to 3 seconds
+#if defined(LINUX)
+  // Not needed on linux
+  (void) ser;
+#else
   const uint32_t tstart = millis();
   while (!ser && (millis() - tstart < 2900)) { delay(1); }
   delay(100);
 #endif
 }
 
+// Entry point for Linux target
 #if defined(LINUX)
 int main(int argc, char* argv[])
 {
