@@ -14,8 +14,8 @@
  * Implement the UART interface
  */
 
-#if defined(SerialNCP)
-  // Use the defined SerialNCP
+#if defined(BLYNK_NCP_SERIAL)
+  #define SerialNCP   BLYNK_NCP_SERIAL
 #elif defined(ARDUINO_NANO_RP2040_CONNECT)
   #define SerialNCP   SerialNina
 #elif defined(LINUX)
@@ -26,7 +26,7 @@
   SerialPort SerialUSB(BLYNK_NCP_PORT);
   #define SerialNCP SerialUSB
 #else
-  #error "SerialNCP is not defined"
+  #error "Your board needs extra configuration to work with Blynk.NCP: please define BLYNK_NCP_SERIAL and perform NCP hardware initialization if needed"
 #endif
 
 int rpc_uart_available() {
