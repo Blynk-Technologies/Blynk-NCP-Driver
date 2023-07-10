@@ -17,6 +17,8 @@ volatile const char firmwareTag[] = "blnkinf\0"
     "\0";
 ```
 
+> __Note__: The information inside this tag **MUST** match the information provided by the Primary MCU in runtime using the `rpc_blynk_setFirmwareInfo()`
+
 If your OTA process involves encrypting, compressing, re-packaging (or altering the raw firmware binary in any other way), you should add the equivalent tag to your final OTA package. Blynk provides a [`blynk_tag.py`](https://github.com/blynkkk/BlynkNcpExample/blob/main/tools/blynk_tag.py) tool to automate this process.
 
 ## Firmware Update process
@@ -25,7 +27,7 @@ If your OTA process involves encrypting, compressing, re-packaging (or altering 
    - `type`, `version` could be empty strings, in case the firmware info was not detected by Blynk Cloud
 2. The **Primary MCU** should validate the received info (e.g., check if it is compatible with the current hardware and software) and return true if it accepts the update
 3. If the **Primary MCU** confirms the update (returns OK), it **may** perform any of the following steps (as needed):
-   - Wait until the firmware update is appropriate, finish any critical operations
+   - Wait until the firmware update is appropriate, and finish any critical operations
    - Re-configure the NCP UART, i.e. change the baud rate
    - Reboot into bootloader mode or load a special firmware for handling the update process
    - Initialize the memory for receiving the new firmware (e.g., erase the target memory sector)
