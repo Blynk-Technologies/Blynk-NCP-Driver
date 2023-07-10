@@ -6,7 +6,7 @@
 #include "MessageBuffer.h"
 #include "MessageWriter.h"
 
-#define BLYNK_RPC_LIB_VERSION "0.6.0"
+#define BLYNK_RPC_LIB_VERSION "0.6.1"
 
 #ifdef __cplusplus
 extern "C" {

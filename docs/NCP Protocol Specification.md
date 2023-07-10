@@ -44,7 +44,7 @@ Same as `INVOKE`, but the corresponding `RESULT` message is not sent or expected
 
 ## UART transport layer
 
-The initial serial port configuraton is `115200 8N1`,  flow control: `none`.
+The initial serial port configuraton is `38400 8N1` (or `115200` in some variants),  flow control: `none`.
 
 ```
  ┌───────────────┐        ┌──────────────────┐
@@ -146,7 +146,7 @@ Before NCP is rebooting, it sends `RPC_EVENT_NCP_REBOOTING` event to the Main MC
 **Main MCU** should invoke a command to NCP every 15 seconds.  
 If it **timeouts** 3 times in a row, MCU should try to restore the communication, by taking these steps:
 
-1. If NCP was configured to baud rate other than 115200, Main MCU can try reverting to 115200 and restart the initialization sequence
+1. If NCP was configured to baud rate other than the default, Main MCU can try reverting to the default one and restart the initialization sequence
 2. If it fails, **Main MCU** should physically reset the ESP32 module (if possible on the hardware level), then start the initialization sequence
 
 If there are no commands from Main MCU for 25 seconds, NPC will send a ping command to MCU.
@@ -156,7 +156,7 @@ If there are no commands from Main MCU for 25 seconds, NPC will send a ping comm
 
 ### State check
 
-If MCU always communicates with NCP on the initial baud rate (115200), this may be useful:  
+If MCU always communicates with NCP on the initial/default baud rate, this may be useful:
 When `rpc_blynk_getState()` returns `BLYNK_STATE_NOT_INITIALIZED`, MCU should initialize the NCP.  
 It can also be combined with the periodic heartbeat.
 
