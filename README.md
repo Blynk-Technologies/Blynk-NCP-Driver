@@ -8,7 +8,7 @@ A shared interface to the services provided by Blynk.NCP
 
 ## Minimum System Requirements
 
-`C99` compiler | `1KB` RAM | `16KB` Flash | `115200 8N1` UART
+`C99` compiler | `1KB` RAM | `8KB` Flash | `38400 8N1` UART
 
 ## Documentation
 
