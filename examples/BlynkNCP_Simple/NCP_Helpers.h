@@ -1,6 +1,7 @@
 
 #include <Arduino.h>
 #include <BlynkRpcClient.h>
+#include <BlynkRpcUartFraming.h>
 
 #if !defined(BLYNK_FIRMWARE_TYPE) && defined(BLYNK_TEMPLATE_ID)
   #define BLYNK_FIRMWARE_TYPE BLYNK_TEMPLATE_ID
@@ -14,14 +15,16 @@
  * Implement the UART interface
  */
 
+// Create Serial1 for ARDUINO_AVR_UNO and similar boards
+#if defined(__AVR_ATmega328P__)
+  #include <SoftwareSerial.h>
+  SoftwareSerial Serial1(BLYNK_NCP_RX, BLYNK_NCP_TX);
+#endif
+
 #if defined(BLYNK_NCP_SERIAL)
   #define SerialNCP   BLYNK_NCP_SERIAL
 #elif defined(ARDUINO_NANO_RP2040_CONNECT)
   #define SerialNCP   SerialNina
-#elif defined(__AVR_ATmega328P__)
-  #include <SoftwareSerial.h>
-  SoftwareSerial Serial1(2, 3); // RX, TX
-  #define SerialNCP   Serial1
 #elif defined(LINUX)
   #include <compat/LibSerialPort.h>
   #if !defined(BLYNK_NCP_PORT)
@@ -74,12 +77,33 @@ volatile const char firmwareTag[] PROGMEM = "blnkinf\0"
  * Implement some helpers
  */
 
-bool ncpWaitResponse(uint32_t timeout = 10000) {
+bool ncpSetupSerial(uint32_t timeout = 10000) {
   RpcUartFraming_init();
+
+  const long baudTarget = BLYNK_NCP_BAUD;
+  const long baudRates[3] = { 38400, 115200, baudTarget };
+  unsigned baudIdx = 0;
+
   const uint32_t tbeg = millis();
   while (millis() - tbeg < timeout) {
+    long baud = baudRates[baudIdx++ % 3];
+    SerialNCP.begin(baud);
     if (RPC_STATUS_OK == rpc_ncp_ping()) {
-      SerialDbg.println(F("Blynk.NCP response OK"));
+      if (baud != baudTarget) {
+        // Upgrade baud rate
+        if (rpc_hw_setUartBaudRate(baudTarget)) {
+          SerialNCP.flush();
+          SerialNCP.begin(baudTarget);
+          baud = baudTarget;
+          delay(20);
+          if (RPC_STATUS_OK != rpc_ncp_ping()) {
+            SerialDbg.println(F("Changing NCP baud failed"));
+            return false;
+          }
+        }
+      }
+      SerialDbg.print(F("Blynk.NCP ready, baud: "));
+      SerialDbg.println(baud);
       return true;
     }
   }

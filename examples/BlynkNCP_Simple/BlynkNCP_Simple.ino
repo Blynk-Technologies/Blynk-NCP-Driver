@@ -18,8 +18,6 @@
 void setup()
 {
   SerialDbg.begin(115200);
-  SerialNCP.begin(115200);
-
   waitSerialConsole(SerialDbg);
 
   // Power-up NCP (if needed)
@@ -28,7 +26,7 @@ void setup()
   digitalWrite(NINA_RESETN, HIGH);
 #endif
 
-  if (!ncpWaitResponse()) {
+  if (!ncpSetupSerial()) {
     return;
   }
 
@@ -42,9 +40,12 @@ void setup()
 #if defined(ARDUINO_NANO_RP2040_CONNECT)
   rpc_hw_initRGB(27, 25, 26, true);
   rpc_hw_setLedBrightness(128);
+#elif defined(BLYNK_NCP_TYPE_WITTY_CLOUD)
+  rpc_hw_initUserButton(4, true);
+  rpc_hw_initRGB(15, 12, 13, false);
 #else
   //rpc_hw_initUserButton(0, true);
-  //rpc_hw_initLED(19, false);      // or rpc_hw_initRGB
+  //rpc_hw_initLED(19, false);
   //rpc_hw_setLedBrightness(160);
 #endif
 
