@@ -4,8 +4,12 @@
 #ifndef RPC_HANDLER_CLIENT_H
 #define RPC_HANDLER_CLIENT_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-extern "C" void rpc_client_blynkVPinChange_impl(uint16_t vpin, buffer_t param);
+
+void rpc_client_blynkVPinChange_impl(uint16_t vpin, buffer_t param);
 
 static
 void rpc_client_blynkVPinChange_handler(MessageBuffer* _rpc_buff) {
@@ -23,7 +27,7 @@ void rpc_client_blynkVPinChange_handler(MessageBuffer* _rpc_buff) {
 }
 
 
-extern "C" void rpc_client_blynkStateChange_impl(uint8_t state);
+void rpc_client_blynkStateChange_impl(uint8_t state);
 
 static
 void rpc_client_blynkStateChange_handler(MessageBuffer* _rpc_buff) {
@@ -40,7 +44,7 @@ void rpc_client_blynkStateChange_handler(MessageBuffer* _rpc_buff) {
 }
 
 
-extern "C" void rpc_client_processEvent_impl(uint8_t event);
+void rpc_client_processEvent_impl(uint8_t event);
 
 static
 void rpc_client_processEvent_handler(MessageBuffer* _rpc_buff) {
@@ -57,7 +61,7 @@ void rpc_client_processEvent_handler(MessageBuffer* _rpc_buff) {
 }
 
 
-extern "C" bool rpc_client_otaUpdateAvailable_impl(const char* filename, uint32_t filesize, const char* fw_type, const char* fw_ver, const char* fw_build);
+bool rpc_client_otaUpdateAvailable_impl(const char* filename, uint32_t filesize, const char* fw_type, const char* fw_ver, const char* fw_build);
 
 static
 void rpc_client_otaUpdateAvailable_handler(MessageBuffer* _rpc_buff) {
@@ -82,7 +86,7 @@ void rpc_client_otaUpdateAvailable_handler(MessageBuffer* _rpc_buff) {
 }
 
 
-extern "C" bool rpc_client_otaUpdateWrite_impl(uint32_t offset, buffer_t chunk, uint32_t crc32);
+bool rpc_client_otaUpdateWrite_impl(uint32_t offset, buffer_t chunk, uint32_t crc32);
 
 static
 void rpc_client_otaUpdateWrite_handler(MessageBuffer* _rpc_buff) {
@@ -105,7 +109,7 @@ void rpc_client_otaUpdateWrite_handler(MessageBuffer* _rpc_buff) {
 }
 
 
-extern "C" bool rpc_client_otaUpdateFinish_impl();
+bool rpc_client_otaUpdateFinish_impl();
 
 static
 void rpc_client_otaUpdateFinish_handler(MessageBuffer* _rpc_buff) {
@@ -120,7 +124,7 @@ void rpc_client_otaUpdateFinish_handler(MessageBuffer* _rpc_buff) {
 }
 
 
-extern "C" void rpc_client_otaUpdateCancel_impl();
+void rpc_client_otaUpdateCancel_impl();
 
 static
 void rpc_client_otaUpdateCancel_handler(MessageBuffer* _rpc_buff) {
@@ -131,5 +135,9 @@ void rpc_client_otaUpdateCancel_handler(MessageBuffer* _rpc_buff) {
 
   MessageWriter_writeUInt8(RPC_STATUS_OK);
 }
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* RPC_HANDLER_CLIENT_H */

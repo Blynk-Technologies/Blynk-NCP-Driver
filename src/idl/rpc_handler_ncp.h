@@ -4,8 +4,12 @@
 #ifndef RPC_HANDLER_NCP_H
 #define RPC_HANDLER_NCP_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-extern "C" void rpc_ncp_ping_impl();
+
+void rpc_ncp_ping_impl();
 
 static
 void rpc_ncp_ping_handler(MessageBuffer* _rpc_buff) {
@@ -16,7 +20,7 @@ void rpc_ncp_ping_handler(MessageBuffer* _rpc_buff) {
 }
 
 
-extern "C" bool rpc_ncp_reboot_impl();
+bool rpc_ncp_reboot_impl();
 
 static
 void rpc_ncp_reboot_handler(MessageBuffer* _rpc_buff) {
@@ -31,7 +35,7 @@ void rpc_ncp_reboot_handler(MessageBuffer* _rpc_buff) {
 }
 
 
-extern "C" bool rpc_ncp_hasUID_impl(uint16_t uid);
+bool rpc_ncp_hasUID_impl(uint16_t uid);
 
 static
 void rpc_ncp_hasUID_handler(MessageBuffer* _rpc_buff) {
@@ -50,5 +54,9 @@ void rpc_ncp_hasUID_handler(MessageBuffer* _rpc_buff) {
   /* Serialize outputs */
   MessageWriter_writeBool(_rpc_ret_val);
 }
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* RPC_HANDLER_NCP_H */

@@ -4,6 +4,10 @@
 #ifndef RPC_SHIM_MCU_H
 #define RPC_SHIM_MCU_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 
 static inline
 RpcStatus rpc_mcu_ping() {
@@ -84,5 +88,9 @@ bool rpc_mcu_hasUID(uint16_t uid) {
   rpc_set_status(_rpc_res);
   return _rpc_ret_val;
 }
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* RPC_SHIM_MCU_H */

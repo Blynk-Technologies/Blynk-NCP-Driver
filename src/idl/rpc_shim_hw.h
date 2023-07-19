@@ -4,6 +4,10 @@
 #ifndef RPC_SHIM_HW_H
 #define RPC_SHIM_HW_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 
 static inline
 bool rpc_hw_setUartBaudRate(uint32_t baud) {
@@ -270,5 +274,9 @@ bool rpc_hw_getEthernetMAC(const char** mac) {
   rpc_set_status(_rpc_res);
   return _rpc_ret_val;
 }
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* RPC_SHIM_HW_H */

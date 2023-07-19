@@ -4,6 +4,10 @@
 #ifndef RPC_SHIM_BLYNK_H
 #define RPC_SHIM_BLYNK_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 
 static inline
 bool rpc_blynk_getNcpVersion(const char** ver) {
@@ -942,5 +946,9 @@ void rpc_blynk_setMetadata(const char* field, const char* value) {
 
   /* Oneway => skip response */
 }
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* RPC_SHIM_BLYNK_H */

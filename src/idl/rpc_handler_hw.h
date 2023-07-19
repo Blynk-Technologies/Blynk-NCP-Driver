@@ -4,8 +4,12 @@
 #ifndef RPC_HANDLER_HW_H
 #define RPC_HANDLER_HW_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-extern "C" bool rpc_hw_setUartBaudRate_impl(uint32_t baud);
+
+bool rpc_hw_setUartBaudRate_impl(uint32_t baud);
 
 static
 void rpc_hw_setUartBaudRate_handler(MessageBuffer* _rpc_buff) {
@@ -26,7 +30,7 @@ void rpc_hw_setUartBaudRate_handler(MessageBuffer* _rpc_buff) {
 }
 
 
-extern "C" bool rpc_hw_initUserButton_impl(uint16_t gpio, bool active_low);
+bool rpc_hw_initUserButton_impl(uint16_t gpio, bool active_low);
 
 static
 void rpc_hw_initUserButton_handler(MessageBuffer* _rpc_buff) {
@@ -48,7 +52,7 @@ void rpc_hw_initUserButton_handler(MessageBuffer* _rpc_buff) {
 }
 
 
-extern "C" bool rpc_hw_initLED_impl(uint16_t gpio, bool active_low);
+bool rpc_hw_initLED_impl(uint16_t gpio, bool active_low);
 
 static
 void rpc_hw_initLED_handler(MessageBuffer* _rpc_buff) {
@@ -70,7 +74,7 @@ void rpc_hw_initLED_handler(MessageBuffer* _rpc_buff) {
 }
 
 
-extern "C" bool rpc_hw_initRGB_impl(uint16_t gpio_r, uint16_t gpio_g, uint16_t gpio_b, bool common_anode);
+bool rpc_hw_initRGB_impl(uint16_t gpio_r, uint16_t gpio_g, uint16_t gpio_b, bool common_anode);
 
 static
 void rpc_hw_initRGB_handler(MessageBuffer* _rpc_buff) {
@@ -94,7 +98,7 @@ void rpc_hw_initRGB_handler(MessageBuffer* _rpc_buff) {
 }
 
 
-extern "C" bool rpc_hw_initARGB_impl(uint16_t gpio, uint8_t mode, uint8_t count);
+bool rpc_hw_initARGB_impl(uint16_t gpio, uint8_t mode, uint8_t count);
 
 static
 void rpc_hw_initARGB_handler(MessageBuffer* _rpc_buff) {
@@ -117,7 +121,7 @@ void rpc_hw_initARGB_handler(MessageBuffer* _rpc_buff) {
 }
 
 
-extern "C" bool rpc_hw_setLedBrightness_impl(uint8_t value);
+bool rpc_hw_setLedBrightness_impl(uint8_t value);
 
 static
 void rpc_hw_setLedBrightness_handler(MessageBuffer* _rpc_buff) {
@@ -138,7 +142,7 @@ void rpc_hw_setLedBrightness_handler(MessageBuffer* _rpc_buff) {
 }
 
 
-extern "C" bool rpc_hw_getWiFiMAC_impl(const char** mac);
+bool rpc_hw_getWiFiMAC_impl(const char** mac);
 
 static
 void rpc_hw_getWiFiMAC_handler(MessageBuffer* _rpc_buff) {
@@ -160,7 +164,7 @@ void rpc_hw_getWiFiMAC_handler(MessageBuffer* _rpc_buff) {
 }
 
 
-extern "C" bool rpc_hw_getEthernetMAC_impl(const char** mac);
+bool rpc_hw_getEthernetMAC_impl(const char** mac);
 
 static
 void rpc_hw_getEthernetMAC_handler(MessageBuffer* _rpc_buff) {
@@ -180,5 +184,9 @@ void rpc_hw_getEthernetMAC_handler(MessageBuffer* _rpc_buff) {
   MessageWriter_writeString(mac);
   MessageWriter_writeBool(_rpc_ret_val);
 }
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* RPC_HANDLER_HW_H */

@@ -4,6 +4,10 @@
 #ifndef RPC_SHIM_CLIENT_H
 #define RPC_SHIM_CLIENT_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 
 static inline
 void rpc_client_blynkVPinChange(uint16_t vpin, buffer_t param) {
@@ -166,5 +170,9 @@ void rpc_client_otaUpdateCancel() {
   rpc_set_status(_rpc_res);
   return;
 }
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* RPC_SHIM_CLIENT_H */
