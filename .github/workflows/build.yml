@@ -9,6 +9,7 @@ on:
 jobs:
   test-c99:
     runs-on: ubuntu-latest
+    name: Build using ${{ matrix.config.cc }}
     timeout-minutes: 10
 
     strategy:
@@ -21,7 +22,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Build using ${{ matrix.config.cc }}
+      - name: Build
         env:
           CC: ${{ matrix.config.cc }}
           CFLAGS: ${{ matrix.config.cflags }}
