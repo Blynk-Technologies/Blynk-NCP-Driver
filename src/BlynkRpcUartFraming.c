@@ -37,19 +37,19 @@ typedef struct {
 
 static RpcUartFraming _self;
 
-void RpcUartFraming_init() {
+void RpcUartFraming_init(void) {
   memset(&_self, 0, sizeof(_self));
   _self.state = STATE_BEG;
   _self.escapeXonXoff = true;
 }
 
 static
-bool RpcUartFraming_hasPacketData() {
+bool RpcUartFraming_hasPacketData(void) {
   return _self.buffer.count > 1;
 }
 
 static
-void RpcUartFraming_processInput() {
+void RpcUartFraming_processInput(void) {
   if (_self.state == STATE_END && _self.buffer.count > 0) { return; }
 
   while (rpc_uart_available() && _self.buffer.count < sizeof(_self.buffer.data)) {
@@ -101,22 +101,22 @@ size_t RpcUartFraming_writeByte(uint8_t data) {
 }
 
 
-void RpcUartFraming_beginPacket() {
+void RpcUartFraming_beginPacket(void) {
   rpc_crc8_reset(&_self.wcrc);
   rpc_uart_write(BEG);
 }
 
-void RpcUartFraming_endPacket() {
+void RpcUartFraming_endPacket(void) {
   RpcUartFraming_writeByte(_self.wcrc);
   rpc_uart_write(END);
   rpc_uart_flush();
 }
 
-bool RpcUartFraming_finishedPacket() {
+bool RpcUartFraming_finishedPacket(void) {
   return _self.state == STATE_END && !RpcUartFraming_hasPacketData();
 }
 
-bool RpcUartFraming_checkPacketCRC() {
+bool RpcUartFraming_checkPacketCRC(void) {
   if (!RpcUartFraming_finishedPacket()) { return false; }
   const uint8_t expected = _self.rcrc;
   const uint8_t actual = _self.buffer.data[_self.buffer.read++];
@@ -136,12 +136,12 @@ size_t RpcUartFraming_write(const uint8_t *buffer, size_t size) {
   return n;
 }
 
-int RpcUartFraming_available() {
+int RpcUartFraming_available(void) {
   RpcUartFraming_processInput();
   return RpcUartFraming_hasPacketData() ? (_self.buffer.count - 1) : 0;
 }
 
-int RpcUartFraming_read() {
+int RpcUartFraming_read(void) {
   RpcUartFraming_processInput();
   if (_self.buffer.count <= 1) {
     return -1;

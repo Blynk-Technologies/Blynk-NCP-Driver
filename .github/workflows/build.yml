@@ -9,15 +9,15 @@ on:
 jobs:
   test-c99:
     runs-on: ubuntu-latest
-    name: Build using ${{ matrix.config.cc }}
+    name: Build using ${{ matrix.config.target }}
     timeout-minutes: 10
 
     strategy:
       fail-fast: false
       matrix:
         config:
-        - { target: clang,       cc: clang,      cflags: -Wno-strict-prototypes }
-        - { target: gcc,         cc: gcc,        }
+        - { target: Clang,       cc: clang,      }
+        - { target: GCC,         cc: gcc,        }
 
 
     steps:

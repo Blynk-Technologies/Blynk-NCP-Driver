@@ -182,19 +182,19 @@ typedef enum RpcFactoryTestStatus {
 typedef void (*rpc_handler_t)(MessageBuffer*);
 
 void          rpc_set_status(RpcStatus status);
-RpcStatus     rpc_get_status();
+RpcStatus     rpc_get_status(void);
 const char*   rpc_get_status_str(RpcStatus status);
 void          rpc_set_timeout(uint32_t ms);
 RpcStatus     rpc_invoke_handler(uint16_t id, MessageBuffer* buff);
 bool          rpc_recv_msg(MessageBuffer* buff, uint32_t timeout);
 RpcStatus     rpc_wait_result(uint16_t expected_seq, MessageBuffer* buff, uint32_t timeout);
-void          rpc_run();
+void          rpc_run(void);
 
-uint32_t      rpc_system_millis();
-int           rpc_uart_available();
-int           rpc_uart_read();
+uint32_t      rpc_system_millis(void);
+int           rpc_uart_available(void);
+int           rpc_uart_read(void);
 size_t        rpc_uart_write(uint8_t data);
-void          rpc_uart_flush();
+void          rpc_uart_flush(void);
 
 #ifdef __cplusplus
 }

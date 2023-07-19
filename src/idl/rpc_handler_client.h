@@ -109,7 +109,7 @@ void rpc_client_otaUpdateWrite_handler(MessageBuffer* _rpc_buff) {
 }
 
 
-bool rpc_client_otaUpdateFinish_impl();
+bool rpc_client_otaUpdateFinish_impl(void);
 
 static
 void rpc_client_otaUpdateFinish_handler(MessageBuffer* _rpc_buff) {
@@ -124,7 +124,7 @@ void rpc_client_otaUpdateFinish_handler(MessageBuffer* _rpc_buff) {
 }
 
 
-void rpc_client_otaUpdateCancel_impl();
+void rpc_client_otaUpdateCancel_impl(void);
 
 static
 void rpc_client_otaUpdateCancel_handler(MessageBuffer* _rpc_buff) {

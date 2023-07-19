@@ -5,7 +5,7 @@ RpcStatus _rpc_status;
 
 uint32_t _rpc_timeout_override = 0;
 
-RpcStatus rpc_get_status() {
+RpcStatus rpc_get_status(void) {
   return _rpc_status;
 }
 
@@ -86,7 +86,7 @@ RpcStatus rpc_wait_result(uint16_t expected_seq, MessageBuffer* buff, uint32_t t
   return (RpcStatus)status;
 }
 
-void rpc_run() {
+void rpc_run(void) {
   MessageBuffer buff;
   MessageBuffer_init(&buff, NULL, 0);
   while (rpc_recv_msg(&buff, 0)) {

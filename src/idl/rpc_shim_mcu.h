@@ -10,7 +10,7 @@ extern "C" {
 
 
 static inline
-RpcStatus rpc_mcu_ping() {
+RpcStatus rpc_mcu_ping(void) {
   RpcStatus _rpc_res;
   MessageWriter_begin();
   MessageWriter_writeUInt16(RPC_OP_INVOKE);
@@ -28,7 +28,7 @@ RpcStatus rpc_mcu_ping() {
 
 
 static inline
-bool rpc_mcu_reboot() {
+bool rpc_mcu_reboot(void) {
   RpcStatus _rpc_res;
   /* Prepare return value */
   bool _rpc_ret_val;

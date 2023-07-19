@@ -61,11 +61,11 @@ size_t MessageWriter_writeFloat(const float value) {
     return MessageWriter_write(&value, sizeof(float));
 }
 
-size_t MessageWriter_begin() {
+size_t MessageWriter_begin(void) {
     RpcUartFraming_beginPacket();
     return 1;
 }
-size_t MessageWriter_end() {
+size_t MessageWriter_end(void) {
     RpcUartFraming_endPacket();
     return 1;
 }

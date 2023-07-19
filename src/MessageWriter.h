@@ -10,8 +10,8 @@
 extern "C" {
 #endif
 
-size_t MessageWriter_begin          ();
-size_t MessageWriter_end            ();
+size_t MessageWriter_begin          (void);
+size_t MessageWriter_end            (void);
 
 size_t MessageWriter_writeString    (const char* value);
 size_t MessageWriter_writeBinary    (buffer_t value);

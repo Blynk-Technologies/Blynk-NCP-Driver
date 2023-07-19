@@ -9,7 +9,7 @@ extern "C" {
 #endif
 
 
-void rpc_mcu_ping_impl();
+void rpc_mcu_ping_impl(void);
 
 static
 void rpc_mcu_ping_handler(MessageBuffer* _rpc_buff) {
@@ -20,7 +20,7 @@ void rpc_mcu_ping_handler(MessageBuffer* _rpc_buff) {
 }
 
 
-bool rpc_mcu_reboot_impl();
+bool rpc_mcu_reboot_impl(void);
 
 static
 void rpc_mcu_reboot_handler(MessageBuffer* _rpc_buff) {

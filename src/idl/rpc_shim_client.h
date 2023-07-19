@@ -125,7 +125,7 @@ bool rpc_client_otaUpdateWrite(uint32_t offset, buffer_t chunk, uint32_t crc32) 
 
 
 static inline
-bool rpc_client_otaUpdateFinish() {
+bool rpc_client_otaUpdateFinish(void) {
   RpcStatus _rpc_res;
   /* Prepare return value */
   bool _rpc_ret_val;
@@ -155,7 +155,7 @@ bool rpc_client_otaUpdateFinish() {
 
 
 static inline
-void rpc_client_otaUpdateCancel() {
+void rpc_client_otaUpdateCancel(void) {
   RpcStatus _rpc_res;
   MessageWriter_begin();
   MessageWriter_writeUInt16(RPC_OP_INVOKE);

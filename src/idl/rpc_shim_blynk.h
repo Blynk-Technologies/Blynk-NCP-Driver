@@ -208,7 +208,7 @@ bool rpc_blynk_getHotspotName(const char** hotspot) {
 
 
 static inline
-bool rpc_blynk_isConfigured() {
+bool rpc_blynk_isConfigured(void) {
   RpcStatus _rpc_res;
   /* Prepare return value */
   bool _rpc_ret_val;
@@ -238,7 +238,7 @@ bool rpc_blynk_isConfigured() {
 
 
 static inline
-bool rpc_blynk_configStart() {
+bool rpc_blynk_configStart(void) {
   RpcStatus _rpc_res;
   /* Prepare return value */
   bool _rpc_ret_val;
@@ -268,7 +268,7 @@ bool rpc_blynk_configStart() {
 
 
 static inline
-bool rpc_blynk_configStop() {
+bool rpc_blynk_configStop(void) {
   RpcStatus _rpc_res;
   /* Prepare return value */
   bool _rpc_ret_val;
@@ -298,7 +298,7 @@ bool rpc_blynk_configStop() {
 
 
 static inline
-bool rpc_blynk_configReset() {
+bool rpc_blynk_configReset(void) {
   RpcStatus _rpc_res;
   /* Prepare return value */
   bool _rpc_ret_val;
@@ -622,7 +622,7 @@ bool rpc_blynk_otaUpdateGetSHA256(buffer_t* digest) {
 
 
 static inline
-uint8_t rpc_blynk_otaUpdatePrefetch() {
+uint8_t rpc_blynk_otaUpdatePrefetch(void) {
   RpcStatus _rpc_res;
   /* Prepare return value */
   uint8_t _rpc_ret_val;
@@ -652,7 +652,7 @@ uint8_t rpc_blynk_otaUpdatePrefetch() {
 
 
 static inline
-bool rpc_blynk_factoryReset() {
+bool rpc_blynk_factoryReset(void) {
   RpcStatus _rpc_res;
   /* Prepare return value */
   bool _rpc_ret_val;
@@ -750,7 +750,7 @@ uint8_t rpc_blynk_factoryTestWiFi(const char* ssid, const char* pass, int16_t* r
 
 
 static inline
-uint8_t rpc_blynk_factoryTestConnect() {
+uint8_t rpc_blynk_factoryTestConnect(void) {
   RpcStatus _rpc_res;
   /* Prepare return value */
   uint8_t _rpc_ret_val;
@@ -780,7 +780,7 @@ uint8_t rpc_blynk_factoryTestConnect() {
 
 
 static inline
-uint8_t rpc_blynk_getState() {
+uint8_t rpc_blynk_getState(void) {
   RpcStatus _rpc_res;
   /* Prepare return value */
   uint8_t _rpc_ret_val;
@@ -841,7 +841,7 @@ void rpc_blynk_setProperty(uint16_t vpin, const char* property, buffer_t value) 
 
 
 static inline
-void rpc_blynk_syncAll() {
+void rpc_blynk_syncAll(void) {
   MessageWriter_begin();
   MessageWriter_writeUInt16(RPC_OP_ONEWAY);
   MessageWriter_writeUInt16(RPC_UID_BLYNK_SYNCALL);
@@ -923,7 +923,7 @@ void rpc_blynk_beginGroup(int64_t timestamp) {
 
 
 static inline
-void rpc_blynk_endGroup() {
+void rpc_blynk_endGroup(void) {
   MessageWriter_begin();
   MessageWriter_writeUInt16(RPC_OP_ONEWAY);
   MessageWriter_writeUInt16(RPC_UID_BLYNK_ENDGROUP);

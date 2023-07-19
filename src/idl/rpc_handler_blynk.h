@@ -141,7 +141,7 @@ void rpc_blynk_getHotspotName_handler(MessageBuffer* _rpc_buff) {
 }
 
 
-bool rpc_blynk_isConfigured_impl();
+bool rpc_blynk_isConfigured_impl(void);
 
 static
 void rpc_blynk_isConfigured_handler(MessageBuffer* _rpc_buff) {
@@ -156,7 +156,7 @@ void rpc_blynk_isConfigured_handler(MessageBuffer* _rpc_buff) {
 }
 
 
-bool rpc_blynk_configStart_impl();
+bool rpc_blynk_configStart_impl(void);
 
 static
 void rpc_blynk_configStart_handler(MessageBuffer* _rpc_buff) {
@@ -171,7 +171,7 @@ void rpc_blynk_configStart_handler(MessageBuffer* _rpc_buff) {
 }
 
 
-bool rpc_blynk_configStop_impl();
+bool rpc_blynk_configStop_impl(void);
 
 static
 void rpc_blynk_configStop_handler(MessageBuffer* _rpc_buff) {
@@ -186,7 +186,7 @@ void rpc_blynk_configStop_handler(MessageBuffer* _rpc_buff) {
 }
 
 
-bool rpc_blynk_configReset_impl();
+bool rpc_blynk_configReset_impl(void);
 
 static
 void rpc_blynk_configReset_handler(MessageBuffer* _rpc_buff) {
@@ -409,7 +409,7 @@ void rpc_blynk_otaUpdateGetSHA256_handler(MessageBuffer* _rpc_buff) {
 }
 
 
-uint8_t rpc_blynk_otaUpdatePrefetch_impl();
+uint8_t rpc_blynk_otaUpdatePrefetch_impl(void);
 
 static
 void rpc_blynk_otaUpdatePrefetch_handler(MessageBuffer* _rpc_buff) {
@@ -424,7 +424,7 @@ void rpc_blynk_otaUpdatePrefetch_handler(MessageBuffer* _rpc_buff) {
 }
 
 
-bool rpc_blynk_factoryReset_impl();
+bool rpc_blynk_factoryReset_impl(void);
 
 static
 void rpc_blynk_factoryReset_handler(MessageBuffer* _rpc_buff) {
@@ -484,7 +484,7 @@ void rpc_blynk_factoryTestWiFi_handler(MessageBuffer* _rpc_buff) {
 }
 
 
-uint8_t rpc_blynk_factoryTestConnect_impl();
+uint8_t rpc_blynk_factoryTestConnect_impl(void);
 
 static
 void rpc_blynk_factoryTestConnect_handler(MessageBuffer* _rpc_buff) {
@@ -499,7 +499,7 @@ void rpc_blynk_factoryTestConnect_handler(MessageBuffer* _rpc_buff) {
 }
 
 
-uint8_t rpc_blynk_getState_impl();
+uint8_t rpc_blynk_getState_impl(void);
 
 static
 void rpc_blynk_getState_handler(MessageBuffer* _rpc_buff) {
@@ -551,7 +551,7 @@ void rpc_blynk_setProperty_handler(MessageBuffer* _rpc_buff) {
 }
 
 
-void rpc_blynk_syncAll_impl();
+void rpc_blynk_syncAll_impl(void);
 
 static
 void rpc_blynk_syncAll_handler(MessageBuffer* _rpc_buff) {
@@ -649,7 +649,7 @@ void rpc_blynk_beginGroup_handler(MessageBuffer* _rpc_buff) {
 }
 
 
-void rpc_blynk_endGroup_impl();
+void rpc_blynk_endGroup_impl(void);
 
 static
 void rpc_blynk_endGroup_handler(MessageBuffer* _rpc_buff) {

@@ -3,7 +3,7 @@
 #include "BlynkRpc.h"
 
 RPC_ATTR_WEAK
-bool rpc_mcu_reboot_impl() {
+bool rpc_mcu_reboot_impl(void) {
   return false;
 }
 
@@ -33,12 +33,12 @@ bool rpc_client_otaUpdateWrite_impl(uint32_t offset, buffer_t chunk, uint32_t cr
 }
 
 RPC_ATTR_WEAK
-bool rpc_client_otaUpdateFinish_impl() {
+bool rpc_client_otaUpdateFinish_impl(void) {
   return false;
 }
 
 RPC_ATTR_WEAK
-void rpc_client_otaUpdateCancel_impl() {
+void rpc_client_otaUpdateCancel_impl(void) {
 
 }
 
