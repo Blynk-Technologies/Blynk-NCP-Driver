@@ -1,4 +1,6 @@
-# Direct usage of BlynkRPC
+# Direct usage of the BlynkRcpDriver
+
+The driver provides Blynk Cloud API that is very similar to that in [Blynk C++ API documentation](https://docs.blynk.io/en/blynk-library-firmware-api/virtual-pins). However, because BlynkRcpDriver is based on C99, the API syntax is different:
 
 ## Fucntions
 
