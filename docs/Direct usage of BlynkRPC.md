@@ -6,7 +6,9 @@ However, because BlynkRcpDriver is based on C99, the API syntax is different:
 
 ## Fucntions
 
+#### Blynk Cloud API 
 ```cpp
+Blynk.begin(...)              -> rpc_blynk_initialize(tmpl_id, tmpl_name);
 Blynk.virtualWrite(...)       -> rpc_blynk_virtualWrite(vpin, buffer_t)
 Blynk.syncAll()               -> rpc_blynk_syncAll()
 Blynk.syncVirtual(...)        -> rpc_blynk_syncVirtual(buffer_t)
@@ -18,6 +20,20 @@ Blynk.resolveAllEvents(name)  -> rpc_blynk_resolveAllEvents(name)
 Blynk.beginGroup()            -> rpc_blynk_beginGroup(0)
 Blynk.beginGroup(ts)          -> rpc_blynk_beginGroup(ts)
 Blynk.endGroup()              -> rpc_blynk_endGroup()
+```
+
+#### Utility functions
+```cpp
+rpc_blynk_getNcpVersion(const char** ver);
+rpc_hw_getWiFiMAC(const char** mac);
+rpc_hw_getEthernetMAC(const char** mac);
+
+rpc_blynk_setVendorPrefix(const char* vendor);
+rpc_blynk_setVendorServer(const char* host);
+rpc_blynk_setConfigTimeout(uint16_t seconds);
+rpc_blynk_setConfigSkipLimit(uint8_t limit);
+
+rpc_blynk_configReset();
 ```
 
 ## Callbacks
