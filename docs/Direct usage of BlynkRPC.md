@@ -24,10 +24,10 @@ Blynk.endGroup()              -> rpc_blynk_endGroup()
 
 #### Utility functions
 ```cpp
-rpc_blynk_getNcpVersion(const char** ver);
 rpc_hw_getWiFiMAC(const char** mac);
 rpc_hw_getEthernetMAC(const char** mac);
 
+rpc_blynk_getNcpVersion(const char** ver);
 rpc_blynk_setVendorPrefix(const char* vendor);
 rpc_blynk_setVendorServer(const char* host);
 rpc_blynk_setConfigTimeout(uint16_t seconds);
