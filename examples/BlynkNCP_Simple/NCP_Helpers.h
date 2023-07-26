@@ -18,7 +18,7 @@
 // Create Serial1 for ARDUINO_AVR_UNO and similar boards
 #if defined(__AVR_ATmega328P__)
   #include <SoftwareSerial.h>
-  SoftwareSerial Serial1(BLYNK_NCP_RX, BLYNK_NCP_TX);
+  SoftwareSerial Serial1(10, 9);
 #endif
 
 #if defined(BLYNK_NCP_SERIAL)
