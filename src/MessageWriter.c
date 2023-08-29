@@ -1,6 +1,7 @@
 #include "MessageBuffer.h"
 #include "MessageWriter.h"
 #include "BlynkRpcUartFraming.h"
+#include "BlynkRpc.h"
 
 size_t MessageWriter_writeString(const char* value) {
     if (!value) {
@@ -59,6 +60,20 @@ size_t MessageWriter_writeUInt64(const uint64_t value) {
 
 size_t MessageWriter_writeFloat(const float value) {
     return MessageWriter_write(&value, sizeof(float));
+}
+
+size_t MessageWriter_beginResult(uint16_t seq, uint8_t status) {
+    MessageWriter_begin();
+    MessageWriter_writeUInt16(RPC_OP_RESULT);
+    MessageWriter_writeUInt16(seq);
+    MessageWriter_writeUInt8(status);
+    return 1;
+}
+
+size_t MessageWriter_sendResultStatus(uint16_t seq, uint8_t status) {
+    MessageWriter_beginResult(seq, status);
+    MessageWriter_end();
+    return 1;
 }
 
 size_t MessageWriter_begin(void) {

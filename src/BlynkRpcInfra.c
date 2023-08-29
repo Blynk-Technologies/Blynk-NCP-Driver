@@ -38,19 +38,9 @@ bool rpc_handle_msg(MessageBuffer* buff)
   uint16_t op;
   MessageBuffer_readUInt16(buff, &op);
   if (op == RPC_OP_INVOKE || op == RPC_OP_ONEWAY) {
-      uint16_t id; uint16_t seq;
+      uint16_t id;
       MessageBuffer_readUInt16(buff, &id);
-      if (op == RPC_OP_INVOKE) {
-        MessageBuffer_readUInt16(buff, &seq);
-
-        MessageWriter_begin();
-        MessageWriter_writeUInt16(RPC_OP_RESULT);
-        MessageWriter_writeUInt16(seq);
-        rpc_invoke_handler(id, buff);
-        MessageWriter_end();
-      } else {
-        rpc_invoke_handler(id, buff);
-      }
+      rpc_invoke_handler(id, buff);
   } else {
       return false;
   }
