@@ -27,8 +27,10 @@ size_t MessageWriter_writeUInt64    (const uint64_t value);
 size_t MessageWriter_writeFloat     (const float value);
 size_t MessageWriter_write          (const void* data, size_t size);
 
-size_t MessageWriter_beginResult        (uint16_t seq, uint8_t status);
-size_t MessageWriter_sendResultStatus   (uint16_t seq, uint8_t status);
+uint16_t MessageWriter_beginInvoke        (uint16_t uid);
+void     MessageWriter_beginOneway        (uint16_t uid);
+void     MessageWriter_beginResult        (uint16_t seq, uint8_t status);
+void     MessageWriter_sendResultStatus   (uint16_t seq, uint8_t status);
 
 #ifdef __cplusplus
 }

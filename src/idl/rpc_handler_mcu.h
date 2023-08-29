@@ -18,6 +18,7 @@ void rpc_mcu_ping_handler(MessageBuffer* _rpc_buff) {
   (void)_rpc_buff;
 
 
+  /* Send response */
   MessageWriter_beginResult(_rpc_seq, RPC_STATUS_OK);
   MessageWriter_end();
 }
@@ -34,8 +35,8 @@ void rpc_mcu_reboot_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   bool _rpc_ret_val = rpc_mcu_reboot_impl();
 
+  /* Send response */
   MessageWriter_beginResult(_rpc_seq, RPC_STATUS_OK);
-  /* Serialize outputs */
   MessageWriter_writeBool(_rpc_ret_val);
   MessageWriter_end();
 }
@@ -58,8 +59,8 @@ void rpc_mcu_hasUID_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   bool _rpc_ret_val = rpc_mcu_hasUID_impl(uid);
 
+  /* Send response */
   MessageWriter_beginResult(_rpc_seq, RPC_STATUS_OK);
-  /* Serialize outputs */
   MessageWriter_writeBool(_rpc_ret_val);
   MessageWriter_end();
 }

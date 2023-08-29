@@ -26,8 +26,8 @@ void rpc_blynk_getNcpVersion_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   bool _rpc_ret_val = rpc_blynk_getNcpVersion_impl(&ver);
 
+  /* Send response */
   MessageWriter_beginResult(_rpc_seq, RPC_STATUS_OK);
-  /* Serialize outputs */
   MessageWriter_writeString(ver);
   MessageWriter_writeBool(_rpc_ret_val);
   MessageWriter_end();
@@ -51,8 +51,8 @@ void rpc_blynk_setVendorPrefix_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   bool _rpc_ret_val = rpc_blynk_setVendorPrefix_impl(vendor);
 
+  /* Send response */
   MessageWriter_beginResult(_rpc_seq, RPC_STATUS_OK);
-  /* Serialize outputs */
   MessageWriter_writeBool(_rpc_ret_val);
   MessageWriter_end();
 }
@@ -75,8 +75,8 @@ void rpc_blynk_setVendorServer_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   bool _rpc_ret_val = rpc_blynk_setVendorServer_impl(host);
 
+  /* Send response */
   MessageWriter_beginResult(_rpc_seq, RPC_STATUS_OK);
-  /* Serialize outputs */
   MessageWriter_writeBool(_rpc_ret_val);
   MessageWriter_end();
 }
@@ -102,8 +102,8 @@ void rpc_blynk_setFirmwareInfo_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   bool _rpc_ret_val = rpc_blynk_setFirmwareInfo_impl(type, version, build, blynk);
 
+  /* Send response */
   MessageWriter_beginResult(_rpc_seq, RPC_STATUS_OK);
-  /* Serialize outputs */
   MessageWriter_writeBool(_rpc_ret_val);
   MessageWriter_end();
 }
@@ -127,8 +127,8 @@ void rpc_blynk_initialize_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   bool _rpc_ret_val = rpc_blynk_initialize_impl(templateID, templateName);
 
+  /* Send response */
   MessageWriter_beginResult(_rpc_seq, RPC_STATUS_OK);
-  /* Serialize outputs */
   MessageWriter_writeBool(_rpc_ret_val);
   MessageWriter_end();
 }
@@ -151,8 +151,8 @@ void rpc_blynk_getHotspotName_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   bool _rpc_ret_val = rpc_blynk_getHotspotName_impl(&hotspot);
 
+  /* Send response */
   MessageWriter_beginResult(_rpc_seq, RPC_STATUS_OK);
-  /* Serialize outputs */
   MessageWriter_writeString(hotspot);
   MessageWriter_writeBool(_rpc_ret_val);
   MessageWriter_end();
@@ -170,8 +170,8 @@ void rpc_blynk_isConfigured_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   bool _rpc_ret_val = rpc_blynk_isConfigured_impl();
 
+  /* Send response */
   MessageWriter_beginResult(_rpc_seq, RPC_STATUS_OK);
-  /* Serialize outputs */
   MessageWriter_writeBool(_rpc_ret_val);
   MessageWriter_end();
 }
@@ -188,8 +188,8 @@ void rpc_blynk_configStart_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   bool _rpc_ret_val = rpc_blynk_configStart_impl();
 
+  /* Send response */
   MessageWriter_beginResult(_rpc_seq, RPC_STATUS_OK);
-  /* Serialize outputs */
   MessageWriter_writeBool(_rpc_ret_val);
   MessageWriter_end();
 }
@@ -206,8 +206,8 @@ void rpc_blynk_configStop_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   bool _rpc_ret_val = rpc_blynk_configStop_impl();
 
+  /* Send response */
   MessageWriter_beginResult(_rpc_seq, RPC_STATUS_OK);
-  /* Serialize outputs */
   MessageWriter_writeBool(_rpc_ret_val);
   MessageWriter_end();
 }
@@ -224,8 +224,8 @@ void rpc_blynk_configReset_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   bool _rpc_ret_val = rpc_blynk_configReset_impl();
 
+  /* Send response */
   MessageWriter_beginResult(_rpc_seq, RPC_STATUS_OK);
-  /* Serialize outputs */
   MessageWriter_writeBool(_rpc_ret_val);
   MessageWriter_end();
 }
@@ -248,8 +248,8 @@ void rpc_blynk_setConfigTimeout_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   bool _rpc_ret_val = rpc_blynk_setConfigTimeout_impl(timeout);
 
+  /* Send response */
   MessageWriter_beginResult(_rpc_seq, RPC_STATUS_OK);
-  /* Serialize outputs */
   MessageWriter_writeBool(_rpc_ret_val);
   MessageWriter_end();
 }
@@ -272,8 +272,8 @@ void rpc_blynk_setConfigSkipLimit_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   bool _rpc_ret_val = rpc_blynk_setConfigSkipLimit_impl(count);
 
+  /* Send response */
   MessageWriter_beginResult(_rpc_seq, RPC_STATUS_OK);
-  /* Serialize outputs */
   MessageWriter_writeBool(_rpc_ret_val);
   MessageWriter_end();
 }
@@ -296,8 +296,8 @@ void rpc_blynk_setTime_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   bool _rpc_ret_val = rpc_blynk_setTime_impl(time);
 
+  /* Send response */
   MessageWriter_beginResult(_rpc_seq, RPC_STATUS_OK);
-  /* Serialize outputs */
   MessageWriter_writeBool(_rpc_ret_val);
   MessageWriter_end();
 }
@@ -324,8 +324,8 @@ void rpc_blynk_getTime_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   bool _rpc_ret_val = rpc_blynk_getTime_impl(&iso8601, &time, &offset, &tz_abbr, &dst_status);
 
+  /* Send response */
   MessageWriter_beginResult(_rpc_seq, RPC_STATUS_OK);
-  /* Serialize outputs */
   MessageWriter_writeString(iso8601);
   MessageWriter_writeInt64(time);
   MessageWriter_writeInt16(offset);
@@ -356,8 +356,8 @@ void rpc_blynk_getLocationInfo_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   bool _rpc_ret_val = rpc_blynk_getLocationInfo_impl(&lat, &lon, &olson_id, &posix_tz);
 
+  /* Send response */
   MessageWriter_beginResult(_rpc_seq, RPC_STATUS_OK);
-  /* Serialize outputs */
   MessageWriter_writeString(lat);
   MessageWriter_writeString(lon);
   MessageWriter_writeString(olson_id);
@@ -384,8 +384,8 @@ void rpc_blynk_otaUpdateStart_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   bool _rpc_ret_val = rpc_blynk_otaUpdateStart_impl(chunk);
 
+  /* Send response */
   MessageWriter_beginResult(_rpc_seq, RPC_STATUS_OK);
-  /* Serialize outputs */
   MessageWriter_writeBool(_rpc_ret_val);
   MessageWriter_end();
 }
@@ -408,8 +408,8 @@ void rpc_blynk_otaUpdateGetCRC32_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   bool _rpc_ret_val = rpc_blynk_otaUpdateGetCRC32_impl(&crc);
 
+  /* Send response */
   MessageWriter_beginResult(_rpc_seq, RPC_STATUS_OK);
-  /* Serialize outputs */
   MessageWriter_writeUInt32(crc);
   MessageWriter_writeBool(_rpc_ret_val);
   MessageWriter_end();
@@ -433,8 +433,8 @@ void rpc_blynk_otaUpdateGetMD5_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   bool _rpc_ret_val = rpc_blynk_otaUpdateGetMD5_impl(&digest);
 
+  /* Send response */
   MessageWriter_beginResult(_rpc_seq, RPC_STATUS_OK);
-  /* Serialize outputs */
   MessageWriter_writeBinary(digest);
   MessageWriter_writeBool(_rpc_ret_val);
   MessageWriter_end();
@@ -458,8 +458,8 @@ void rpc_blynk_otaUpdateGetSHA256_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   bool _rpc_ret_val = rpc_blynk_otaUpdateGetSHA256_impl(&digest);
 
+  /* Send response */
   MessageWriter_beginResult(_rpc_seq, RPC_STATUS_OK);
-  /* Serialize outputs */
   MessageWriter_writeBinary(digest);
   MessageWriter_writeBool(_rpc_ret_val);
   MessageWriter_end();
@@ -477,8 +477,8 @@ void rpc_blynk_otaUpdatePrefetch_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   uint8_t _rpc_ret_val = rpc_blynk_otaUpdatePrefetch_impl();
 
+  /* Send response */
   MessageWriter_beginResult(_rpc_seq, RPC_STATUS_OK);
-  /* Serialize outputs */
   MessageWriter_writeUInt8(_rpc_ret_val);
   MessageWriter_end();
 }
@@ -495,8 +495,8 @@ void rpc_blynk_factoryReset_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   bool _rpc_ret_val = rpc_blynk_factoryReset_impl();
 
+  /* Send response */
   MessageWriter_beginResult(_rpc_seq, RPC_STATUS_OK);
-  /* Serialize outputs */
   MessageWriter_writeBool(_rpc_ret_val);
   MessageWriter_end();
 }
@@ -519,8 +519,8 @@ void rpc_blynk_factoryTestWiFiAP_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   uint8_t _rpc_ret_val = rpc_blynk_factoryTestWiFiAP_impl(channel);
 
+  /* Send response */
   MessageWriter_beginResult(_rpc_seq, RPC_STATUS_OK);
-  /* Serialize outputs */
   MessageWriter_writeUInt8(_rpc_ret_val);
   MessageWriter_end();
 }
@@ -545,8 +545,8 @@ void rpc_blynk_factoryTestWiFi_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   uint8_t _rpc_ret_val = rpc_blynk_factoryTestWiFi_impl(ssid, pass, &rssi);
 
+  /* Send response */
   MessageWriter_beginResult(_rpc_seq, RPC_STATUS_OK);
-  /* Serialize outputs */
   MessageWriter_writeInt16(rssi);
   MessageWriter_writeUInt8(_rpc_ret_val);
   MessageWriter_end();
@@ -564,8 +564,8 @@ void rpc_blynk_factoryTestConnect_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   uint8_t _rpc_ret_val = rpc_blynk_factoryTestConnect_impl();
 
+  /* Send response */
   MessageWriter_beginResult(_rpc_seq, RPC_STATUS_OK);
-  /* Serialize outputs */
   MessageWriter_writeUInt8(_rpc_ret_val);
   MessageWriter_end();
 }
@@ -582,8 +582,8 @@ void rpc_blynk_getState_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   uint8_t _rpc_ret_val = rpc_blynk_getState_impl();
 
+  /* Send response */
   MessageWriter_beginResult(_rpc_seq, RPC_STATUS_OK);
-  /* Serialize outputs */
   MessageWriter_writeUInt8(_rpc_ret_val);
   MessageWriter_end();
 }
@@ -604,6 +604,7 @@ void rpc_blynk_virtualWrite_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   rpc_blynk_virtualWrite_impl(vpin, value);
 
+  /* Oneway => skip response */
 }
 
 
@@ -623,6 +624,7 @@ void rpc_blynk_setProperty_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   rpc_blynk_setProperty_impl(vpin, property, value);
 
+  /* Oneway => skip response */
 }
 
 
@@ -635,6 +637,7 @@ void rpc_blynk_syncAll_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   rpc_blynk_syncAll_impl();
 
+  /* Oneway => skip response */
 }
 
 
@@ -652,6 +655,7 @@ void rpc_blynk_syncVirtual_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   rpc_blynk_syncVirtual_impl(vpins);
 
+  /* Oneway => skip response */
 }
 
 
@@ -670,6 +674,7 @@ void rpc_blynk_logEvent_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   rpc_blynk_logEvent_impl(event_code, description);
 
+  /* Oneway => skip response */
 }
 
 
@@ -687,6 +692,7 @@ void rpc_blynk_resolveEvent_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   rpc_blynk_resolveEvent_impl(event_code);
 
+  /* Oneway => skip response */
 }
 
 
@@ -704,6 +710,7 @@ void rpc_blynk_resolveAllEvents_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   rpc_blynk_resolveAllEvents_impl(event_code);
 
+  /* Oneway => skip response */
 }
 
 
@@ -721,6 +728,7 @@ void rpc_blynk_beginGroup_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   rpc_blynk_beginGroup_impl(timestamp);
 
+  /* Oneway => skip response */
 }
 
 
@@ -733,6 +741,7 @@ void rpc_blynk_endGroup_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   rpc_blynk_endGroup_impl();
 
+  /* Oneway => skip response */
 }
 
 
@@ -751,6 +760,7 @@ void rpc_blynk_setMetadata_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   rpc_blynk_setMetadata_impl(field, value);
 
+  /* Oneway => skip response */
 }
 
 #ifdef __cplusplus

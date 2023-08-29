@@ -1,7 +1,8 @@
 
 #include "BlynkRpc.h"
 
-RpcStatus _rpc_status;
+static RpcStatus _rpc_status;
+static uint16_t  _rpc_seq_id;
 
 uint32_t _rpc_timeout_override = 0;
 
@@ -15,6 +16,10 @@ void rpc_set_timeout(uint32_t ms) {
 
 void rpc_set_status(RpcStatus status) {
   _rpc_status = status;
+}
+
+uint16_t rpc_next_seq() {
+  return ++_rpc_seq_id;
 }
 
 const char* rpc_get_status_str(RpcStatus status) {

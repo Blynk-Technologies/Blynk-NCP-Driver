@@ -24,6 +24,7 @@ void rpc_client_blynkVPinChange_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   rpc_client_blynkVPinChange_impl(vpin, param);
 
+  /* Oneway => skip response */
 }
 
 
@@ -41,6 +42,7 @@ void rpc_client_blynkStateChange_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   rpc_client_blynkStateChange_impl(state);
 
+  /* Oneway => skip response */
 }
 
 
@@ -58,6 +60,7 @@ void rpc_client_processEvent_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   rpc_client_processEvent_impl(event);
 
+  /* Oneway => skip response */
 }
 
 
@@ -82,8 +85,8 @@ void rpc_client_otaUpdateAvailable_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   bool _rpc_ret_val = rpc_client_otaUpdateAvailable_impl(filename, filesize, fw_type, fw_ver, fw_build);
 
+  /* Send response */
   MessageWriter_beginResult(_rpc_seq, RPC_STATUS_OK);
-  /* Serialize outputs */
   MessageWriter_writeBool(_rpc_ret_val);
   MessageWriter_end();
 }
@@ -108,8 +111,8 @@ void rpc_client_otaUpdateWrite_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   bool _rpc_ret_val = rpc_client_otaUpdateWrite_impl(offset, chunk, crc32);
 
+  /* Send response */
   MessageWriter_beginResult(_rpc_seq, RPC_STATUS_OK);
-  /* Serialize outputs */
   MessageWriter_writeBool(_rpc_ret_val);
   MessageWriter_end();
 }
@@ -126,8 +129,8 @@ void rpc_client_otaUpdateFinish_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   bool _rpc_ret_val = rpc_client_otaUpdateFinish_impl();
 
+  /* Send response */
   MessageWriter_beginResult(_rpc_seq, RPC_STATUS_OK);
-  /* Serialize outputs */
   MessageWriter_writeBool(_rpc_ret_val);
   MessageWriter_end();
 }
@@ -144,6 +147,7 @@ void rpc_client_otaUpdateCancel_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   rpc_client_otaUpdateCancel_impl();
 
+  /* Send response */
   MessageWriter_beginResult(_rpc_seq, RPC_STATUS_OK);
   MessageWriter_end();
 }

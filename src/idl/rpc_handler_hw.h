@@ -26,8 +26,8 @@ void rpc_hw_setUartBaudRate_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   bool _rpc_ret_val = rpc_hw_setUartBaudRate_impl(baud);
 
+  /* Send response */
   MessageWriter_beginResult(_rpc_seq, RPC_STATUS_OK);
-  /* Serialize outputs */
   MessageWriter_writeBool(_rpc_ret_val);
   MessageWriter_end();
 }
@@ -51,8 +51,8 @@ void rpc_hw_initUserButton_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   bool _rpc_ret_val = rpc_hw_initUserButton_impl(gpio, active_low);
 
+  /* Send response */
   MessageWriter_beginResult(_rpc_seq, RPC_STATUS_OK);
-  /* Serialize outputs */
   MessageWriter_writeBool(_rpc_ret_val);
   MessageWriter_end();
 }
@@ -76,8 +76,8 @@ void rpc_hw_initLED_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   bool _rpc_ret_val = rpc_hw_initLED_impl(gpio, active_low);
 
+  /* Send response */
   MessageWriter_beginResult(_rpc_seq, RPC_STATUS_OK);
-  /* Serialize outputs */
   MessageWriter_writeBool(_rpc_ret_val);
   MessageWriter_end();
 }
@@ -103,8 +103,8 @@ void rpc_hw_initRGB_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   bool _rpc_ret_val = rpc_hw_initRGB_impl(gpio_r, gpio_g, gpio_b, common_anode);
 
+  /* Send response */
   MessageWriter_beginResult(_rpc_seq, RPC_STATUS_OK);
-  /* Serialize outputs */
   MessageWriter_writeBool(_rpc_ret_val);
   MessageWriter_end();
 }
@@ -129,8 +129,8 @@ void rpc_hw_initARGB_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   bool _rpc_ret_val = rpc_hw_initARGB_impl(gpio, mode, count);
 
+  /* Send response */
   MessageWriter_beginResult(_rpc_seq, RPC_STATUS_OK);
-  /* Serialize outputs */
   MessageWriter_writeBool(_rpc_ret_val);
   MessageWriter_end();
 }
@@ -153,8 +153,8 @@ void rpc_hw_setLedBrightness_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   bool _rpc_ret_val = rpc_hw_setLedBrightness_impl(value);
 
+  /* Send response */
   MessageWriter_beginResult(_rpc_seq, RPC_STATUS_OK);
-  /* Serialize outputs */
   MessageWriter_writeBool(_rpc_ret_val);
   MessageWriter_end();
 }
@@ -177,8 +177,8 @@ void rpc_hw_getWiFiMAC_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   bool _rpc_ret_val = rpc_hw_getWiFiMAC_impl(&mac);
 
+  /* Send response */
   MessageWriter_beginResult(_rpc_seq, RPC_STATUS_OK);
-  /* Serialize outputs */
   MessageWriter_writeString(mac);
   MessageWriter_writeBool(_rpc_ret_val);
   MessageWriter_end();
@@ -202,8 +202,8 @@ void rpc_hw_getEthernetMAC_handler(MessageBuffer* _rpc_buff) {
   /* Call the actual function */
   bool _rpc_ret_val = rpc_hw_getEthernetMAC_impl(&mac);
 
+  /* Send response */
   MessageWriter_beginResult(_rpc_seq, RPC_STATUS_OK);
-  /* Serialize outputs */
   MessageWriter_writeString(mac);
   MessageWriter_writeBool(_rpc_ret_val);
   MessageWriter_end();

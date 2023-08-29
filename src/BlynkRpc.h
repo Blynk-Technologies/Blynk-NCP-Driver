@@ -185,6 +185,7 @@ void          rpc_set_status(RpcStatus status);
 RpcStatus     rpc_get_status(void);
 const char*   rpc_get_status_str(RpcStatus status);
 void          rpc_set_timeout(uint32_t ms);
+uint16_t      rpc_next_seq();
 RpcStatus     rpc_invoke_handler(uint16_t id, MessageBuffer* buff);
 bool          rpc_recv_msg(MessageBuffer* buff, uint32_t timeout);
 RpcStatus     rpc_wait_result(uint16_t expected_seq, MessageBuffer* buff, uint32_t timeout);

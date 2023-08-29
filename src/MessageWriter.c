@@ -62,18 +62,31 @@ size_t MessageWriter_writeFloat(const float value) {
     return MessageWriter_write(&value, sizeof(float));
 }
 
-size_t MessageWriter_beginResult(uint16_t seq, uint8_t status) {
+uint16_t MessageWriter_beginInvoke(uint16_t uid) {
+    uint16_t seq = rpc_next_seq();
+    MessageWriter_begin();
+    MessageWriter_writeUInt16(RPC_OP_INVOKE);
+    MessageWriter_writeUInt16(uid);
+    MessageWriter_writeUInt16(seq);
+    return seq;
+}
+
+void MessageWriter_beginOneway(uint16_t uid) {
+    MessageWriter_begin();
+    MessageWriter_writeUInt16(RPC_OP_ONEWAY);
+    MessageWriter_writeUInt16(uid);
+}
+
+void MessageWriter_beginResult(uint16_t seq, uint8_t status) {
     MessageWriter_begin();
     MessageWriter_writeUInt16(RPC_OP_RESULT);
     MessageWriter_writeUInt16(seq);
     MessageWriter_writeUInt8(status);
-    return 1;
 }
 
-size_t MessageWriter_sendResultStatus(uint16_t seq, uint8_t status) {
+void MessageWriter_sendResultStatus(uint16_t seq, uint8_t status) {
     MessageWriter_beginResult(seq, status);
     MessageWriter_end();
-    return 1;
 }
 
 size_t MessageWriter_begin(void) {
