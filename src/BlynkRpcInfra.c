@@ -18,7 +18,7 @@ void rpc_set_status(RpcStatus status) {
   _rpc_status = status;
 }
 
-uint16_t rpc_next_seq() {
+uint16_t rpc_next_seq(void) {
   return ++_rpc_seq_id;
 }
 

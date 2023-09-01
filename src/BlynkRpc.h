@@ -145,7 +145,8 @@ typedef enum RpcEvent {
   RPC_EVENT_HW_USER_CLICK       = 10,
   RPC_EVENT_HW_USER_DBLCLICK    = 11,
   RPC_EVENT_HW_USER_LONGPRESS   = 12,
-  RPC_EVENT_HW_USER_CONFIGRESET = 13,
+  RPC_EVENT_HW_USER_LONGRELEASE = 13,
+  RPC_EVENT_HW_USER_CONFIGRESET = 18,
 
   /* Happens each time the device is provisioned
    * and connected to the cloud */
@@ -185,7 +186,7 @@ void          rpc_set_status(RpcStatus status);
 RpcStatus     rpc_get_status(void);
 const char*   rpc_get_status_str(RpcStatus status);
 void          rpc_set_timeout(uint32_t ms);
-uint16_t      rpc_next_seq();
+uint16_t      rpc_next_seq(void);
 RpcStatus     rpc_invoke_handler(uint16_t id, MessageBuffer* buff);
 bool          rpc_recv_msg(MessageBuffer* buff, uint32_t timeout);
 RpcStatus     rpc_wait_result(uint16_t expected_seq, MessageBuffer* buff, uint32_t timeout);
