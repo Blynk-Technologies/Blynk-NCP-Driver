@@ -4,10 +4,20 @@
 static RpcStatus _rpc_status;
 static uint16_t  _rpc_seq_id;
 
-uint32_t _rpc_timeout_override = 0;
+static uint32_t _rpc_timeout_override = 0;
+uint32_t _rpc_last_rx_time = 0;
+uint32_t _rpc_last_tx_time = 0;
 
 RpcStatus rpc_get_status(void) {
   return _rpc_status;
+}
+
+uint32_t rpc_get_last_rx(void) {
+  return rpc_system_millis() - _rpc_last_rx_time;
+}
+
+uint32_t rpc_get_last_tx(void) {
+  return rpc_system_millis() - _rpc_last_tx_time;
 }
 
 void rpc_set_timeout(uint32_t ms) {
@@ -59,8 +69,13 @@ RpcStatus rpc_wait_result(uint16_t expected_seq, MessageBuffer* buff, uint32_t t
     timeout = _rpc_timeout_override;
   }
   uint8_t status = RPC_STATUS_ERROR_TIMEOUT;
-  // TODO: timeout should decrease with time
+  const uint32_t tstart = rpc_system_millis();
+  const uint32_t ttotal = timeout;
   while (rpc_recv_msg(buff, timeout)) {
+    _rpc_last_rx_time = rpc_system_millis();
+    const uint32_t elapsed = _rpc_last_rx_time - tstart;
+    timeout = (ttotal > elapsed) ? (ttotal - elapsed) : 0;
+
     uint16_t op = 0;
     MessageBuffer_readUInt16(buff, &op);
     if (op == RPC_OP_RESULT) {
@@ -85,6 +100,7 @@ void rpc_run(void) {
   MessageBuffer buff;
   MessageBuffer_init(&buff, NULL, 0);
   while (rpc_recv_msg(&buff, 0)) {
+    _rpc_last_rx_time = rpc_system_millis();
     rpc_handle_msg(&buff);
   }
 }

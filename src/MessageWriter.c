@@ -3,6 +3,8 @@
 #include "BlynkRpcUartFraming.h"
 #include "BlynkRpc.h"
 
+extern uint32_t _rpc_last_tx_time;
+
 size_t MessageWriter_writeString(const char* value) {
     if (!value) {
         return MessageWriter_write("", 1);
@@ -95,6 +97,7 @@ size_t MessageWriter_begin(void) {
 }
 size_t MessageWriter_end(void) {
     RpcUartFraming_endPacket();
+    _rpc_last_tx_time = rpc_system_millis();
     return 1;
 }
 
