@@ -128,16 +128,45 @@ void rpc_client_blynkStateChange_impl(uint8_t state)
 void rpc_client_processEvent_impl(uint8_t event)
 {
     switch ((RpcEvent)event) {
+    /*
+     * System events
+     */
     case RPC_EVENT_NCP_REBOOTING:
       SerialDbg.println(F("NCP is rebooting. TODO: reinitialize NCP"));
       break;
-    case RPC_EVENT_HW_USER_CLICK:      break;
-    case RPC_EVENT_HW_USER_DBLCLICK:   break;
-    case RPC_EVENT_HW_USER_LONGPRESS:  break;
-    case RPC_EVENT_HW_USER_CONFIGRESET: break;
-    case RPC_EVENT_BLYNK_PROVISIONED:  break;
-    case RPC_EVENT_BLYNK_TIME_SYNC:    break;
+    case RPC_EVENT_BLYNK_PROVISIONED:
+      SerialDbg.println(F("NCP finished provisioning"));
+      break;
+    case RPC_EVENT_BLYNK_TIME_SYNC:
+      SerialDbg.println(F("NCP requests time sync from external time source"));
+      break;
     case RPC_EVENT_BLYNK_TIME_CHANGED: break;
+      SerialDbg.println(F("NCP local time changed"));
+      break;
+    /*
+     * User button events (see rpc_hw_initUserButton)
+     */
+    case RPC_EVENT_HW_USER_CLICK:
+      SerialDbg.println(F("NCP: user button click"));
+      break;
+    case RPC_EVENT_HW_USER_DBLCLICK:
+      SerialDbg.println(F("NCP: user button double click"));
+      break;
+    case RPC_EVENT_HW_USER_LONGPRESS:
+      SerialDbg.println(F("NCP: user button long press start"));
+      break;
+    case RPC_EVENT_HW_USER_LONGRELEASE:
+      SerialDbg.println(F("NCP: user button long press stop"));
+      break;
+    case RPC_EVENT_HW_USER_RESET_START:
+      SerialDbg.println(F("NCP: Button is pressed for 10 seconds => release to clear configuration"));
+      break;
+    case RPC_EVENT_HW_USER_RESET_CANCEL:
+      SerialDbg.println(F("NCP: Button is pressed for 15 seconds => cancel config reset operation"));
+      break;
+    case RPC_EVENT_HW_USER_RESET_DONE:
+      SerialDbg.println(F("NCP: Button was released => configuration is reset"));
+      break;
     default: break;
     }
 }
