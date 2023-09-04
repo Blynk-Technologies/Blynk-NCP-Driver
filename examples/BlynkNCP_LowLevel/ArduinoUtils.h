@@ -11,6 +11,8 @@
   #error "Please specify your BLYNK_TEMPLATE_ID and BLYNK_TEMPLATE_NAME"
 #endif
 
+#define BLYNK_FIRMWARE_BUILD_TIME __DATE__ " " __TIME__
+
 /*
  * Implement the UART interface
  */
@@ -19,6 +21,12 @@
 #if defined(__AVR_ATmega328P__)
   #include <SoftwareSerial.h>
   SoftwareSerial Serial1(10, 9);
+#endif
+
+#if defined(__AVR__)
+  #define BLYNK_NCP_BAUD 57600
+#else
+  #define BLYNK_NCP_BAUD 230400
 #endif
 
 #if defined(BLYNK_NCP_SERIAL)

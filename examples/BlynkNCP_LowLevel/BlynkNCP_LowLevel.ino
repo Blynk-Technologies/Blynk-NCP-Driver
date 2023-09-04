@@ -1,4 +1,13 @@
-/* === CONFIGURATION ============= */
+/*
+ * NOTE: This is a low level example of how to use BlynkNcpDriver directy.
+ *
+ * The Blynk C++ library ships with a simplified example,
+ * that works with a set of popular dual-MCU boards out of the box:
+ *
+ *   https://bit.ly/EdgentNCP
+ */
+
+/* === BLYNK.NCP CONFIGURATION === */
 
 /* Fill in information from your Blynk Template here */
 /* Read more: https://bit.ly/BlynkInject */
@@ -6,14 +15,16 @@
 //#define BLYNK_TEMPLATE_NAME         "Device"
 
 #define BLYNK_FIRMWARE_VERSION        "0.1.0"
-#define BLYNK_FIRMWARE_BUILD_TIME     __DATE__ " " __TIME__
 
-#define SerialDbg     Serial
-//#define SerialNCP   Serial1
+// Define NCP connection port settings, if needed
+//#define BLYNK_NCP_SERIAL            Serial1
+//#define BLYNK_NCP_BAUD              115200
 
 /* =============================== */
 
-#include "NCP_Helpers.h"
+#define SerialDbg     Serial
+
+#include "ArduinoUtils.h"
 
 void setup()
 {
@@ -52,7 +63,7 @@ void setup()
   // Set config mode timeout to 30 minutes, for testing purposes
   rpc_blynk_setConfigTimeout(30*60);
 
-  // Provide MCU firmware info.
+  // Provide MCU firmware info to the NCP
   // This info is mainly used for the Primary MCU OTA updates
   rpc_blynk_setFirmwareInfo(BLYNK_FIRMWARE_TYPE,
                             BLYNK_FIRMWARE_VERSION,
