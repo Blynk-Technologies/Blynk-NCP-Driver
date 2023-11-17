@@ -26,7 +26,7 @@ If your OTA process involves encrypting, compressing, re-packaging (or altering 
 If for some reason, you cannot embed the binary tag as suggested above, the alternative approach is suggested:
 
 1. Move definitions of `BLYNK_FIRMWARE_VERSION`, `BLYNK_FIRMWARE_TYPE`, `BLYNK_RPC_LIB_VERSION` to your build system
-2. Instead of using the compilers `__DATE__`, `__TIME__` directly, add new definition of `BLYNK_FIRMWARE_BUILD_TIME` to your build system
+2. Instead of using the compilers `__DATE__`, `__TIME__` directly, add new definition of `BLYNK_FIRMWARE_BUILD_TIME` to your build system. It should follow the `Nov 16 2023 20:35:55` format
 3. Ensure that these definitions are passed to `rpc_blynk_setFirmwareInfo()`
 4. On your build system level, use [`blynk_tag.py create`](https://github.com/blynkkk/BlynkNcpExample/blob/main/tools/blynk_tag.py) tool to create a tag that you can embed into your OTA package
 
