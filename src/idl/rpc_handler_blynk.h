@@ -416,14 +416,14 @@ void rpc_blynk_otaUpdateGetCRC32_handler(MessageBuffer* _rpc_buff) {
 }
 
 
-bool rpc_blynk_otaUpdateGetMD5_impl(buffer_t* digest);
+bool rpc_blynk_otaUpdateGetMD5_impl(rpc_buffer_t* digest);
 
 static
 void rpc_blynk_otaUpdateGetMD5_handler(MessageBuffer* _rpc_buff) {
   uint16_t _rpc_seq;
   MessageBuffer_readUInt16(_rpc_buff, &_rpc_seq);
   /* Deserialize arguments */
-  buffer_t digest; memset(&digest, 0, sizeof(digest)); /* output */
+  rpc_buffer_t digest; memset(&digest, 0, sizeof(digest)); /* output */
 
   if (MessageBuffer_getError(_rpc_buff) || MessageBuffer_availableToRead(_rpc_buff)) {
     MessageWriter_sendResultStatus(_rpc_seq, RPC_STATUS_ERROR_ARGS_R);
@@ -441,14 +441,14 @@ void rpc_blynk_otaUpdateGetMD5_handler(MessageBuffer* _rpc_buff) {
 }
 
 
-bool rpc_blynk_otaUpdateGetSHA256_impl(buffer_t* digest);
+bool rpc_blynk_otaUpdateGetSHA256_impl(rpc_buffer_t* digest);
 
 static
 void rpc_blynk_otaUpdateGetSHA256_handler(MessageBuffer* _rpc_buff) {
   uint16_t _rpc_seq;
   MessageBuffer_readUInt16(_rpc_buff, &_rpc_seq);
   /* Deserialize arguments */
-  buffer_t digest; memset(&digest, 0, sizeof(digest)); /* output */
+  rpc_buffer_t digest; memset(&digest, 0, sizeof(digest)); /* output */
 
   if (MessageBuffer_getError(_rpc_buff) || MessageBuffer_availableToRead(_rpc_buff)) {
     MessageWriter_sendResultStatus(_rpc_seq, RPC_STATUS_ERROR_ARGS_R);
@@ -589,13 +589,13 @@ void rpc_blynk_getState_handler(MessageBuffer* _rpc_buff) {
 }
 
 
-void rpc_blynk_virtualWrite_impl(uint16_t vpin, buffer_t value);
+void rpc_blynk_virtualWrite_impl(uint16_t vpin, rpc_buffer_t value);
 
 static
 void rpc_blynk_virtualWrite_handler(MessageBuffer* _rpc_buff) {
   /* Deserialize arguments */
   uint16_t vpin; MessageBuffer_readUInt16(_rpc_buff, &vpin);
-  buffer_t value; MessageBuffer_readBinary(_rpc_buff, &value);
+  rpc_buffer_t value; MessageBuffer_readBinary(_rpc_buff, &value);
 
   if (MessageBuffer_getError(_rpc_buff) || MessageBuffer_availableToRead(_rpc_buff)) {
     return;
@@ -608,14 +608,14 @@ void rpc_blynk_virtualWrite_handler(MessageBuffer* _rpc_buff) {
 }
 
 
-void rpc_blynk_setProperty_impl(uint16_t vpin, const char* property, buffer_t value);
+void rpc_blynk_setProperty_impl(uint16_t vpin, const char* property, rpc_buffer_t value);
 
 static
 void rpc_blynk_setProperty_handler(MessageBuffer* _rpc_buff) {
   /* Deserialize arguments */
   uint16_t vpin; MessageBuffer_readUInt16(_rpc_buff, &vpin);
   const char* property; MessageBuffer_readString(_rpc_buff, &property);
-  buffer_t value; MessageBuffer_readBinary(_rpc_buff, &value);
+  rpc_buffer_t value; MessageBuffer_readBinary(_rpc_buff, &value);
 
   if (MessageBuffer_getError(_rpc_buff) || MessageBuffer_availableToRead(_rpc_buff)) {
     return;
@@ -641,12 +641,12 @@ void rpc_blynk_syncAll_handler(MessageBuffer* _rpc_buff) {
 }
 
 
-void rpc_blynk_syncVirtual_impl(buffer_t vpins);
+void rpc_blynk_syncVirtual_impl(rpc_buffer_t vpins);
 
 static
 void rpc_blynk_syncVirtual_handler(MessageBuffer* _rpc_buff) {
   /* Deserialize arguments */
-  buffer_t vpins; MessageBuffer_readBinary(_rpc_buff, &vpins);
+  rpc_buffer_t vpins; MessageBuffer_readBinary(_rpc_buff, &vpins);
 
   if (MessageBuffer_getError(_rpc_buff) || MessageBuffer_availableToRead(_rpc_buff)) {
     return;

@@ -8,7 +8,7 @@ bool rpc_mcu_reboot_impl(void) {
 }
 
 RPC_ATTR_WEAK
-void rpc_client_blynkVPinChange_impl(uint16_t vpin, buffer_t param) {
+void rpc_client_blynkVPinChange_impl(uint16_t vpin, rpc_buffer_t param) {
 
 }
 
@@ -28,7 +28,7 @@ bool rpc_client_otaUpdateAvailable_impl(const char* filename, uint32_t filesize,
 }
 
 RPC_ATTR_WEAK
-bool rpc_client_otaUpdateWrite_impl(uint32_t offset, buffer_t chunk, uint32_t crc32) {
+bool rpc_client_otaUpdateWrite_impl(uint32_t offset, rpc_buffer_t chunk, uint32_t crc32) {
   return false;
 }
 

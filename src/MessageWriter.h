@@ -14,7 +14,7 @@ size_t MessageWriter_begin          (void);
 size_t MessageWriter_end            (void);
 
 size_t MessageWriter_writeString    (const char* value);
-size_t MessageWriter_writeBinary    (buffer_t value);
+size_t MessageWriter_writeBinary    (rpc_buffer_t value);
 size_t MessageWriter_writeBool      (bool value);
 size_t MessageWriter_writeInt8      (const int8_t value);
 size_t MessageWriter_writeInt16     (const int16_t value);

@@ -136,7 +136,7 @@ const char* ncpGetStateString(uint8_t state) {
 }
 
 void virtualWrite(int virtualPin, const char* value) {
-  buffer_t val = { (uint8_t*)value, strlen(value) };
+  rpc_buffer_t val = { (uint8_t*)value, strlen(value) };
   rpc_blynk_virtualWrite(virtualPin, val);
 }
 

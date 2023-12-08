@@ -67,21 +67,21 @@ size_t MessageBuffer_readString(MessageBuffer* self, const char** value) {
     return len;
 }
 
-size_t MessageBuffer_readBinary(MessageBuffer* self, buffer_t* value) {
+size_t MessageBuffer_readBinary(MessageBuffer* self, rpc_buffer_t* value) {
     uint16_t len;
     if (!MessageBuffer_readUInt16(self, &len)) {
         if (value) {
-            memset(value, 0, sizeof(buffer_t));
+            memset(value, 0, sizeof(rpc_buffer_t));
         }
         return 0;
     }
     return (sizeof(len) + MessageBuffer_readFixedBuffer(self, value, len));
 }
 
-size_t MessageBuffer_readFixedBuffer(MessageBuffer* self, buffer_t* value, unsigned len) {
+size_t MessageBuffer_readFixedBuffer(MessageBuffer* self, rpc_buffer_t* value, unsigned len) {
     if (MessageBuffer_availableToRead(self) < len) {
         if (value) {
-            memset(value, 0, sizeof(buffer_t));
+            memset(value, 0, sizeof(rpc_buffer_t));
         }
         self->_error = true;
         return 0;

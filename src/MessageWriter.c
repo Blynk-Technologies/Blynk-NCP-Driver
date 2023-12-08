@@ -13,7 +13,7 @@ size_t MessageWriter_writeString(const char* value) {
     return MessageWriter_write(value, length);
 }
 
-size_t MessageWriter_writeBinary(buffer_t value) {
+size_t MessageWriter_writeBinary(rpc_buffer_t value) {
     size_t len = sizeof(uint16_t) + value.length;
     /*if (MessageBuffer_availableToWrite(self) < len) {
         self->_error = true;

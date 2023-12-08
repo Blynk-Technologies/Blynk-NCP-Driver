@@ -10,7 +10,7 @@ extern "C" {
 
 
 static inline
-void rpc_client_blynkVPinChange(uint16_t vpin, buffer_t param) {
+void rpc_client_blynkVPinChange(uint16_t vpin, rpc_buffer_t param) {
   /* Send request */
   MessageWriter_beginOneway(RPC_UID_CLIENT_BLYNKVPINCHANGE);
   MessageWriter_writeUInt16(vpin);
@@ -78,7 +78,7 @@ bool rpc_client_otaUpdateAvailable(const char* filename, uint32_t filesize, cons
 
 
 static inline
-bool rpc_client_otaUpdateWrite(uint32_t offset, buffer_t chunk, uint32_t crc32) {
+bool rpc_client_otaUpdateWrite(uint32_t offset, rpc_buffer_t chunk, uint32_t crc32) {
   RpcStatus _rpc_res;
   /* Prepare return value */
   bool _rpc_ret_val;

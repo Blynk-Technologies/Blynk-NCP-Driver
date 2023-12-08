@@ -527,7 +527,7 @@ bool rpc_blynk_otaUpdateGetCRC32(uint32_t* crc) {
 
 
 static inline
-bool rpc_blynk_otaUpdateGetMD5(buffer_t* digest) {
+bool rpc_blynk_otaUpdateGetMD5(rpc_buffer_t* digest) {
   RpcStatus _rpc_res;
   /* Prepare return value */
   bool _rpc_ret_val;
@@ -557,7 +557,7 @@ bool rpc_blynk_otaUpdateGetMD5(buffer_t* digest) {
 
 
 static inline
-bool rpc_blynk_otaUpdateGetSHA256(buffer_t* digest) {
+bool rpc_blynk_otaUpdateGetSHA256(rpc_buffer_t* digest) {
   RpcStatus _rpc_res;
   /* Prepare return value */
   bool _rpc_ret_val;
@@ -765,7 +765,7 @@ uint8_t rpc_blynk_getState(void) {
 
 
 static inline
-void rpc_blynk_virtualWrite(uint16_t vpin, buffer_t value) {
+void rpc_blynk_virtualWrite(uint16_t vpin, rpc_buffer_t value) {
   /* Send request */
   MessageWriter_beginOneway(RPC_UID_BLYNK_VIRTUALWRITE);
   MessageWriter_writeUInt16(vpin);
@@ -777,7 +777,7 @@ void rpc_blynk_virtualWrite(uint16_t vpin, buffer_t value) {
 
 
 static inline
-void rpc_blynk_setProperty(uint16_t vpin, const char* property, buffer_t value) {
+void rpc_blynk_setProperty(uint16_t vpin, const char* property, rpc_buffer_t value) {
   /* Send request */
   MessageWriter_beginOneway(RPC_UID_BLYNK_SETPROPERTY);
   MessageWriter_writeUInt16(vpin);
@@ -800,7 +800,7 @@ void rpc_blynk_syncAll(void) {
 
 
 static inline
-void rpc_blynk_syncVirtual(buffer_t vpins) {
+void rpc_blynk_syncVirtual(rpc_buffer_t vpins) {
   /* Send request */
   MessageWriter_beginOneway(RPC_UID_BLYNK_SYNCVIRTUAL);
   MessageWriter_writeBinary(vpins);

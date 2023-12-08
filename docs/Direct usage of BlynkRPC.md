@@ -9,10 +9,10 @@ However, because BlynkRcpDriver is based on C99, the API syntax is different:
 #### Blynk Cloud API 
 ```cpp
 Blynk.begin(...)              -> rpc_blynk_initialize(tmpl_id, tmpl_name);
-Blynk.virtualWrite(...)       -> rpc_blynk_virtualWrite(vpin, buffer_t)
+Blynk.virtualWrite(...)       -> rpc_blynk_virtualWrite(vpin, rpc_buffer_t)
 Blynk.syncAll()               -> rpc_blynk_syncAll()
-Blynk.syncVirtual(...)        -> rpc_blynk_syncVirtual(buffer_t)
-Blynk.setProperty(...)        -> rpc_blynk_setProperty(vpin, property, buffer_t)
+Blynk.syncVirtual(...)        -> rpc_blynk_syncVirtual(rpc_buffer_t)
+Blynk.setProperty(...)        -> rpc_blynk_setProperty(vpin, property, rpc_buffer_t)
 Blynk.logEvent(name)          -> rpc_blynk_logEvent(name, "")
 Blynk.logEvent(name,descr)    -> rpc_blynk_logEvent(name, descr)
 Blynk.resolveEvent(name)      -> rpc_blynk_resolveEvent(name)
@@ -49,13 +49,13 @@ void rpc_client_blynkStateChange_impl(uint8_t state) {
 ### BLYNK_WRITE(VPIN)
 
 ```cpp
-void rpc_client_blynkVPinChange_impl(uint16_t vpin, buffer_t param)
+void rpc_client_blynkVPinChange_impl(uint16_t vpin, rpc_buffer_t param)
 {
     // Your handling
 }
 ```
 
-## `buffer_t` format
+## `rpc_buffer_t` format
 
 Most values will be plain strings: "Hello world", "1234", "123.456", etc.
 

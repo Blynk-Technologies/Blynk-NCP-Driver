@@ -9,13 +9,13 @@ extern "C" {
 #endif
 
 
-void rpc_client_blynkVPinChange_impl(uint16_t vpin, buffer_t param);
+void rpc_client_blynkVPinChange_impl(uint16_t vpin, rpc_buffer_t param);
 
 static
 void rpc_client_blynkVPinChange_handler(MessageBuffer* _rpc_buff) {
   /* Deserialize arguments */
   uint16_t vpin; MessageBuffer_readUInt16(_rpc_buff, &vpin);
-  buffer_t param; MessageBuffer_readBinary(_rpc_buff, &param);
+  rpc_buffer_t param; MessageBuffer_readBinary(_rpc_buff, &param);
 
   if (MessageBuffer_getError(_rpc_buff) || MessageBuffer_availableToRead(_rpc_buff)) {
     return;
@@ -92,7 +92,7 @@ void rpc_client_otaUpdateAvailable_handler(MessageBuffer* _rpc_buff) {
 }
 
 
-bool rpc_client_otaUpdateWrite_impl(uint32_t offset, buffer_t chunk, uint32_t crc32);
+bool rpc_client_otaUpdateWrite_impl(uint32_t offset, rpc_buffer_t chunk, uint32_t crc32);
 
 static
 void rpc_client_otaUpdateWrite_handler(MessageBuffer* _rpc_buff) {
@@ -100,7 +100,7 @@ void rpc_client_otaUpdateWrite_handler(MessageBuffer* _rpc_buff) {
   MessageBuffer_readUInt16(_rpc_buff, &_rpc_seq);
   /* Deserialize arguments */
   uint32_t offset; MessageBuffer_readUInt32(_rpc_buff, &offset);
-  buffer_t chunk; MessageBuffer_readBinary(_rpc_buff, &chunk);
+  rpc_buffer_t chunk; MessageBuffer_readBinary(_rpc_buff, &chunk);
   uint32_t crc32; MessageBuffer_readUInt32(_rpc_buff, &crc32);
 
   if (MessageBuffer_getError(_rpc_buff) || MessageBuffer_availableToRead(_rpc_buff)) {

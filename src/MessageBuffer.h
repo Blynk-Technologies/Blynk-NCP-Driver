@@ -10,10 +10,10 @@
 extern "C" {
 #endif
 
-typedef struct buffer_t {
+typedef struct rpc_buffer_t {
     uint8_t* data;
     size_t   length;
-} buffer_t;
+} rpc_buffer_t;
 
 typedef struct MessageBuffer {
     uint8_t*  _buffer;
@@ -37,8 +37,8 @@ bool    MessageBuffer_getError(MessageBuffer* self);
 
 /* Read */
 size_t MessageBuffer_readString(MessageBuffer* self, const char** value);
-size_t MessageBuffer_readBinary(MessageBuffer* self, buffer_t* value);
-size_t MessageBuffer_readFixedBuffer(MessageBuffer* self, buffer_t* value, unsigned len);
+size_t MessageBuffer_readBinary(MessageBuffer* self, rpc_buffer_t* value);
+size_t MessageBuffer_readFixedBuffer(MessageBuffer* self, rpc_buffer_t* value, unsigned len);
 size_t MessageBuffer_readBool(MessageBuffer* self, bool* value);
 size_t MessageBuffer_readInt8(MessageBuffer* self, int8_t* value);
 size_t MessageBuffer_readInt16(MessageBuffer* self, int16_t* value);
