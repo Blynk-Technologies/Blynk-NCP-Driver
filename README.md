@@ -4,6 +4,7 @@ A shared interface to the services provided by Blynk.NCP
 [![version](https://img.shields.io/github/release/blynkkk/BlynkNcpDriver.svg)](https://github.com/blynkkk/BlynkNcpDriver/releases/latest)
 [![downloads](https://img.shields.io/github/downloads/blynkkk/BlynkNcpDriver/total)](https://github.com/blynkkk/BlynkNcpDriver/releases/latest)
 [![issues](https://img.shields.io/github/issues/blynkkk/BlynkNcpExample.svg)](https://github.com/blynkkk/BlynkNcpExample/issues)
+[![ci status](https://img.shields.io/github/actions/workflow/status/Blynk-Technologies/BlynkNcpDriver/build.yml?branch=main&logo=github&label=tests)](https://github.com/Blynk-Technologies/BlynkNcpDriver/actions)
 [![license](https://img.shields.io/github/license/blynkkk/BlynkNcpDriver)](LICENSE)
 [![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://stand-with-ukraine.pp.ua)
 
