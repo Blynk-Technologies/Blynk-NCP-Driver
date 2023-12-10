@@ -17,7 +17,8 @@ volatile const char firmwareTag[] = "blnkinf\0"
     "\0";
 ```
 
-> __Note__: The information inside this tag **MUST** match the information provided by the Primary MCU in runtime using the `rpc_blynk_setFirmwareInfo()`
+> [!IMPORTANT]
+> The information inside this tag **MUST** match the information provided by the Primary MCU in runtime using the `rpc_blynk_setFirmwareInfo()`
 
 If your OTA process involves encrypting, compressing, re-packaging (or altering the raw firmware binary in any other way), you should add the equivalent tag to your final OTA package. Blynk provides a [`blynk_tag.py extract`](https://github.com/blynkkk/BlynkNcpExample/blob/main/tools/blynk_tag.py) tool to automate this process.
 
