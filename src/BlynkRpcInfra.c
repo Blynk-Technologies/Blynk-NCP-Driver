@@ -97,10 +97,12 @@ RpcStatus rpc_wait_result(uint16_t expected_seq, MessageBuffer* buff, uint32_t t
 }
 
 void rpc_run(void) {
+  RPC_MUTEX_LOCK();
   MessageBuffer buff;
   MessageBuffer_init(&buff, NULL, 0);
   while (rpc_recv_msg(&buff, 0)) {
     _rpc_last_rx_time = rpc_system_millis();
     rpc_handle_msg(&buff);
   }
+  RPC_MUTEX_UNLOCK();
 }

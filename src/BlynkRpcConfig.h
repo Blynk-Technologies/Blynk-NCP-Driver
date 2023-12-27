@@ -6,7 +6,7 @@
 #endif
 
 #if defined(RPC_INPUT_BUFFER)
-  // Use the specified value
+  /* OK, use the specified value */
 #elif defined(__AVR_ATmega328P__) || defined(__AVR_ATmega32U4__)
   #define RPC_INPUT_BUFFER        256
 #elif defined(LINUX) || defined(ESP32)
@@ -16,11 +16,22 @@
 #endif
 
 #if defined(RPC_ENABLE_SMALL_CRC8)
-  // Use the specified value
+  /* OK, use the specified value */
 #elif defined(__AVR_ATmega328P__) || defined(__AVR_ATmega32U4__)
   #define RPC_ENABLE_SMALL_CRC8   1
 #else
   #define RPC_ENABLE_SMALL_CRC8   0
+#endif
+
+/* 
+ * Define global RPC mutex operations, if needed.
+ * The mutex should be reentrant/recursive.
+ */
+#if !defined(RPC_MUTEX_LOCK)
+  #define RPC_MUTEX_LOCK()
+#endif
+#if !defined(RPC_MUTEX_UNLOCK)
+  #define RPC_MUTEX_UNLOCK()
 #endif
 
 #endif /* BLYNK_RPC_CONFIG_H */
