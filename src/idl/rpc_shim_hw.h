@@ -73,7 +73,9 @@ bool rpc_hw_initUserButton(uint16_t gpio, bool active_low) {
   return _rpc_ret_val;
 }
 
-
+/*
+ * Initialize a monochrome LED state indicator
+ */
 static inline
 bool rpc_hw_initLED(uint16_t gpio, bool active_low) {
   RpcStatus _rpc_res;
@@ -106,7 +108,9 @@ bool rpc_hw_initLED(uint16_t gpio, bool active_low) {
   return _rpc_ret_val;
 }
 
-
+/*
+ * Initialize an RGB state indicator
+ */
 static inline
 bool rpc_hw_initRGB(uint16_t gpio_r, uint16_t gpio_g, uint16_t gpio_b, bool common_anode) {
   RpcStatus _rpc_res;
@@ -141,7 +145,9 @@ bool rpc_hw_initRGB(uint16_t gpio_r, uint16_t gpio_g, uint16_t gpio_b, bool comm
   return _rpc_ret_val;
 }
 
-
+/*
+ * Initialize an addressable RGB state indicator
+ */
 static inline
 bool rpc_hw_initARGB(uint16_t gpio, uint8_t mode, uint8_t count) {
   RpcStatus _rpc_res;

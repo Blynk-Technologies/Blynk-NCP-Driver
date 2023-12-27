@@ -58,7 +58,9 @@ bool rpc_ncp_reboot(void) {
   return _rpc_ret_val;
 }
 
-
+/*
+ * Checks if UID is implemented
+ */
 static inline
 bool rpc_ncp_hasUID(uint16_t uid) {
   RpcStatus _rpc_res;

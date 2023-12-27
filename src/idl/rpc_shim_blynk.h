@@ -172,7 +172,9 @@ bool rpc_blynk_initialize(const char* templateID, const char* templateName) {
   return _rpc_ret_val;
 }
 
-
+/*
+ * Device name that is broadcasted during the configuration process
+ */
 static inline
 bool rpc_blynk_getHotspotName(const char** hotspot) {
   RpcStatus _rpc_res;
@@ -204,7 +206,9 @@ bool rpc_blynk_getHotspotName(const char** hotspot) {
   return _rpc_ret_val;
 }
 
-
+/*
+ * Check if NCP has all the required configuration to try connecting to the Cloud
+ */
 static inline
 bool rpc_blynk_isConfigured(void) {
   RpcStatus _rpc_res;
@@ -235,7 +239,9 @@ bool rpc_blynk_isConfigured(void) {
   return _rpc_ret_val;
 }
 
-
+/*
+ * Enter configuration mode
+ */
 static inline
 bool rpc_blynk_configStart(void) {
   RpcStatus _rpc_res;
@@ -266,7 +272,9 @@ bool rpc_blynk_configStart(void) {
   return _rpc_ret_val;
 }
 
-
+/*
+ * Exit configuration mode
+ */
 static inline
 bool rpc_blynk_configStop(void) {
   RpcStatus _rpc_res;
@@ -297,7 +305,9 @@ bool rpc_blynk_configStop(void) {
   return _rpc_ret_val;
 }
 
-
+/*
+ * Erase Blynk Cloud configuration
+ */
 static inline
 bool rpc_blynk_configReset(void) {
   RpcStatus _rpc_res;
@@ -328,7 +338,9 @@ bool rpc_blynk_configReset(void) {
   return _rpc_ret_val;
 }
 
-
+/*
+ * Configuration mode timeout. Default: 180 seconds
+ */
 static inline
 bool rpc_blynk_setConfigTimeout(uint16_t timeout) {
   RpcStatus _rpc_res;
@@ -360,7 +372,9 @@ bool rpc_blynk_setConfigTimeout(uint16_t timeout) {
   return _rpc_ret_val;
 }
 
-
+/*
+ * If configuration is skipped N times, device won't automatically enter configuration mode. Configuration reset is required to enter the configuration mode again. Default: 10 times
+ */
 static inline
 bool rpc_blynk_setConfigSkipLimit(uint8_t count) {
   RpcStatus _rpc_res;
@@ -392,7 +406,10 @@ bool rpc_blynk_setConfigSkipLimit(uint8_t count) {
   return _rpc_ret_val;
 }
 
-
+/*
+ * Initialize NCP time from an external time source
+ *   time - Current time in milliseconds elapsed since the UNIX epoch
+ */
 static inline
 bool rpc_blynk_setTime(int64_t time) {
   RpcStatus _rpc_res;
@@ -424,7 +441,12 @@ bool rpc_blynk_setTime(int64_t time) {
   return _rpc_ret_val;
 }
 
-
+/*
+ *   time - Current time in milliseconds elapsed since the UNIX epoch
+ *   offset - Local time offset in minutes, including DST
+ *   tz_abbr - Timezone abbreviation
+ *   dst_status - 0 - No information, 1 - Not Applicable, 2 - Active, 3 - Inactive
+ */
 static inline
 bool rpc_blynk_getTime(const char** iso8601, int64_t* time, int16_t* offset, const char** tz_abbr, uint8_t* dst_status) {
   RpcStatus _rpc_res;
@@ -460,7 +482,12 @@ bool rpc_blynk_getTime(const char** iso8601, int64_t* time, int16_t* offset, con
   return _rpc_ret_val;
 }
 
-
+/*
+ *   lat - Approximate GPS latitude
+ *   lon - Approximate GPS longitude
+ *   olson_id - OLSON timezone id
+ *   posix_tz - POSIX timezone rule
+ */
 static inline
 bool rpc_blynk_getLocationInfo(const char** lat, const char** lon, const char** olson_id, const char** posix_tz) {
   RpcStatus _rpc_res;
@@ -623,7 +650,9 @@ bool rpc_blynk_otaUpdateGetSHA256(rpc_buffer_t* digest) {
   return _rpc_ret_val;
 }
 
-
+/*
+ * Prefetch the firmware file, to reduce the risk of download failure
+ */
 static inline
 uint8_t rpc_blynk_otaUpdatePrefetch(void) {
   RpcStatus _rpc_res;
@@ -654,7 +683,9 @@ uint8_t rpc_blynk_otaUpdatePrefetch(void) {
   return _rpc_ret_val;
 }
 
-
+/*
+ * Erase all configuration and reboot
+ */
 static inline
 bool rpc_blynk_factoryReset(void) {
   RpcStatus _rpc_res;
@@ -685,7 +716,9 @@ bool rpc_blynk_factoryReset(void) {
   return _rpc_ret_val;
 }
 
-
+/*
+ * Start a SoftAP on the specified channel for the frequency test
+ */
 static inline
 uint8_t rpc_blynk_factoryTestWiFiAP(uint16_t channel) {
   RpcStatus _rpc_res;
@@ -751,7 +784,9 @@ uint8_t rpc_blynk_factoryTestWiFi(const char* ssid, const char* pass, int16_t* r
   return _rpc_ret_val;
 }
 
-
+/*
+ * Test connection to the default server
+ */
 static inline
 uint8_t rpc_blynk_factoryTestConnect(void) {
   RpcStatus _rpc_res;
