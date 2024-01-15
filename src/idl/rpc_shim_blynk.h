@@ -30,7 +30,8 @@ bool rpc_blynk_getNcpVersion(const char** ver) {
     MessageBuffer_readBool(&_rsp_buff, &_rpc_ret_val);
   }
   if (MessageBuffer_getError(&_rsp_buff) || MessageBuffer_availableToRead(&_rsp_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_RETS_R);
+    _rpc_res = RPC_STATUS_ERROR_RETS_R;
+    rpc_set_status(_rpc_res);
     RPC_MUTEX_UNLOCK();
     return _rpc_ret_val;
   }
@@ -62,7 +63,8 @@ bool rpc_blynk_setVendorPrefix(const char* vendor) {
     MessageBuffer_readBool(&_rsp_buff, &_rpc_ret_val);
   }
   if (MessageBuffer_getError(&_rsp_buff) || MessageBuffer_availableToRead(&_rsp_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_RETS_R);
+    _rpc_res = RPC_STATUS_ERROR_RETS_R;
+    rpc_set_status(_rpc_res);
     RPC_MUTEX_UNLOCK();
     return _rpc_ret_val;
   }
@@ -94,7 +96,8 @@ bool rpc_blynk_setVendorServer(const char* host) {
     MessageBuffer_readBool(&_rsp_buff, &_rpc_ret_val);
   }
   if (MessageBuffer_getError(&_rsp_buff) || MessageBuffer_availableToRead(&_rsp_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_RETS_R);
+    _rpc_res = RPC_STATUS_ERROR_RETS_R;
+    rpc_set_status(_rpc_res);
     RPC_MUTEX_UNLOCK();
     return _rpc_ret_val;
   }
@@ -129,7 +132,8 @@ bool rpc_blynk_setFirmwareInfo(const char* type, const char* version, const char
     MessageBuffer_readBool(&_rsp_buff, &_rpc_ret_val);
   }
   if (MessageBuffer_getError(&_rsp_buff) || MessageBuffer_availableToRead(&_rsp_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_RETS_R);
+    _rpc_res = RPC_STATUS_ERROR_RETS_R;
+    rpc_set_status(_rpc_res);
     RPC_MUTEX_UNLOCK();
     return _rpc_ret_val;
   }
@@ -162,7 +166,8 @@ bool rpc_blynk_initialize(const char* templateID, const char* templateName) {
     MessageBuffer_readBool(&_rsp_buff, &_rpc_ret_val);
   }
   if (MessageBuffer_getError(&_rsp_buff) || MessageBuffer_availableToRead(&_rsp_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_RETS_R);
+    _rpc_res = RPC_STATUS_ERROR_RETS_R;
+    rpc_set_status(_rpc_res);
     RPC_MUTEX_UNLOCK();
     return _rpc_ret_val;
   }
@@ -196,7 +201,8 @@ bool rpc_blynk_getHotspotName(const char** hotspot) {
     MessageBuffer_readBool(&_rsp_buff, &_rpc_ret_val);
   }
   if (MessageBuffer_getError(&_rsp_buff) || MessageBuffer_availableToRead(&_rsp_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_RETS_R);
+    _rpc_res = RPC_STATUS_ERROR_RETS_R;
+    rpc_set_status(_rpc_res);
     RPC_MUTEX_UNLOCK();
     return _rpc_ret_val;
   }
@@ -229,7 +235,8 @@ bool rpc_blynk_isConfigured(void) {
     MessageBuffer_readBool(&_rsp_buff, &_rpc_ret_val);
   }
   if (MessageBuffer_getError(&_rsp_buff) || MessageBuffer_availableToRead(&_rsp_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_RETS_R);
+    _rpc_res = RPC_STATUS_ERROR_RETS_R;
+    rpc_set_status(_rpc_res);
     RPC_MUTEX_UNLOCK();
     return _rpc_ret_val;
   }
@@ -262,7 +269,8 @@ bool rpc_blynk_configStart(void) {
     MessageBuffer_readBool(&_rsp_buff, &_rpc_ret_val);
   }
   if (MessageBuffer_getError(&_rsp_buff) || MessageBuffer_availableToRead(&_rsp_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_RETS_R);
+    _rpc_res = RPC_STATUS_ERROR_RETS_R;
+    rpc_set_status(_rpc_res);
     RPC_MUTEX_UNLOCK();
     return _rpc_ret_val;
   }
@@ -295,7 +303,8 @@ bool rpc_blynk_configStop(void) {
     MessageBuffer_readBool(&_rsp_buff, &_rpc_ret_val);
   }
   if (MessageBuffer_getError(&_rsp_buff) || MessageBuffer_availableToRead(&_rsp_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_RETS_R);
+    _rpc_res = RPC_STATUS_ERROR_RETS_R;
+    rpc_set_status(_rpc_res);
     RPC_MUTEX_UNLOCK();
     return _rpc_ret_val;
   }
@@ -328,7 +337,8 @@ bool rpc_blynk_configReset(void) {
     MessageBuffer_readBool(&_rsp_buff, &_rpc_ret_val);
   }
   if (MessageBuffer_getError(&_rsp_buff) || MessageBuffer_availableToRead(&_rsp_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_RETS_R);
+    _rpc_res = RPC_STATUS_ERROR_RETS_R;
+    rpc_set_status(_rpc_res);
     RPC_MUTEX_UNLOCK();
     return _rpc_ret_val;
   }
@@ -362,7 +372,8 @@ bool rpc_blynk_setConfigTimeout(uint16_t timeout) {
     MessageBuffer_readBool(&_rsp_buff, &_rpc_ret_val);
   }
   if (MessageBuffer_getError(&_rsp_buff) || MessageBuffer_availableToRead(&_rsp_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_RETS_R);
+    _rpc_res = RPC_STATUS_ERROR_RETS_R;
+    rpc_set_status(_rpc_res);
     RPC_MUTEX_UNLOCK();
     return _rpc_ret_val;
   }
@@ -396,7 +407,8 @@ bool rpc_blynk_setConfigSkipLimit(uint8_t count) {
     MessageBuffer_readBool(&_rsp_buff, &_rpc_ret_val);
   }
   if (MessageBuffer_getError(&_rsp_buff) || MessageBuffer_availableToRead(&_rsp_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_RETS_R);
+    _rpc_res = RPC_STATUS_ERROR_RETS_R;
+    rpc_set_status(_rpc_res);
     RPC_MUTEX_UNLOCK();
     return _rpc_ret_val;
   }
@@ -431,7 +443,8 @@ bool rpc_blynk_setTime(int64_t time) {
     MessageBuffer_readBool(&_rsp_buff, &_rpc_ret_val);
   }
   if (MessageBuffer_getError(&_rsp_buff) || MessageBuffer_availableToRead(&_rsp_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_RETS_R);
+    _rpc_res = RPC_STATUS_ERROR_RETS_R;
+    rpc_set_status(_rpc_res);
     RPC_MUTEX_UNLOCK();
     return _rpc_ret_val;
   }
@@ -472,7 +485,8 @@ bool rpc_blynk_getTime(const char** iso8601, int64_t* time, int16_t* offset, con
     MessageBuffer_readBool(&_rsp_buff, &_rpc_ret_val);
   }
   if (MessageBuffer_getError(&_rsp_buff) || MessageBuffer_availableToRead(&_rsp_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_RETS_R);
+    _rpc_res = RPC_STATUS_ERROR_RETS_R;
+    rpc_set_status(_rpc_res);
     RPC_MUTEX_UNLOCK();
     return _rpc_ret_val;
   }
@@ -512,7 +526,8 @@ bool rpc_blynk_getLocationInfo(const char** lat, const char** lon, const char** 
     MessageBuffer_readBool(&_rsp_buff, &_rpc_ret_val);
   }
   if (MessageBuffer_getError(&_rsp_buff) || MessageBuffer_availableToRead(&_rsp_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_RETS_R);
+    _rpc_res = RPC_STATUS_ERROR_RETS_R;
+    rpc_set_status(_rpc_res);
     RPC_MUTEX_UNLOCK();
     return _rpc_ret_val;
   }
@@ -544,7 +559,8 @@ bool rpc_blynk_otaUpdateStart(uint16_t chunk) {
     MessageBuffer_readBool(&_rsp_buff, &_rpc_ret_val);
   }
   if (MessageBuffer_getError(&_rsp_buff) || MessageBuffer_availableToRead(&_rsp_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_RETS_R);
+    _rpc_res = RPC_STATUS_ERROR_RETS_R;
+    rpc_set_status(_rpc_res);
     RPC_MUTEX_UNLOCK();
     return _rpc_ret_val;
   }
@@ -576,7 +592,8 @@ bool rpc_blynk_otaUpdateGetCRC32(uint32_t* crc) {
     MessageBuffer_readBool(&_rsp_buff, &_rpc_ret_val);
   }
   if (MessageBuffer_getError(&_rsp_buff) || MessageBuffer_availableToRead(&_rsp_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_RETS_R);
+    _rpc_res = RPC_STATUS_ERROR_RETS_R;
+    rpc_set_status(_rpc_res);
     RPC_MUTEX_UNLOCK();
     return _rpc_ret_val;
   }
@@ -608,7 +625,8 @@ bool rpc_blynk_otaUpdateGetMD5(rpc_buffer_t* digest) {
     MessageBuffer_readBool(&_rsp_buff, &_rpc_ret_val);
   }
   if (MessageBuffer_getError(&_rsp_buff) || MessageBuffer_availableToRead(&_rsp_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_RETS_R);
+    _rpc_res = RPC_STATUS_ERROR_RETS_R;
+    rpc_set_status(_rpc_res);
     RPC_MUTEX_UNLOCK();
     return _rpc_ret_val;
   }
@@ -640,7 +658,8 @@ bool rpc_blynk_otaUpdateGetSHA256(rpc_buffer_t* digest) {
     MessageBuffer_readBool(&_rsp_buff, &_rpc_ret_val);
   }
   if (MessageBuffer_getError(&_rsp_buff) || MessageBuffer_availableToRead(&_rsp_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_RETS_R);
+    _rpc_res = RPC_STATUS_ERROR_RETS_R;
+    rpc_set_status(_rpc_res);
     RPC_MUTEX_UNLOCK();
     return _rpc_ret_val;
   }
@@ -650,9 +669,7 @@ bool rpc_blynk_otaUpdateGetSHA256(rpc_buffer_t* digest) {
   return _rpc_ret_val;
 }
 
-/*
- * Prefetch the firmware file, to reduce the risk of download failure
- */
+
 static inline
 uint8_t rpc_blynk_otaUpdatePrefetch(void) {
   RpcStatus _rpc_res;
@@ -673,7 +690,8 @@ uint8_t rpc_blynk_otaUpdatePrefetch(void) {
     MessageBuffer_readUInt8(&_rsp_buff, &_rpc_ret_val);
   }
   if (MessageBuffer_getError(&_rsp_buff) || MessageBuffer_availableToRead(&_rsp_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_RETS_R);
+    _rpc_res = RPC_STATUS_ERROR_RETS_R;
+    rpc_set_status(_rpc_res);
     RPC_MUTEX_UNLOCK();
     return _rpc_ret_val;
   }
@@ -706,7 +724,8 @@ bool rpc_blynk_factoryReset(void) {
     MessageBuffer_readBool(&_rsp_buff, &_rpc_ret_val);
   }
   if (MessageBuffer_getError(&_rsp_buff) || MessageBuffer_availableToRead(&_rsp_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_RETS_R);
+    _rpc_res = RPC_STATUS_ERROR_RETS_R;
+    rpc_set_status(_rpc_res);
     RPC_MUTEX_UNLOCK();
     return _rpc_ret_val;
   }
@@ -740,7 +759,8 @@ uint8_t rpc_blynk_factoryTestWiFiAP(uint16_t channel) {
     MessageBuffer_readUInt8(&_rsp_buff, &_rpc_ret_val);
   }
   if (MessageBuffer_getError(&_rsp_buff) || MessageBuffer_availableToRead(&_rsp_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_RETS_R);
+    _rpc_res = RPC_STATUS_ERROR_RETS_R;
+    rpc_set_status(_rpc_res);
     RPC_MUTEX_UNLOCK();
     return _rpc_ret_val;
   }
@@ -774,7 +794,8 @@ uint8_t rpc_blynk_factoryTestWiFi(const char* ssid, const char* pass, int16_t* r
     MessageBuffer_readUInt8(&_rsp_buff, &_rpc_ret_val);
   }
   if (MessageBuffer_getError(&_rsp_buff) || MessageBuffer_availableToRead(&_rsp_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_RETS_R);
+    _rpc_res = RPC_STATUS_ERROR_RETS_R;
+    rpc_set_status(_rpc_res);
     RPC_MUTEX_UNLOCK();
     return _rpc_ret_val;
   }
@@ -807,7 +828,8 @@ uint8_t rpc_blynk_factoryTestConnect(void) {
     MessageBuffer_readUInt8(&_rsp_buff, &_rpc_ret_val);
   }
   if (MessageBuffer_getError(&_rsp_buff) || MessageBuffer_availableToRead(&_rsp_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_RETS_R);
+    _rpc_res = RPC_STATUS_ERROR_RETS_R;
+    rpc_set_status(_rpc_res);
     RPC_MUTEX_UNLOCK();
     return _rpc_ret_val;
   }
@@ -838,7 +860,8 @@ uint8_t rpc_blynk_getState(void) {
     MessageBuffer_readUInt8(&_rsp_buff, &_rpc_ret_val);
   }
   if (MessageBuffer_getError(&_rsp_buff) || MessageBuffer_availableToRead(&_rsp_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_RETS_R);
+    _rpc_res = RPC_STATUS_ERROR_RETS_R;
+    rpc_set_status(_rpc_res);
     RPC_MUTEX_UNLOCK();
     return _rpc_ret_val;
   }

@@ -27,13 +27,13 @@ void    MessageBuffer_init(MessageBuffer* self, uint8_t* buffer, size_t size);
 void    MessageBuffer_rewind(MessageBuffer* self);
 void    MessageBuffer_reset(MessageBuffer* self);
 void    MessageBuffer_setBuffer(MessageBuffer* self, uint8_t* buffer, size_t size);
-uint8_t* MessageBuffer_getBuffer(MessageBuffer* self);
-size_t  MessageBuffer_getSize(MessageBuffer* self);
-size_t  MessageBuffer_getWritten(MessageBuffer* self);
+uint8_t* MessageBuffer_getBuffer(const MessageBuffer* self);
+size_t  MessageBuffer_getSize(const MessageBuffer* self);
+size_t  MessageBuffer_getWritten(const MessageBuffer* self);
 void    MessageBuffer_setWritten(MessageBuffer* self, size_t s);
-size_t  MessageBuffer_availableToRead(MessageBuffer* self);
-size_t  MessageBuffer_availableToWrite(MessageBuffer* self);
-bool    MessageBuffer_getError(MessageBuffer* self);
+size_t  MessageBuffer_availableToRead(const MessageBuffer* self);
+size_t  MessageBuffer_availableToWrite(const MessageBuffer* self);
+bool    MessageBuffer_getError(const MessageBuffer* self);
 
 /* Read */
 size_t MessageBuffer_readString(MessageBuffer* self, const char** value);

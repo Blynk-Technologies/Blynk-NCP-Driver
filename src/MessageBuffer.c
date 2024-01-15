@@ -22,15 +22,15 @@ void MessageBuffer_setBuffer(MessageBuffer* self, uint8_t* buffer, size_t size) 
     MessageBuffer_reset(self);
 }
 
-uint8_t* MessageBuffer_getBuffer(MessageBuffer* self) {
+uint8_t* MessageBuffer_getBuffer(const MessageBuffer* self) {
     return self->_buffer;
 }
 
-size_t MessageBuffer_getSize(MessageBuffer* self) {
+size_t MessageBuffer_getSize(const MessageBuffer* self) {
     return self->_size;
 }
 
-size_t MessageBuffer_getWritten(MessageBuffer* self) {
+size_t MessageBuffer_getWritten(const MessageBuffer* self) {
     return self->_wpos;
 }
 
@@ -38,15 +38,15 @@ void MessageBuffer_setWritten(MessageBuffer* self, size_t s) {
     self->_wpos = s;
 }
 
-size_t MessageBuffer_availableToRead(MessageBuffer* self) {
+size_t MessageBuffer_availableToRead(const MessageBuffer* self) {
     return self->_wpos - self->_rpos;
 }
 
-size_t MessageBuffer_availableToWrite(MessageBuffer* self) {
+size_t MessageBuffer_availableToWrite(const MessageBuffer* self) {
     return self->_size - self->_wpos;
 }
 
-bool MessageBuffer_getError(MessageBuffer* self) {
+bool MessageBuffer_getError(const MessageBuffer* self) {
     return self->_error;
 }
 

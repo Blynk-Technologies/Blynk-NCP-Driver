@@ -48,7 +48,8 @@ bool rpc_mcu_reboot(void) {
     MessageBuffer_readBool(&_rsp_buff, &_rpc_ret_val);
   }
   if (MessageBuffer_getError(&_rsp_buff) || MessageBuffer_availableToRead(&_rsp_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_RETS_R);
+    _rpc_res = RPC_STATUS_ERROR_RETS_R;
+    rpc_set_status(_rpc_res);
     RPC_MUTEX_UNLOCK();
     return _rpc_ret_val;
   }
@@ -82,7 +83,8 @@ bool rpc_mcu_hasUID(uint16_t uid) {
     MessageBuffer_readBool(&_rsp_buff, &_rpc_ret_val);
   }
   if (MessageBuffer_getError(&_rsp_buff) || MessageBuffer_availableToRead(&_rsp_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_RETS_R);
+    _rpc_res = RPC_STATUS_ERROR_RETS_R;
+    rpc_set_status(_rpc_res);
     RPC_MUTEX_UNLOCK();
     return _rpc_ret_val;
   }

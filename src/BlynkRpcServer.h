@@ -78,7 +78,7 @@ rpc_handler_t rpc_find_uid_handler(uint16_t uid) {
 
 RpcStatus rpc_invoke_handler(uint16_t uid, MessageBuffer* buff) {
   rpc_handler_t handler = rpc_find_uid_handler(uid);
-  if (handler) {
+  if (handler != NULL) {
     handler(buff);
     return RPC_STATUS_OK;
   } else {

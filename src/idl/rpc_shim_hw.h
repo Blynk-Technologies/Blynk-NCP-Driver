@@ -30,7 +30,8 @@ bool rpc_hw_setUartBaudRate(uint32_t baud) {
     MessageBuffer_readBool(&_rsp_buff, &_rpc_ret_val);
   }
   if (MessageBuffer_getError(&_rsp_buff) || MessageBuffer_availableToRead(&_rsp_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_RETS_R);
+    _rpc_res = RPC_STATUS_ERROR_RETS_R;
+    rpc_set_status(_rpc_res);
     RPC_MUTEX_UNLOCK();
     return _rpc_ret_val;
   }
@@ -63,7 +64,8 @@ bool rpc_hw_initUserButton(uint16_t gpio, bool active_low) {
     MessageBuffer_readBool(&_rsp_buff, &_rpc_ret_val);
   }
   if (MessageBuffer_getError(&_rsp_buff) || MessageBuffer_availableToRead(&_rsp_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_RETS_R);
+    _rpc_res = RPC_STATUS_ERROR_RETS_R;
+    rpc_set_status(_rpc_res);
     RPC_MUTEX_UNLOCK();
     return _rpc_ret_val;
   }
@@ -98,7 +100,8 @@ bool rpc_hw_initLED(uint16_t gpio, bool active_low) {
     MessageBuffer_readBool(&_rsp_buff, &_rpc_ret_val);
   }
   if (MessageBuffer_getError(&_rsp_buff) || MessageBuffer_availableToRead(&_rsp_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_RETS_R);
+    _rpc_res = RPC_STATUS_ERROR_RETS_R;
+    rpc_set_status(_rpc_res);
     RPC_MUTEX_UNLOCK();
     return _rpc_ret_val;
   }
@@ -135,7 +138,8 @@ bool rpc_hw_initRGB(uint16_t gpio_r, uint16_t gpio_g, uint16_t gpio_b, bool comm
     MessageBuffer_readBool(&_rsp_buff, &_rpc_ret_val);
   }
   if (MessageBuffer_getError(&_rsp_buff) || MessageBuffer_availableToRead(&_rsp_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_RETS_R);
+    _rpc_res = RPC_STATUS_ERROR_RETS_R;
+    rpc_set_status(_rpc_res);
     RPC_MUTEX_UNLOCK();
     return _rpc_ret_val;
   }
@@ -171,7 +175,8 @@ bool rpc_hw_initARGB(uint16_t gpio, uint8_t mode, uint8_t count) {
     MessageBuffer_readBool(&_rsp_buff, &_rpc_ret_val);
   }
   if (MessageBuffer_getError(&_rsp_buff) || MessageBuffer_availableToRead(&_rsp_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_RETS_R);
+    _rpc_res = RPC_STATUS_ERROR_RETS_R;
+    rpc_set_status(_rpc_res);
     RPC_MUTEX_UNLOCK();
     return _rpc_ret_val;
   }
@@ -203,7 +208,8 @@ bool rpc_hw_setLedBrightness(uint8_t value) {
     MessageBuffer_readBool(&_rsp_buff, &_rpc_ret_val);
   }
   if (MessageBuffer_getError(&_rsp_buff) || MessageBuffer_availableToRead(&_rsp_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_RETS_R);
+    _rpc_res = RPC_STATUS_ERROR_RETS_R;
+    rpc_set_status(_rpc_res);
     RPC_MUTEX_UNLOCK();
     return _rpc_ret_val;
   }
@@ -235,7 +241,8 @@ bool rpc_hw_getWiFiMAC(const char** mac) {
     MessageBuffer_readBool(&_rsp_buff, &_rpc_ret_val);
   }
   if (MessageBuffer_getError(&_rsp_buff) || MessageBuffer_availableToRead(&_rsp_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_RETS_R);
+    _rpc_res = RPC_STATUS_ERROR_RETS_R;
+    rpc_set_status(_rpc_res);
     RPC_MUTEX_UNLOCK();
     return _rpc_ret_val;
   }
@@ -267,7 +274,8 @@ bool rpc_hw_getEthernetMAC(const char** mac) {
     MessageBuffer_readBool(&_rsp_buff, &_rpc_ret_val);
   }
   if (MessageBuffer_getError(&_rsp_buff) || MessageBuffer_availableToRead(&_rsp_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_RETS_R);
+    _rpc_res = RPC_STATUS_ERROR_RETS_R;
+    rpc_set_status(_rpc_res);
     RPC_MUTEX_UNLOCK();
     return _rpc_ret_val;
   }

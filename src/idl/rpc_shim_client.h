@@ -74,7 +74,8 @@ bool rpc_client_otaUpdateAvailable(const char* filename, uint32_t filesize, cons
     MessageBuffer_readBool(&_rsp_buff, &_rpc_ret_val);
   }
   if (MessageBuffer_getError(&_rsp_buff) || MessageBuffer_availableToRead(&_rsp_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_RETS_R);
+    _rpc_res = RPC_STATUS_ERROR_RETS_R;
+    rpc_set_status(_rpc_res);
     RPC_MUTEX_UNLOCK();
     return _rpc_ret_val;
   }
@@ -108,7 +109,8 @@ bool rpc_client_otaUpdateWrite(uint32_t offset, rpc_buffer_t chunk, uint32_t crc
     MessageBuffer_readBool(&_rsp_buff, &_rpc_ret_val);
   }
   if (MessageBuffer_getError(&_rsp_buff) || MessageBuffer_availableToRead(&_rsp_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_RETS_R);
+    _rpc_res = RPC_STATUS_ERROR_RETS_R;
+    rpc_set_status(_rpc_res);
     RPC_MUTEX_UNLOCK();
     return _rpc_ret_val;
   }
@@ -139,7 +141,8 @@ bool rpc_client_otaUpdateFinish(void) {
     MessageBuffer_readBool(&_rsp_buff, &_rpc_ret_val);
   }
   if (MessageBuffer_getError(&_rsp_buff) || MessageBuffer_availableToRead(&_rsp_buff)) {
-    rpc_set_status(_rpc_res = RPC_STATUS_ERROR_RETS_R);
+    _rpc_res = RPC_STATUS_ERROR_RETS_R;
+    rpc_set_status(_rpc_res);
     RPC_MUTEX_UNLOCK();
     return _rpc_ret_val;
   }
