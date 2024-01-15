@@ -28,6 +28,6 @@ jobs:
           CFLAGS: ${{ matrix.config.cflags }}
         run: |
           ${CC} -O3 -std=c99 -Wall -Wextra -Werror -pedantic \
-            -Wno-unused-parameter ${CFLAGS} \
+            -Wno-unused-function -Wno-unused-parameter ${CFLAGS} \
             -I src src/*.c test/c99.c \
             -o /dev/null
