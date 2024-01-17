@@ -2,9 +2,6 @@
 
 #include "BlynkRpc.h"
 
-#include "idl/rpc_handler_mcu.h"
-#include "idl/rpc_handler_client.h"
-
 RPC_ATTR_WEAK
 bool rpc_mcu_reboot_impl(void) {
   return false;
