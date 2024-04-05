@@ -1,11 +1,11 @@
 # Blynk.NCP low-level driver
 A shared interface to the services provided by Blynk.NCP
 
-[![version](https://img.shields.io/github/release/blynkkk/BlynkNcpDriver.svg)](https://github.com/blynkkk/BlynkNcpDriver/releases/latest)
-[![downloads](https://img.shields.io/github/downloads/blynkkk/BlynkNcpDriver/total)](https://github.com/blynkkk/BlynkNcpDriver/releases/latest)
-[![issues](https://img.shields.io/github/issues/blynkkk/BlynkNcpExample.svg)](https://github.com/blynkkk/BlynkNcpExample/issues)
+[![version](https://img.shields.io/github/release/Blynk-Technologies/Blynk-NCP-Driver.svg)](https://github.com/Blynk-Technologies/Blynk-NCP-Driver/releases/latest)
+[![downloads](https://img.shields.io/github/downloads/Blynk-Technologies/Blynk-NCP-Driver/total)](https://github.com/Blynk-Technologies/Blynk-NCP-Driver/releases/latest)
+[![issues](https://img.shields.io/github/issues/Blynk-Technologies/Blynk-NCP-Example-Arduino.svg)](https://github.com/Blynk-Technologies/Blynk-NCP-Example-Arduino/issues)
 [![ci status](https://img.shields.io/github/actions/workflow/status/Blynk-Technologies/BlynkNcpDriver/build.yml?branch=main&logo=github&label=tests)](https://github.com/Blynk-Technologies/BlynkNcpDriver/actions)
-[![license](https://img.shields.io/github/license/blynkkk/BlynkNcpDriver)](LICENSE)
+[![license](https://img.shields.io/github/license/Blynk-Technologies/Blynk-NCP-Driver)](LICENSE)
 [![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://stand-with-ukraine.pp.ua)
 
 ## Minimum System Requirements
@@ -22,7 +22,7 @@ A shared interface to the services provided by Blynk.NCP
 
 ## Report an issue
 
-Issues are maintained in the [BlynkNcpExample](https://github.com/blynkkk/BlynkNcpExample/issues) repository.
+Issues are maintained in the [Blynk NCP Example](https://github.com/Blynk-Technologies/Blynk-NCP-Example-Arduino/issues) repository.
 
 ## Disclaimer
 
