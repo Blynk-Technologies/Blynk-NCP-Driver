@@ -12,14 +12,6 @@ A shared interface to the services provided by Blynk.NCP
 
 `C99` compiler | `1KB` RAM | `8KB` Flash | `38400 8N1` UART
 
-## Documentation
-
-- [Supported Connectivity Modules](https://docs.blynk.io/en/getting-started/supported-boards#connectivity-modules-supported-by-blynk.ncp)
-- [Blynk.NCP Protocol Specification](docs/NCP%20Protocol%20Specification.md)
-- [Advanced Time and Location API](docs/Time%20and%20Location.md)
-- [Primary MCU OTA upgrades](docs/Firmware%20Upgrade.md)
-- [Factory Testing](docs/Factory%20Testing.md)
-
 ## Integrations
 
 Based on this low-level NCP driver, Blynk also provides first class support and examples for multiple platforms.  
@@ -27,6 +19,14 @@ This includes reference inplementation of **NCP initialization, re-initializatio
 
 - [**Zephyr OS**](https://github.com/Blynk-Technologies/Blynk-NCP-Example-Zephyr)
 - [**Arduino**](https://github.com/Blynk-Technologies/Blynk-NCP-Example-Arduino)
+
+## Documentation
+
+- [Supported Connectivity Modules](https://docs.blynk.io/en/getting-started/supported-boards#connectivity-modules-supported-by-blynk.ncp)
+- [Blynk.NCP Protocol Specification](docs/NCP%20Protocol%20Specification.md)
+- [Advanced Time and Location API](docs/Time%20and%20Location.md)
+- [Primary MCU OTA upgrades](docs/Firmware%20Upgrade.md)
+- [Factory Testing](docs/Factory%20Testing.md)
 
 ## Disclaimer
 
