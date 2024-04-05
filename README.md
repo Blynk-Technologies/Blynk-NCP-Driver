@@ -20,7 +20,7 @@ A shared interface to the services provided by Blynk.NCP
 - [Primary MCU OTA upgrades](docs/Firmware%20Upgrade.md)
 - [Factory Testing](docs/Factory%20Testing.md)
 
-## Implementations
+## Integrations
 
 Based on this low-level NCP driver, Blynk also provides first class support and examples for multiple platforms.  
 This includes reference inplementation of **NCP initialization, re-initialization, primary MCU OTA updates** and other features.
