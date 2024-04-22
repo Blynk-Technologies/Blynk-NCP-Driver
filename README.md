@@ -59,7 +59,7 @@ Additional services provided by the Blynk.NCP:
 ## Integrations
 
 Based on this low-level NCP driver, Blynk also provides first class support and examples for multiple platforms.  
-This includes reference inplementation of **NCP initialization, re-initialization, primary MCU OTA updates** and other features.
+This includes a reference implementation of **NCP initialization, re-initialization, primary MCU OTA updates** and other features.
 
 - [**Zephyr OS**](https://github.com/Blynk-Technologies/Blynk-NCP-Example-Zephyr)
 - [**Arduino**](https://github.com/Blynk-Technologies/Blynk-NCP-Example-Arduino)
