@@ -20,7 +20,7 @@ Perform a connection to the specified WiFi 2.4 Ghz hotspot.
 **Returns:** `RpcFactoryTestStatus`
 - `RPC_FACTORY_TEST_INVALID_ARGS` - call is incorrect
 - `RPC_FACTORY_TEST_WIFI_FAIL` - cannot connect
-- `RPC_FACTORY_TEST_LOW_RSSI` - RSSI is **less than -70 dBm**
+- `RPC_FACTORY_TEST_LOW_RSSI` - RSSI is **less than -85 dBm**
 - `RPC_FACTORY_TEST_OK` - all is OK
 
 ## `rpc_blynk_factoryTestConnect()`

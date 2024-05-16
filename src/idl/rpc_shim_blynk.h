@@ -669,7 +669,9 @@ bool rpc_blynk_otaUpdateGetSHA256(rpc_buffer_t* digest) {
   return _rpc_ret_val;
 }
 
-
+/*
+ * Prefetch the firmware file, to reduce the risk of download failure
+ */
 static inline
 uint8_t rpc_blynk_otaUpdatePrefetch(void) {
   RpcStatus _rpc_res;
@@ -787,7 +789,7 @@ uint8_t rpc_blynk_factoryTestWiFi(const char* ssid, const char* pass, int16_t* r
   /* Wait response */
   MessageBuffer _rsp_buff;
   MessageBuffer_init(&_rsp_buff, NULL, 0);
-  _rpc_res = rpc_wait_result(_rpc_seq, &_rsp_buff, 15000);
+  _rpc_res = rpc_wait_result(_rpc_seq, &_rsp_buff, 30000);
   if (_rpc_res == RPC_STATUS_OK) {
     /* Deserialize outputs */
     MessageBuffer_readInt16(&_rsp_buff, rssi);

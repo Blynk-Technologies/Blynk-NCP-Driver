@@ -68,7 +68,7 @@ bool rpc_client_otaUpdateAvailable(const char* filename, uint32_t filesize, cons
   /* Wait response */
   MessageBuffer _rsp_buff;
   MessageBuffer_init(&_rsp_buff, NULL, 0);
-  _rpc_res = rpc_wait_result(_rpc_seq, &_rsp_buff, RPC_TIMEOUT_DEFAULT);
+  _rpc_res = rpc_wait_result(_rpc_seq, &_rsp_buff, 5000);
   if (_rpc_res == RPC_STATUS_OK) {
     /* Deserialize outputs */
     MessageBuffer_readBool(&_rsp_buff, &_rpc_ret_val);

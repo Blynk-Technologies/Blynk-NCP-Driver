@@ -5,8 +5,10 @@
   ncptool.py /dev/ttyUSB0 --initRGB 15 12 13 0
   ncptool.py /dev/ttyUSB0 --setLedBrightness 128
   ncptool.py /dev/ttyUSB0 --reboot
+  ncptool.py /dev/ttyUSB0 --factoryTestWiFi SSID PASS
 """
 
+import sys
 import asyncio
 import aioserial
 import struct
@@ -364,11 +366,14 @@ async def rpc_blynk_factoryTestWiFi(ssid, password):
     req = MessageBuffer()
     req.write_cstring(ssid)
     req.write_cstring(password)
-    rsp = await rpcInvoke(RpcUID.BLYNK_FACTORYTESTWIFI, req, 15000)
+    rsp = await rpcInvoke(RpcUID.BLYNK_FACTORYTESTWIFI, req, 30000)
     rssi = rsp.read_int16()
     retval = FactoryTestStatus(rsp.read_uint8())
     print(f"Status: {retval.name}")
     print(f"RSSI:   {rssi}dBm")
+
+    if not retval == FactoryTestStatus.FACTORY_TEST_OK:
+        sys.exit(1)
 
 async def rpc_blynk_factoryTestWiFiAP(channel):
     req = MessageBuffer()
