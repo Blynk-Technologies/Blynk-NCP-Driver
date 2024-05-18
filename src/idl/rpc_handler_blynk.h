@@ -484,6 +484,30 @@ void rpc_blynk_otaUpdatePrefetch_handler(MessageBuffer* _rpc_buff) {
 }
 
 
+bool rpc_blynk_otaUpdateSuspend_impl(uint16_t timeout);
+
+static
+void rpc_blynk_otaUpdateSuspend_handler(MessageBuffer* _rpc_buff) {
+  uint16_t _rpc_seq;
+  MessageBuffer_readUInt16(_rpc_buff, &_rpc_seq);
+  /* Deserialize arguments */
+  uint16_t timeout; MessageBuffer_readUInt16(_rpc_buff, &timeout);
+
+  if (MessageBuffer_getError(_rpc_buff) || MessageBuffer_availableToRead(_rpc_buff)) {
+    MessageWriter_sendResultStatus(_rpc_seq, RPC_STATUS_ERROR_ARGS_R);
+    return;
+  }
+
+  /* Call the actual function */
+  bool _rpc_ret_val = rpc_blynk_otaUpdateSuspend_impl(timeout);
+
+  /* Send response */
+  MessageWriter_beginResult(_rpc_seq, RPC_STATUS_OK);
+  MessageWriter_writeBool(_rpc_ret_val);
+  MessageWriter_end();
+}
+
+
 bool rpc_blynk_factoryReset_impl(void);
 
 static

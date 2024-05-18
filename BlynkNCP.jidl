@@ -198,6 +198,13 @@
         "@timeout": 30000,
         "returns": "UInt8"
       },
+      "otaUpdateSuspend": {
+        "@doc": "Suspend OTA during important operations",
+        "args": [
+          { "timeout": "UInt16", "@doc": "Timeout in seconds, max 18 hours. Specify 0 to resume OTA" }
+        ],
+        "returns": "Bool"
+      },
 
       "factoryReset": {
         "@doc": "Erase all configuration and reboot",

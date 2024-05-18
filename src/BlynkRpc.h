@@ -6,7 +6,7 @@
 #include "MessageBuffer.h"
 #include "MessageWriter.h"
 
-#define BLYNK_RPC_LIB_VERSION "0.6.3"
+#define BLYNK_RPC_LIB_VERSION "0.6.4"
 
 #ifdef __cplusplus
 extern "C" {
@@ -105,6 +105,7 @@ typedef enum RpcUID {
   RPC_UID_BLYNK_OTAUPDATEGETMD5     = 0x0343,
   RPC_UID_BLYNK_OTAUPDATEGETSHA256  = 0x0344,
   RPC_UID_BLYNK_OTAUPDATEPREFETCH   = 0x0345,
+  RPC_UID_BLYNK_OTAUPDATESUSPEND    = 0x0346,
 
   RPC_UID_BLYNK_SETTIME             = 0x0351,
   RPC_UID_BLYNK_GETTIME             = 0x0352,
