@@ -33,6 +33,8 @@
   #define SerialNCP   BLYNK_NCP_SERIAL
 #elif defined(ARDUINO_NANO_RP2040_CONNECT)
   #define SerialNCP   SerialNina
+#elif defined(ARDUINO_TTGO_T_PICO_C3)
+  #define SerialNCP   Serial2
 #elif defined(LINUX)
   #include <compat/LibSerialPort.h>
   #if !defined(BLYNK_NCP_PORT)

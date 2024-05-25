@@ -31,10 +31,14 @@ void setup()
   SerialDbg.begin(115200);
   waitSerialConsole(SerialDbg);
 
-  // Power-up NCP (if needed)
+  // Set up NCP (if needed)
 #if defined(ARDUINO_NANO_RP2040_CONNECT)
   pinMode(NINA_RESETN, OUTPUT);
   digitalWrite(NINA_RESETN, HIGH);
+#elif defined(ARDUINO_TTGO_T_PICO_C3)
+  SerialNCP.setFIFOSize(2048);
+  SerialNCP.setTX(8);
+  SerialNCP.setRX(9);
 #endif
 
   if (!ncpSetupSerial()) {
