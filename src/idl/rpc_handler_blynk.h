@@ -550,7 +550,7 @@ void rpc_blynk_factoryTestWiFiAP_handler(MessageBuffer* _rpc_buff) {
 }
 
 
-uint8_t rpc_blynk_factoryTestWiFi_impl(const char* ssid, const char* pass, int16_t* rssi);
+uint8_t rpc_blynk_factoryTestWiFi_impl(const char* ssid, const char* password, int16_t* rssi);
 
 static
 void rpc_blynk_factoryTestWiFi_handler(MessageBuffer* _rpc_buff) {
@@ -558,7 +558,7 @@ void rpc_blynk_factoryTestWiFi_handler(MessageBuffer* _rpc_buff) {
   MessageBuffer_readUInt16(_rpc_buff, &_rpc_seq);
   /* Deserialize arguments */
   const char* ssid; MessageBuffer_readString(_rpc_buff, &ssid);
-  const char* pass; MessageBuffer_readString(_rpc_buff, &pass);
+  const char* password; MessageBuffer_readString(_rpc_buff, &password);
   int16_t rssi; memset(&rssi, 0, sizeof(rssi)); /* output */
 
   if (MessageBuffer_getError(_rpc_buff) || MessageBuffer_availableToRead(_rpc_buff)) {
@@ -567,7 +567,7 @@ void rpc_blynk_factoryTestWiFi_handler(MessageBuffer* _rpc_buff) {
   }
 
   /* Call the actual function */
-  uint8_t _rpc_ret_val = rpc_blynk_factoryTestWiFi_impl(ssid, pass, &rssi);
+  uint8_t _rpc_ret_val = rpc_blynk_factoryTestWiFi_impl(ssid, password, &rssi);
 
   /* Send response */
   MessageWriter_beginResult(_rpc_seq, RPC_STATUS_OK);

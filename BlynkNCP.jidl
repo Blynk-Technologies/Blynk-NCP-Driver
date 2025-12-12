@@ -222,7 +222,7 @@
         "@timeout": 30000,
         "args": [
           { "ssid":     "String" },
-          { "pass":     "String" },
+          { "password": "String" },
           { "rssi":     "Int16", "@dir": "out" }
         ],
         "returns": "UInt8"

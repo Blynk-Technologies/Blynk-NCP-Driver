@@ -810,7 +810,7 @@ uint8_t rpc_blynk_factoryTestWiFiAP(uint16_t channel) {
 
 
 static inline
-uint8_t rpc_blynk_factoryTestWiFi(const char* ssid, const char* pass, int16_t* rssi) {
+uint8_t rpc_blynk_factoryTestWiFi(const char* ssid, const char* password, int16_t* rssi) {
   RpcStatus _rpc_res;
   uint8_t _rpc_ret_val;
   memset(&_rpc_ret_val, 0, sizeof(_rpc_ret_val));
@@ -819,7 +819,7 @@ uint8_t rpc_blynk_factoryTestWiFi(const char* ssid, const char* pass, int16_t* r
   /* Send request */
   const uint16_t _rpc_seq = MessageWriter_beginInvoke(RPC_UID_BLYNK_FACTORYTESTWIFI);
   MessageWriter_writeString(ssid);
-  MessageWriter_writeString(pass);
+  MessageWriter_writeString(password);
   MessageWriter_end();
 
   /* Wait response */
