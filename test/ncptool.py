@@ -25,7 +25,7 @@ ser = None
 ##
 
 
-def crc8(data):
+def crc8(data: bytes) -> int:
     crc = 0
     for d in data:
         crc ^= d
@@ -37,91 +37,105 @@ def crc8(data):
     return crc
 
 
-def hexdump(msg, data):
-    txt = "".join([chr(x) if x > 31 and x < 127 else "_" for x in data])
+def hexdump(msg: str, data: bytes) -> None:
+    txt = "".join([chr(x) if 31 < x < 127 else "_" for x in data])
     print(msg, data.hex() + " | " + txt)
 
 
 class MessageBuffer:
-    def __init__(self, data=b""):
+    def __init__(self, data: bytes = b""):
         self._buff = BytesIO(data)
 
-    def _unpack(self, fmt):
+    def _unpack(self, fmt: str):
         size = struct.calcsize(fmt)
-        (val,) = struct.unpack(fmt, self._buff.read(size))
+        b = self._buff.read(size)
+        if len(b) != size:
+            raise EOFError("Not enough data")
+        (val,) = struct.unpack(fmt, b)
         return val
 
-    def read_bool(self):
+    def read_bool(self) -> bool:
         return True if self._unpack("B") else False
 
-    def read_uint8(self):
+    def read_uint8(self) -> int:
         return self._unpack("B")
 
-    def read_int16(self):
+    def read_int16(self) -> int:
         return self._unpack("<h")
 
-    def read_uint16(self):
+    def read_uint16(self) -> int:
         return self._unpack("<H")
 
-    def read_cstring(self):
+    def read_uint32(self) -> int:
+        return self._unpack("<I")
+
+    def read_cstring(self) -> str:
         res = b""
         while True:
             b = self._buff.read(1)
-            if ord(b) == 0:
-                return res.decode("utf-8")
-            else:
-                res += b
+            if not b:
+                raise EOFError("Unterminated cstring")
+            if b == b"\x00":
+                return res.decode("utf-8", errors="replace")
+            res += b
 
-    def write_bool(self, val):
+    def read_buffer(self) -> bytes:
+        ln = self.read_uint16()
+        data = self._buff.read(ln)
+        if len(data) != ln:
+            raise EOFError("Not enough data for buffer")
+        return data
+
+    def write_bool(self, val) -> None:
         self._buff.write(struct.pack("B", 1 if int(val) else 0))
 
-    def write_int8(self, val):
+    def write_int8(self, val) -> None:
         self._buff.write(struct.pack("b", int(val)))
 
-    def write_int16(self, val):
+    def write_int16(self, val) -> None:
         self._buff.write(struct.pack("<h", int(val)))
 
-    def write_int32(self, val):
+    def write_int32(self, val) -> None:
         self._buff.write(struct.pack("<i", int(val)))
 
-    def write_int64(self, val):
+    def write_int64(self, val) -> None:
         self._buff.write(struct.pack("<q", int(val)))
 
-    def write_uint8(self, val):
+    def write_uint8(self, val) -> None:
         self._buff.write(struct.pack("B", int(val)))
 
-    def write_uint16(self, val):
+    def write_uint16(self, val) -> None:
         self._buff.write(struct.pack("<H", int(val)))
 
-    def write_uint32(self, val):
+    def write_uint32(self, val) -> None:
         self._buff.write(struct.pack("<I", int(val)))
 
-    def write_uint64(self, val):
+    def write_uint64(self, val) -> None:
         self._buff.write(struct.pack("<Q", int(val)))
 
-    def write_float(self, val):
+    def write_float(self, val) -> None:
         self._buff.write(struct.pack("<f", float(val)))
 
-    def write_double(self, val):
+    def write_double(self, val) -> None:
         self._buff.write(struct.pack("<d", float(val)))
 
-    def write_cstring(self, val):
+    def write_cstring(self, val) -> None:
         self._buff.write(str(val).encode("utf-8") + b"\x00")
 
-    def write_buffer(self, val):
+    def write_buffer(self, val: bytes) -> None:
         self.write_uint16(len(val))
         self._buff.write(val)
 
-    def get_buffer(self):
+    def get_buffer(self) -> bytes:
         return self._buff.getvalue()
 
 
 ##
-# Serial Framing
+# Serial framing (AA ... BB, with CC-escaping and CRC8)
 ##
 
 
-async def sendPacket(data):
+async def sendPacket(data: bytes) -> None:
     to_escape = [0x11, 0x13, 0xAA, 0xBB, 0xCC]
     escaped = b""
     for b in data + bytes([crc8(data)]):
@@ -131,11 +145,10 @@ async def sendPacket(data):
             escaped += bytes([b])
 
     packet = b"\xaa" + escaped + b"\xbb"
-    # hexdump("<<", packet)
     await ser.write_async(packet)
 
 
-async def readPacketInfinite():
+async def readPacketInfinite() -> bytes:
     packet = b""
     raw = b""
     unescape = False
@@ -165,7 +178,7 @@ async def readPacketInfinite():
             packet += data
 
 
-async def readPacket(timeout=1.0):
+async def readPacket(timeout: float = 1.0) -> bytes:
     try:
         return await asyncio.wait_for(readPacketInfinite(), timeout=timeout)
     except asyncio.TimeoutError:
@@ -179,76 +192,75 @@ async def readPacket(timeout=1.0):
 
 class RpcUID(enum.IntEnum):
     # System
-    SYSTEM_PING = 0x0101
-    SYSTEM_REBOOT = 0x0102
-    SYSTEM_HASUID = 0x0103
+    SYSTEM_PING               = 0x0101
+    SYSTEM_REBOOT             = 0x0102
+    SYSTEM_HASUID             = 0x0103
 
     # Hardware
-    HW_SETUARTBAUDRATE = 0x0201
+    HW_SETUARTBAUDRATE        = 0x0201
 
-    HW_INITUSERBUTTON = 0x0211
-    HW_INITLED = 0x0221
-    HW_INITRGB = 0x0222
-    HW_INITARGB = 0x0223
-    HW_SETLEDBRIGHTNESS = 0x0224
+    HW_INITUSERBUTTON         = 0x0211
+    HW_INITLED                = 0x0221
+    HW_INITRGB                = 0x0222
+    HW_INITARGB               = 0x0223
+    HW_SETLEDBRIGHTNESS       = 0x0224
 
     # Blynk
-    BLYNK_INITIALIZE = 0x0301
-    BLYNK_SETVENDORPREFIX = 0x0302
-    BLYNK_SETVENDORSERVER = 0x0303
-    BLYNK_SETFIRMWAREINFO = 0x0304
-    BLYNK_GETNCPVERSION = 0x0305
-    BLYNK_GETSTATE = 0x0306
-    BLYNK_GETHOTSPOTNAME = 0x0307
+    BLYNK_INITIALIZE          = 0x0301
+    BLYNK_SETVENDORPREFIX     = 0x0302
+    BLYNK_SETVENDORSERVER     = 0x0303
+    BLYNK_SETFIRMWAREINFO     = 0x0304
+    BLYNK_GETNCPVERSION       = 0x0305
+    BLYNK_GETSTATE            = 0x0306
+    BLYNK_GETHOTSPOTNAME      = 0x0307
 
-    BLYNK_VIRTUALWRITE = 0x0311
-    BLYNK_SYNCALL = 0x0312
-    BLYNK_SYNCVIRTUAL = 0x0313
-    BLYNK_SETPROPERTY = 0x0314
-    BLYNK_BEGINGROUP = 0x0315
-    BLYNK_ENDGROUP = 0x0316
-    BLYNK_LOGEVENT = 0x0317
-    BLYNK_RESOLVEEVENT = 0x0318
-    BLYNK_RESOLVEALLEVENTS = 0x0319
-    BLYNK_SETMETADATA = 0x031A
+    BLYNK_VIRTUALWRITE        = 0x0311
+    BLYNK_SYNCALL             = 0x0312
+    BLYNK_SYNCVIRTUAL         = 0x0313
+    BLYNK_SETPROPERTY         = 0x0314
+    BLYNK_BEGINGROUP          = 0x0315
+    BLYNK_ENDGROUP            = 0x0316
+    BLYNK_LOGEVENT            = 0x0317
+    BLYNK_RESOLVEEVENT        = 0x0318
+    BLYNK_RESOLVEALLEVENTS    = 0x0319
+    BLYNK_SETMETADATA         = 0x031A
 
-    BLYNK_CONFIGRESET = 0x0323
+    BLYNK_CONFIGRESET         = 0x0323
 
-    BLYNK_FACTORYRESET = 0x0331
-    BLYNK_FACTORYTESTWIFI = 0x0332
-    BLYNK_FACTORYTESTWIFIAP = 0x0333
+    BLYNK_FACTORYRESET        = 0x0331
+    BLYNK_FACTORYTESTWIFI     = 0x0332
+    BLYNK_FACTORYTESTWIFIAP   = 0x0333
 
 
 class BlynkState(enum.IntEnum):
-    BLYNK_STATE_UNKNOWN = 0
+    BLYNK_STATE_UNKNOWN           = 0
 
-    BLYNK_STATE_IDLE = 1
-    BLYNK_STATE_CONFIG = 2
-    BLYNK_STATE_CONNECTING_NET = 3
-    BLYNK_STATE_CONNECTING_CLOUD = 4
-    BLYNK_STATE_CONNECTED = 5
+    BLYNK_STATE_IDLE              = 1
+    BLYNK_STATE_CONFIG            = 2
+    BLYNK_STATE_CONNECTING_NET    = 3
+    BLYNK_STATE_CONNECTING_CLOUD  = 4
+    BLYNK_STATE_CONNECTED         = 5
 
-    BLYNK_STATE_NOT_INITIALIZED = 10
-    BLYNK_STATE_OTA_UPGRADE = 11
-    BLYNK_STATE_ERROR = 12
-
+    BLYNK_STATE_NOT_INITIALIZED   = 10
+    BLYNK_STATE_OTA_UPGRADE       = 11
+    BLYNK_STATE_ERROR             = 12
 
 class FactoryTestStatus(enum.IntEnum):
-    FACTORY_TEST_OK = 1
+    FACTORY_TEST_OK           = 1
     FACTORY_TEST_INVALID_ARGS = 2
-    FACTORY_TEST_SYSTEM_FAIL = 3
-    FACTORY_TEST_WIFI_FAIL = 4
-    FACTORY_TEST_LOW_RSSI = 5
-    FACTORY_TEST_INET_FAIL = 6
+    FACTORY_TEST_SYSTEM_FAIL  = 3
+    FACTORY_TEST_WIFI_FAIL    = 4
+    FACTORY_TEST_LOW_RSSI     = 5
+    FACTORY_TEST_INET_FAIL    = 6
 
 
 msgId = 0
 
 
-def getMsgId():
+def getMsgId() -> int:
     global msgId
     msgId += 1
-    return msgId
+    return msgId & 0xFFFF
 
 
 async def rpcInvoke(uid, args, timeout=1.0):
@@ -272,6 +284,11 @@ async def rpcInvoke(uid, args, timeout=1.0):
         raise Exception(f"RPC invoke status: {status}")
 
     return rsp
+
+
+##
+# High-level RPC wrappers
+##
 
 
 async def rpc_system_ping():
@@ -413,32 +430,39 @@ async def rpc_blynk_factoryTestWiFiAP(channel):
     retval = rsp.read_bool()
 
 
-async def dumpCommands():
+async def dumpFrames():
     while True:
         packet = await readPacketInfinite()
         hexdump(">>", packet)
 
 
+##
+# CLI
+##
+
+
 async def run_commands(ops):
     opfunc = {
-        "reboot": rpc_system_reboot,
-        "hasUID": rpc_system_hasUID,
-        "setVendor": rpc_blynk_setVendorPrefix,
-        "setServer": rpc_blynk_setVendorServer,
-        "blynkInit": rpc_blynk_initialize,
-        "getNcpVersion": rpc_blynk_getNcpVersion,
-        "getHotspotName": rpc_blynk_getHotspotName,
-        "initLED": rpc_hw_initLED,
-        "initRGB": rpc_hw_initRGB,
-        "initARGB": rpc_hw_initARGB,
-        "setLedBrightness": rpc_hw_setLedBrightness,
-        "configReset": rpc_blynk_configReset,
-        "getState": rpc_blynk_getState,
-        "setMeta": rpc_blynk_setMetadata,
-        "factoryReset": rpc_blynk_factoryReset,
-        "factoryTestWiFi": rpc_blynk_factoryTestWiFi,
-        "factoryTestWiFiAP": rpc_blynk_factoryTestWiFiAP,
-        "dump": dumpCommands,
+      "reboot":             rpc_system_reboot,
+      "hasUID":             rpc_system_hasUID,
+      "setVendor":          rpc_blynk_setVendorPrefix,
+      "setServer":          rpc_blynk_setVendorServer,
+      "blynkInit":          rpc_blynk_initialize,
+      "getNcpVersion":      rpc_blynk_getNcpVersion,
+      "getHotspotName":     rpc_blynk_getHotspotName,
+      "initLED":            rpc_hw_initLED,
+      "initRGB":            rpc_hw_initRGB,
+      "initARGB":           rpc_hw_initARGB,
+      "setLedBrightness":   rpc_hw_setLedBrightness,
+      "configReset":        rpc_blynk_configReset,
+      "getState":           rpc_blynk_getState,
+      "setMeta":            rpc_blynk_setMetadata,
+
+      "factoryReset":       rpc_blynk_factoryReset,
+      "factoryTestWiFi":    rpc_blynk_factoryTestWiFi,
+      "factoryTestWiFiAP":  rpc_blynk_factoryTestWiFiAP,
+
+      "dump":               dumpCommands,
     }
     ts = datetime.datetime.now()
     await rpc_system_ping()
@@ -448,7 +472,7 @@ async def run_commands(ops):
     for op in ops:
         f = opfunc[op[0]]
         args = op[1:]
-        print(f"Running {f.__name__}({', '.join(args)})")
+        #print(f"Running {f.__name__}({', '.join(args)})")
         await f(*args)
 
 
@@ -501,10 +525,10 @@ def main():
 
 
 if __name__ == "__main__":
-    import sys
-
     try:
         main()
+    except KeyboardInterrupt:
+        pass
     except Exception as e:
         print(e, file=sys.stderr)
         sys.exit(1)
