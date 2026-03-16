@@ -71,6 +71,7 @@ This includes a reference implementation of **NCP initialization, re-initializat
 - [**Blynk.NCP Overview**](https://docs.blynk.io/en/blynk.ncp/overview)
 - [Supported Connectivity Modules](https://docs.blynk.io/en/getting-started/supported-boards#connectivity-modules-supported-by-blynk.ncp)
 - [Blynk.NCP Protocol Specification](docs/NCP%20Protocol%20Specification.md)
+- [Button and LED API](docs/Button%20and%20LED.md)
 - [Advanced Time and Location API](docs/Time%20and%20Location.md)
 - [Primary MCU OTA upgrades](docs/Firmware%20Upgrade.md)
 - [Factory Testing](docs/Factory%20Testing.md)
