@@ -26,12 +26,14 @@ Using Blynk.NCP is recommended if one of these is true:
 - **Blynk.Inject**: connect your devices easily using [**Blynk IoT App**](https://docs.blynk.io/en/downloads/blynk-apps-for-ios-and-android) (<img src="https://cdn.rawgit.com/simple-icons/simple-icons/develop/icons/googleplay.svg" width="18" height="18" /> Android, <img src="https://cdn.rawgit.com/simple-icons/simple-icons/develop/icons/apple.svg" width="18" height="18" /> iOS) or [🌐 Web Dashboard](https://blynk.cloud)
   - `BLE`-assisted device provisioning for the best end-user experience
   - `WiFiAP`-based provisioning for devices without BLE support
-  - **Network Manager**: WiFi (up to 16 saved networks), Ethernet, Cellular (depending on the hardware)
-  - Advanced network connection troubleshooting
+- **Network Manager**: Advanced network connection management and troubleshooting
+  - `WiFi`: Maintains connection to the most reliable WiFi network (up to 16 configured networks)
+  - `Ethernet`: Supports `Static IP` or `DHCP` network configuration
+  - `Cellular`: Provides connectivity through `2G GSM`, `EDGE`, `3G`, `4G LTE`, `Cat M1`, or `5G` networks using `PPP` (depends on external modem)
 - Secure **Blynk.Cloud** connection that provides simple API for:
   - Data transfer with Virtual Pins, reporting Events, and accessing Metadata
   - `Time`, `Timezone` and `Location` with an ability to track local time when the device is offline, including DST transitions
-- **Blynk.Air** - automatic Over The Air firmware updates using Web Dashboard
+- **Blynk.Air** - automatic, managed Over The Air firmware updates using Web Dashboard
   - Both NCP and the Primary MCU firmware updates
   - Direct firmware upgrade using iOS/Android App before device activation
 
