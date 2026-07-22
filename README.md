@@ -23,7 +23,7 @@ Using Blynk.NCP is recommended if one of these is true:
 
 <details><summary><b>Core Features</b></summary>
 
-- **Blynk.Inject**: connect your devices easily using [**Blynk IoT App**](https://docs.blynk.io/en/downloads/blynk-apps-for-ios-and-android) (<img src="https://cdn.rawgit.com/simple-icons/simple-icons/develop/icons/googleplay.svg" width="18" height="18" /> Android, <img src="https://cdn.rawgit.com/simple-icons/simple-icons/develop/icons/apple.svg" width="18" height="18" /> iOS) or [🌐 Web Dashboard](https://blynk.cloud)
+- **Blynk.Inject**: connect your devices easily using [**Blynk IoT App**](https://docs.blynk.io/en/downloads/blynk-apps-for-ios-and-android) for <img src="https://cdn.simpleicons.org/googleplay/363636/d1d1d1" width="18" height="18" /> Android and <img src="https://cdn.simpleicons.org/apple/363636/d1d1d1" width="18" height="18" /> iOS, or [🌐 Web Dashboard](https://blynk.cloud)
   - `BLE`-assisted device provisioning for the best end-user experience
   - `WiFiAP`-based provisioning for devices without BLE support
 - **Network Manager**: Advanced network connection management and troubleshooting
